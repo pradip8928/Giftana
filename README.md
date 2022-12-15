@@ -54,7 +54,7 @@ npm run server
     git merge origin/master
 Complete the merge. Resolve merge conflicts (if any)
 
-#### 3. `git push origin br_name`
+#### 3. git push origin br_name
 
 #### 4. Goto Github and create a Pull Request.
 
