@@ -17,9 +17,7 @@ git clone https://github.com/pradip8928/Giftana.git
 ```
 #### 2. Setup Environment and dependencies  .
 #### Install Node JS from nodejs.org
-```nodejs
-npm i
-```
+ 
 #### 3. To run Node App
 #### Navigate to root Directory:
 ```nodejs
