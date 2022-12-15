@@ -36,7 +36,7 @@ npm run server
 
 #### 1. On your master branch
 
-    `git pull https://github.com/pradip8928/Giftana.git`
+    ` git pull https://github.com/pradip8928/Giftana.git `
 
 #### 2. Checkout to Your own branch.
 
@@ -58,6 +58,33 @@ Complete the merge. Resolve merge conflicts (if any)
 
 #### 5. Wait for Pull Request to get approved.
 
+
+## To Commit and push the code to the repo
+1. Adding the files  using given syntax :
+```Github
+git add .
+```
+or
+```Github
+git add <FileName> or <FolderName>
+```
+2. Make a Commit
+```Github
+git commit -m "Message"
+```
+3. To create branch
+```Github
+git branch -b <branchname>
+```
+4. To checkout your own branch
+```Github
+git checkout  <branch_name>
+```
+5. To push the code to  your own branch
+```Github
+git push origin <branch_name>
+```
+6. Make a pull request and wait for  response
 
 
 
