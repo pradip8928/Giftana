@@ -1,7 +1,7 @@
 const Catagory = require("../../models/catalogModel/catagoryModel");
 const ApiFeatures = require("../../utils/apiFeatures");
 const catchAsyncError = require("../../middleware/errorHandler/catchAsyncError");
-
+const ErrorHandler = require("../../utils/errorHandler");
 // CREATE PRODUCT
 
 exports.createProduct = catchAsyncError(async (req, res, next) => {
