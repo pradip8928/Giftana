@@ -16,7 +16,7 @@ const registerAdmin = asyncHandler(async(req, res) => {
 
     if (adminExist) {
         res.status(400)
-        throw new Error(`Admin with this ${email} already exists`)
+        throw new Error(`Admin with this ${adminName} already exists`)
     }
 
 
@@ -52,13 +52,12 @@ const authAdmin = asyncHandler(async(req, res) => {
 
 
         // verify token
-
-        const token = await generateToken(admin._id);
-        res.cookie(("access_token", token, {
-            expires: new Date(Date.now() + 25890000),
+        const token = generateToken(admin._id);
+        res.cookie("access_token", token, {
+            expires: new Date(Date.now() + 2000),
             httpOnly: true,
-            secure: process.env.NODE_ENV === "development",
-        }))
+            // secure: process.env.NODE_ENV === "development",
+        })
 
         res.send({
             _id: admin._id,
@@ -68,37 +67,14 @@ const authAdmin = asyncHandler(async(req, res) => {
             token: generateToken(admin._id),
         });
 
-        // .status(200)
-        // .json({ message: "Logged in successfully 😊 👌" }));
-        // res.cookie({
-        //     _id: admin._id,
-        //     adminName: admin.adminName,
-        //     email: admin.email,
-        //     role: admin.role,
-        //     token: generateToken(admin._id),
-        // });
-        // const token = jwt.sign({ id: admin._id, role: "admin" }, process.env.JWT_SECRET);
-        // return res
-        //     .cookie("access_token", token, {
-        //         httpOnly: true,
-        //         secure: process.env.NODE_ENV === "development",
-        //     })
-        //     .status(200)
-        //     .json({ message: "Logged in successfully 😊 👌" });
+
 
     } else {
         res.status(401);
         throw new Error("Invalid Email or Password");
     }
 
-    // const token = jwt.sign({ id: admin._id, role: "admin" }, process.env.JWT_SECRET);
-    // return res
-    //     .cookie("access_token", token, {
-    //         httpOnly: true,
-    //         secure: process.env.NODE_ENV === "development",
-    //     })
-    //     .status(200)
-    //     .json({ message: "Logged in successfully 😊 👌" });
+
 });
 
 
