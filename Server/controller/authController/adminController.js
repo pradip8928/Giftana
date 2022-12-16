@@ -1,26 +1,22 @@
-const Admin = require("../models/adminModel")
-const requireLogin = require("../middleware/requireLogin")
-const asyncHandler = require("express-async-handler")
-const generateToken = require("../utils/generateToken")
-const jwt = require("jsonwebtoken")
-
-
-
+const Admin = require("../../models/authModel/adminModel");
+const requireLogin = require("../../middleware/requiredLogin/requireLogin");
+const asyncHandler = require("express-async-handler");
+const generateToken = require("../../utils/generateToken");
+const jwt = require("jsonwebtoken");
 
 // / registeration of Admin
 const registerAdmin = asyncHandler(async(req, res) => {
     const { adminName, password, email, role } = req.body;
     console.log(adminName, password, email, role);
     // res.send(adminName, password, email, role)
-    const adminExist = await Admin.findOne({ adminName })
+    const adminExist = await Admin.findOne({ adminName });
 
     if (adminExist) {
-        res.status(400)
-        throw new Error(`Admin with this ${adminName} already exists`)
+        res.status(400);
+        throw new Error(`Admin with this ${email} already exists`);
     }
 
-
-    const admin = await Admin.create({ adminName, email, password, role })
+    const admin = await Admin.create({ adminName, email, password, role });
     if (admin) {
         res.status(201).json({
             id: admin._id,
@@ -28,17 +24,12 @@ const registerAdmin = asyncHandler(async(req, res) => {
             email: admin.email,
             role: admin.role,
             token: generateToken(admin._id),
-        })
+        });
     } else {
-        res.status(400)
-        throw new Error(`Error Occured`)
-
+        res.status(400);
+        throw new Error(`Error Occured`);
     }
-
-
-})
-
-
+});
 
 // Login
 
@@ -49,9 +40,9 @@ const authAdmin = asyncHandler(async(req, res) => {
     const admin = await Admin.findOne({ adminName });
 
     if (admin && (await admin.matchPassword(password))) {
-
-
         // verify token
+
+
         const token = generateToken(admin._id);
         res.cookie("access_token", token, {
             expires: new Date(Date.now() + 2000),
@@ -67,17 +58,11 @@ const authAdmin = asyncHandler(async(req, res) => {
             token: generateToken(admin._id),
         });
 
-
-
     } else {
         res.status(401);
         throw new Error("Invalid Email or Password");
     }
-
-
 });
-
-
 
 // Logout Admin
 const logoutAdmin = asyncHandler(async(req, res, next) => {
@@ -88,9 +73,8 @@ const logoutAdmin = asyncHandler(async(req, res, next) => {
 
     res.status(200).json({
         success: true,
-        message: "You had logout"
+        message: "You had logout",
     });
 });
 
-
-module.exports = { registerAdmin, authAdmin, logoutAdmin }
+module.exports = { registerAdmin, authAdmin, logoutAdmin };
