@@ -14,6 +14,7 @@ dotenv.config();
 const { errorHandler, notFound } = require("./middleware/errorMiddleware")
 const userRoutes = require("./routes/userRoutes")
 const adminRoutes = require("./routes/adminRoutes")
+const catelogRoutes = require("./routes/catalogueRoutes")
 
 require("./config/database");
 app.use(cors())
@@ -31,6 +32,7 @@ const Port = process.env.PORT || 3000
 
 app.use("/api/user", userRoutes);
 app.use("/api/admin", adminRoutes);
+app.use("/api/catelogRoutes", catelogRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
