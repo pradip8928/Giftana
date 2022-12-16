@@ -11,10 +11,18 @@ app.use(cookieParser());
 app.use(express.json()); // to accept json data
 dotenv.config();
 
-const { errorHandler, notFound } = require("./middleware/errorMiddleware")
-const userRoutes = require("./routes/userRoutes")
-const adminRoutes = require("./routes/adminRoutes")
-const catelogRoutes = require("./routes/catalogueRoutes")
+// const { errorHandler, notFound } = require("./middleware/errorMiddleware")
+// const userRoutes = require("./routes/userRoutes")
+// const adminRoutes = require("./routes/adminRoutes")
+// const catelogRoutes = require("./routes/catalogueRoutes")
+
+
+
+const { errorHandler, notFound } = require("./middleware/errorHandler/errorMiddleware");
+const errorMiddleware = require("./middleware/errorHandler/error");
+const userRoutes = require("./routes/authRoutes/userRoutes");
+const adminRoutes = require("./routes/authRoutes/adminRoutes");
+const catagory = require("./routes/catalog/catagoryRoutes");
 
 require("./config/database");
 app.use(cors())
@@ -32,9 +40,11 @@ const Port = process.env.PORT || 3000
 
 app.use("/api/user", userRoutes);
 app.use("/api/admin", adminRoutes);
-app.use("/api/catelogRoutes", catelogRoutes);
+// app.use("/api/catelogRoutes", catelogRoutes);
+app.use("/catalog", catagory);
 app.use(notFound);
 app.use(errorHandler);
+app.use(errorMiddleware);
 
 
 // localhost:3000/api/admin/register
