@@ -62,6 +62,7 @@ const authAdmin = asyncHandler(async (req, res) => {
     // });
 
     const token = generateToken(admin._id);
+    console.log(token);
     res.cookie("access_token", token, {
       expires: new Date(Date.now() + 2000),
       httpOnly: true,

@@ -19,9 +19,11 @@ exports.getAllProduct = catchAsyncError(async (req, res, next) => {
 
   //   const apiFeature = new ApiFeatures(Product.find(), req.query)
 
-  const apiFeature = new ApiFeatures(Catagory.find(), req.query)
-    .search()
-    .filter();
+  const apiFeature = new ApiFeatures(
+    Catagory.find(),
+    req.query
+  ).searchByProductName();
+  // .searchByProductName();
 
   const products = await apiFeature.query;
 
@@ -69,7 +71,7 @@ exports.updateProduct = catchAsyncError(async (req, res, next) => {
 
 // DELETE PRODUCT
 
-exports.deleteProduct = catchAsyncError(async (req, res, next) => {
+exports.deleteOneProduct = catchAsyncError(async (req, res, next) => {
   const product = await Catagory.findById(req.params.id);
 
   if (!product) {
@@ -80,5 +82,31 @@ exports.deleteProduct = catchAsyncError(async (req, res, next) => {
   res.status(200).json({
     success: true,
     message: "product deleted successfully",
+  });
+});
+
+exports.deleteProduct = catchAsyncError(async (req, res, next) => {
+  const deleteProduct = await req.body;
+
+  console.log("not Items is", deleteProduct);
+
+  // if (!deleteProduct) {
+  //   return next(new ErrorHandler("Product not found", 404));
+  // }
+
+  const ids = await Catagory.find({
+    _id: deleteProduct,
+  });
+
+  console.log(ids);
+  deleteProduct.map(async (key) => {
+    // await Catagory.remove({ _id: `${key}` });
+    await Catagory.findByIdAndDelete({ _id: key });
+    console.log(key);
+  });
+
+  res.status(200).json({
+    success: true,
+    message: "products deleted successfully",
   });
 });
