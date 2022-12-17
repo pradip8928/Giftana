@@ -11,6 +11,8 @@ const registerAdmin = asyncHandler(async (req, res) => {
   // res.send(adminName, password, email, role)
   const adminExist = await Admin.findOne({ adminName });
   console.log(adminName);
+  //   yha ek line add kar rha hhaa smjha re
+  console.log("password");
 
   if (adminExist) {
     res.status(400);
