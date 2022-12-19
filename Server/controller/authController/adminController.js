@@ -3,6 +3,8 @@ const requireLogin = require("../../middleware/requiredLogin/requireLogin");
 const asyncHandler = require("express-async-handler");
 const generateToken = require("../../utils/generateToken");
 const jwt = require("jsonwebtoken");
+const SuperAdmin = require("../../models/superAdminModel/createAdmin");
+const ErrorHandler = require("../../utils/errorHandler");
 
 // / registeration of Admin
 const registerAdmin = asyncHandler(async (req, res) => {
@@ -11,7 +13,7 @@ const registerAdmin = asyncHandler(async (req, res) => {
   // res.send(adminName, password, email, role)
   const adminExist = await Admin.findOne({ adminName });
   console.log(adminName);
-  //   yha ek line add kar rha hhaa smjha re
+
   console.log("password");
 
   if (adminExist) {
@@ -78,4 +80,19 @@ const logoutAdmin = asyncHandler(async (req, res, next) => {
   });
 });
 
-module.exports = { registerAdmin, authAdmin, logoutAdmin };
+// unecessary
+const superAdmin = asyncHandler(async (req, res) => {
+  try {
+    const idSuperAdmin = await SuperAdmin.create(req.body);
+
+    res.status(201).json({
+      success: true,
+      idSuperAdmin,
+    });
+  } catch (err) {
+    // next(err);
+    console.log("err", err);
+  }
+});
+
+module.exports = { registerAdmin, authAdmin, logoutAdmin, superAdmin };
