@@ -13,7 +13,7 @@
 #### 1. Clone the repo on your computer.
 
 ```nodejs
-git clone https://github.com/pradip8928/Giftana.git
+git clone git@github.com:pradip8928/Giftana.git
 ```
 #### 2. Setup Environment and dependencies  .
 #### Install Node JS from nodejs.org
