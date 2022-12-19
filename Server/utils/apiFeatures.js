@@ -4,37 +4,20 @@ class ApiFeatures {
     this.queryStr = queryStr;
   }
 
-  search() {
-    const keyword = this.queryStr.keyword
+  searchByProductName() {
+    const productName = this.queryStr.productName
       ? {
-          name: {
-            $regex: this.queryStr.keyword,
+          productName: {
+            $regex: this.queryStr.productName,
             $options: "i",
           },
         }
       : {};
 
-    console.log(keyword);
+    console.log(productName);
 
-    this.query = this.query.find({ ...keyword });
+    this.query = this.query.find(productName);
 
-    return this;
-  }
-
-  filter() {
-    const queryCopy = { ...this.queryStr };
-
-    console.log(queryCopy);
-
-    // Remove some fields for category
-
-    const removeFields = ["keyword"];
-
-    removeFields.forEach((key) => queryCopy[key]);
-
-    console.log(queryCopy);
-
-    this.query = this.query.find(queryCopy);
     return this;
   }
 }
