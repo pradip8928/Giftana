@@ -36,7 +36,7 @@ npm run server
 
 #### 1. On your master branch
 
-    ` git pull https://github.com/pradip8928/Giftana.git `
+    ` git pull git@github.com:pradip8928/Giftana.git `
 
 #### 2. Checkout to Your own branch.
 
