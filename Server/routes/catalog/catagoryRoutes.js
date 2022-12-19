@@ -1,18 +1,22 @@
 const express = require("express");
+const router = express.Router();
 const {
-  createProduct,
-  getAllProduct,
-  getProductDetail,
-  updateProduct,
-  deleteProduct,
+    createProduct,
+    getAllProduct,
+    getProductDetail,
+    updateProduct,
+    deleteOneProduct,
+    deleteProduct,
+    deleteMultipleProducts
 } = require("../../controller/catalogController/catagoryController");
 
-const router = express.Router();
 
 router.route("/catagory/createProduct").post(createProduct);
 router.route("/catagory/getAllProduct").get(getAllProduct);
 router.route("/catagory/product/:id").get(getProductDetail);
 router.route("/catagory/product/:id").put(updateProduct);
-router.route("/catagory/product/:id").delete(deleteProduct);
-
+router.route("/catagory/product/:id").delete(deleteOneProduct);
+// add
+// router.route("/catagory/product/delete").delete(deleteProduct);
+router.route("/catagory/products/deleteMultipleProducts").delete(deleteMultipleProducts)
 module.exports = router;

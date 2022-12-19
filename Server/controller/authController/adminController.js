@@ -14,10 +14,12 @@ const registerAdmin = asyncHandler(async (req, res) => {
   //   yha ek line add kar rha hhaa smjha re
   console.log("password");
 
-  if (adminExist) {
-    res.status(400);
-    throw new Error(`Admin with this ${email} already exists`);
-  }
+ 
+    if (adminExist) {
+        res.status(400);
+        throw new Error(`Admin with this ${adminName} already exists`);
+    }
+ 
 
   const admin = await Admin.create({ adminName, email, password, role });
   if (admin) {
