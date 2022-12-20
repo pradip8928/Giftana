@@ -10,6 +10,6 @@ const {
 
 const router = express.Router();
 
-router.route("/createadminsuperadmin").post(superAdmin);
+// router.route("/createadminsuperadmin").post(superAdmin);
 
 module.exports = router;
