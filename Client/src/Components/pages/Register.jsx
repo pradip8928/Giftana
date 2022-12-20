@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Registraion_Form() {
+export default function Register() {
   return (
     <form>
       <div class="mb-3 row">

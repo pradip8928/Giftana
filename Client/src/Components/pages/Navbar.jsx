@@ -1,44 +1,108 @@
 import React from "react";
-
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 export default function Navbar() {
- 
-  
   return (
-    <nav class="navbar navbar-expand-lg bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-          Smartstore
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <a class="nav-link active" aria-current="page" href="#">
-              Dashboard
-            </a>
-            <a class="nav-link" href="#">
-              Catolog
-            </a>
-            <a class="nav-link" href="#">
-           Sales
-            </a>
-            <a class="nav-link disabled">Customers</a>
-            <a class="nav-link disabled">Promotions</a>
-            <a class="nav-link disabled">CMS</a>
-            <a class="nav-link disabled">Contiguration</a>
-            <a class="nav-link disabled">System</a>
+    <>
+      <Router>
+        <nav class="navbar navbar-expand-lg bg-light">
+          <div class="container-fluid">
+            <Link className="navbar-brand" to="#">
+              Smartstore
+            </Link>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNavAltMarkup"
+              aria-controls="navbarNavAltMarkup"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                <li className="nav-item">
+                  <Link
+                    className="nav-link active   text-bold"
+                    aria-current="page"
+                    to="/"
+                  >
+                    Dashboard
+                  </Link>
+                </li>
+
+
+                <li className="nav-item">
+                  <Link
+                    className="nav-link active  text-bold"
+                    aria-current="page"
+                    to="/about"
+                  > 
+                  Catolog
+                  </Link>
+                </li>
+
+
+                <li className="nav-item">
+                  <Link
+                    className="nav-link active  text-bold"
+                    aria-current="page"
+                    to="/about"
+                  > 
+                   Sales
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className="nav-link active  text-bold"
+                    aria-current="page"
+                    to="/"
+                  > 
+                   Customers
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className="nav-link active  text-bold"
+                    aria-current="page"
+                    to="/"
+                  > 
+                   Promotions
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className="nav-link active  text-bold"
+                    aria-current="page"
+                    to="/"
+                  > 
+                   CMS
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className="nav-link active  text-bold"
+                    aria-current="page"
+                    to="/"
+                  > 
+                   Configuration 
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className="nav-link active  text-bold"
+                    aria-current="page"
+                    to="/"
+                  > 
+                   System
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
-      </div>
-    </nav>
+        </nav>
+      </Router>
+    </>
   );
 }
