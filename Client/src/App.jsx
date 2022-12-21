@@ -5,6 +5,8 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import Demo from "./Components/pages/Demo"
 import Navbar from "./Components/pages/Navbar.jsx";
 import Registraion_Form from './Components/pages/Registraion_Form'
+import '../src/Components/css/Registraion_Form.css';
+import '../src/Components/css/Navbar.css';
 
 
 function App() {

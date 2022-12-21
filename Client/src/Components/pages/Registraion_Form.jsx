@@ -45,9 +45,9 @@ export default function Registraion_Form() {
           autocomplete="off"
           checked
         />
-        <label class="btn btn-secondary" for="option1">
+        {/* <label class="btn btn-secondary" for="option1">
           Checked
-        </label>
+        </label> */}
 
         <input
           type="radio"
@@ -57,7 +57,7 @@ export default function Registraion_Form() {
           autocomplete="off"
         />
         <label class="btn btn-secondary" for="option2">
-          Radio
+         Male
         </label>
 
         <input
@@ -68,7 +68,7 @@ export default function Registraion_Form() {
           autocomplete="off"
         />
         <label class="btn btn-secondary" for="option3">
-          Radio
+        Female
         </label>
       </div>
       <div class="mb-3 row">
@@ -87,7 +87,7 @@ export default function Registraion_Form() {
           <input type="text" class="form-control" id="lastname" />
         </div>
         <div class="form-group" id="DOB">
-          <label class="control-label" id="date" for="date">
+          <label class="control-label" id="date-1" for="date">
             Date
           </label>
           <input
