@@ -6,6 +6,8 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Demo from "./Components/pages/Demo";
 import Navbar from "./Components/pages/Navbar.jsx";
 import Register from "./Components/pages/Register";
+import XForm from './Components/XForm';
+import AdminLogin from "./Components/pages/AdminLogin";
 
 function App() {
   return (
@@ -97,7 +99,7 @@ function App() {
                 <Link
                   className="nav-link active  text-bold"
                   aria-current="page"
-                  to="/"
+                  to="/admin"
                 >
                   System
                 </Link>
@@ -149,6 +151,14 @@ function App() {
                 <Demo/>
               
               </>
+            }
+          />
+          <Route
+            path="/admin"
+            exact
+            element={
+                <AdminLogin />
+              
             }
           />
       </Routes>
