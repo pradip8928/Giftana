@@ -4,7 +4,7 @@ const SuperAdmin = require("../../models/superAdminModel/createAdmin");
 exports.authorizeRoles = (...roles) => {
   return (req, res, next) => {
     console.log("in authorize roles");
-    if (!roles.includes("superadm")) {
+    if (!roles.includes("superadmin")) {
       console.log("hiii");
       return next(
         new ErrorHandler(

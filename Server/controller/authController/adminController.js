@@ -8,8 +8,8 @@ const ErrorHandler = require("../../utils/errorHandler");
 
 // / registeration of Admin
 const registerAdmin = asyncHandler(async (req, res) => {
-  const { adminName, password, email, role } = req.body;
-  console.log(adminName, password, email, role);
+  const { adminName, adminEmail, adminPassword, role } = req.body;
+  console.log(adminName, adminEmail, adminPassword);
   // res.send(adminName, password, email, role)
   const adminExist = await Admin.findOne({ adminName });
   console.log(adminName);
@@ -18,15 +18,20 @@ const registerAdmin = asyncHandler(async (req, res) => {
 
   if (adminExist) {
     res.status(400);
-    throw new Error(`Admin with this ${email} already exists`);
+    throw new Error(`Admin with this ${adminEmail} already exists`);
   }
 
-  const admin = await Admin.create({ adminName, email, password, role });
+  const admin = await Admin.create({
+    adminName,
+    adminEmail,
+    adminPassword,
+    role,
+  });
   if (admin) {
     res.status(201).json({
       id: admin._id,
       adminName: admin.adminName,
-      email: admin.email,
+      adminEmail: admin.email,
       role: admin.role,
       token: generateToken(admin._id),
     });
@@ -35,7 +40,6 @@ const registerAdmin = asyncHandler(async (req, res) => {
     throw new Error(`Error Occured`);
   }
 });
-
 // Login
 
 // login or authenticated Admin
@@ -81,18 +85,19 @@ const logoutAdmin = asyncHandler(async (req, res, next) => {
 });
 
 // unecessary
-const superAdmin = asyncHandler(async (req, res) => {
-  try {
-    const idSuperAdmin = await SuperAdmin.create(req.body);
+// const superAdmin = asyncHandler(async (req, res) => {
+//   try {
+//     const idSuperAdmin = await SuperAdmin.create(req.body);
 
-    res.status(201).json({
-      success: true,
-      idSuperAdmin,
-    });
-  } catch (err) {
-    // next(err);
-    console.log("err", err);
-  }
-});
+//     res.status(201).json({
+//       success: true,
+//       idSuperAdmin,
+//     });
+//   } catch (err) {
+//     // next(err);
+//     console.log("err", err);
+//   }
+// });
 
-module.exports = { registerAdmin, authAdmin, logoutAdmin, superAdmin };
+module.exports = { registerAdmin, authAdmin, logoutAdmin };
+// module.exports = { registerAdmin, authAdmin, logoutAdmin, superAdmin };
