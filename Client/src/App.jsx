@@ -6,6 +6,7 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Demo from "./Components/pages/Demo";
 import Navbar from "./Components/pages/Navbar.jsx";
 import Register from "./Components/pages/Register";
+import AdminLogin from "./Components/pages/AdminLogin";
 
 function App() {
   return (
@@ -156,6 +157,7 @@ function App() {
               </>
             }
           />
+          <Route
           path="/register"
           exact
           element={
@@ -174,6 +176,15 @@ function App() {
               <Register />
               <Demo />
 
+            </>
+          }
+        />
+        <Route
+          path="/admin"
+          exact
+          element={
+            <>
+              <AdminLogin />
             </>
           }
         />
