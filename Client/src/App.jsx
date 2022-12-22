@@ -1,7 +1,7 @@
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+  import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Demo from "./Components/pages/Demo";
 import Navbar from "./Components/pages/Navbar.jsx";
@@ -14,7 +14,8 @@ function App() {
         <Route
          path="/" 
          element={
-          <>
+           <>
+           <Navbar />
           <Register />
           </> 
      }/>
