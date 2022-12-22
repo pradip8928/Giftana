@@ -128,8 +128,34 @@ function App() {
 
       {/* routes */}
       <Routes>
-        <Route path="/" element={() => <Register />} />
         <Route
+         path="/" 
+         element={
+          <>
+          <Register />
+          </> 
+     }/>
+        <Route
+            path="/register"
+            exact
+            element={
+              <>
+              <Navbar />
+                <Register />
+              </>
+            }
+          />
+          <Route
+            path="/login"
+            exact
+            element={
+              <>
+                <Register />
+                <Demo/>
+              
+              </>
+            }
+          />
           path="/register"
           exact
           element={

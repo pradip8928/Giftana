@@ -3,14 +3,14 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 export default function Navbar() {
   return (
     <>
-      <Router>
-        <nav class="navbar navbar-expand-lg bg-light">
-          <div class="container-fluid">
+      {/* <Router> */}
+        <nav className="navbar navbar-expand-lg bg-light">
+          <div className="container-fluid">
             <Link className="navbar-brand" to="#">
               Smartstore
             </Link>
             <button
-              class="navbar-toggler"
+              className="navbar-toggler"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#navbarNavAltMarkup"
@@ -18,9 +18,9 @@ export default function Navbar() {
               aria-expanded="false"
               aria-label="Toggle navigation"
             >
-              <span class="navbar-toggler-icon"></span>
+              <span className="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
                   <Link
@@ -99,10 +99,31 @@ export default function Navbar() {
                   </Link>
                 </li>
               </ul>
+
+
+
+              <button className="me-2 btn btn-outline-warning">
+                    <Link
+                      className="text-decoration-none text-warning "
+                      to="/register"
+                    >
+                      {" "}
+                      Register
+                    </Link>
+                  </button>
+                  <button className="btn btn-outline-warning">
+                    <Link
+                      className="text-decoration-none text-warning "
+                      to="/login"
+                    >
+                      {" "}
+                      Login
+                    </Link>
+                  </button>
             </div>
           </div>
         </nav>
-      </Router>
+      {/* </Router> */}
     </>
   );
 }
