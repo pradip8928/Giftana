@@ -6,8 +6,6 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Demo from "./Components/pages/Demo";
 import Navbar from "./Components/pages/Navbar.jsx";
 import Register from "./Components/pages/Register";
-import XForm from './Components/XForm';
-import AdminLogin from "./Components/pages/AdminLogin";
 
 function App() {
   return (
@@ -107,23 +105,23 @@ function App() {
             </ul>
 
             <button className="me-2 btn btn-outline-warning">
-                    <Link
-                      className="text-decoration-none text-warning "
-                      to="/register"
-                    >
-                      {" "}
-                      Register
-                    </Link>
-                  </button>
-                  <button className="btn btn-outline-warning">
-                    <Link
-                      className="text-decoration-none text-warning "
-                      to="/login"
-                    >
-                      {" "}
-                      Login
-                    </Link>
-                  </button>
+              <Link
+                className="text-decoration-none text-warning "
+                to="/register"
+              >
+                {" "}
+                Register
+              </Link>
+            </button>
+            <button className="btn btn-outline-warning">
+              <Link
+                className="text-decoration-none text-warning "
+                to="/login"
+              >
+                {" "}
+                Login
+              </Link>
+            </button>
           </div>
         </div>
       </nav>
@@ -132,35 +130,27 @@ function App() {
       <Routes>
         <Route path="/" element={() => <Register />} />
         <Route
-            path="/register"
-            exact
-            element={
-              <>
-                
-                <Register />
+          path="/register"
+          exact
+          element={
+            <>
 
-              </>
-            }
-          />
-          <Route
-            path="/login"
-            exact
-            element={
-              <>
-                <Register />
-                <Demo/>
-              
-              </>
-            }
-          />
-          <Route
-            path="/admin"
-            exact
-            element={
-                <AdminLogin />
-              
-            }
-          />
+              <Register />
+
+            </>
+          }
+        />
+        <Route
+          path="/login"
+          exact
+          element={
+            <>
+              <Register />
+              <Demo />
+
+            </>
+          }
+        />
       </Routes>
     </Router>
   );
