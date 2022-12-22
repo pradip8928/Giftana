@@ -1,8 +1,11 @@
 const ErrorHandler = require("../../utils/errorHandler");
-const SuperAdmin = require("../../models/superAdminModel/createAdmin");
+// const SuperAdmin = require("../../models/superAdminModel/createAdmin");
+// const Admin = require("../../models/authModel/adminModel")
 
 exports.authorizeRoles = (...roles) => {
   return (req, res, next) => {
+    // const roles =Admin.findOne({roles:"superadmin"})
+    console.log("my role is", ...roles);
     console.log("in authorize roles");
     if (!roles.includes("superadmin")) {
       console.log("hiii");

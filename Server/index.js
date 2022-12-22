@@ -24,7 +24,6 @@ const errorMiddleware = require("./middleware/errorHandler/error");
 const userRoutes = require("./routes/authRoutes/userRoutes");
 const adminRoutes = require("./routes/authRoutes/adminRoutes");
 const catagory = require("./routes/catalog/catagoryRoutes");
-// const superAdmin = require("./routes/superAdminRoutes/superAdminRoute");
 
 require("./config/database");
 app.use(cors());
@@ -41,9 +40,9 @@ app.use(function (req, res, next) {
 
 const Port = process.env.PORT || 3000;
 
-app.use("/api/v1/user", userRoutes);
-app.use("/api/v1/admin", adminRoutes);
-// app.use("/api/superadmin", superAdmin);
+app.use("/api/user", userRoutes);
+app.use("/api/admin", adminRoutes);
+
 // app.use("/api/catelogRoutes", catelogRoutes);
 app.use("/api/v1/catalog", catagory);
 app.use(notFound);

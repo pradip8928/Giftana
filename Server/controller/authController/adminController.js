@@ -3,35 +3,26 @@ const requireLogin = require("../../middleware/requiredLogin/requireLogin");
 const asyncHandler = require("express-async-handler");
 const generateToken = require("../../utils/generateToken");
 const jwt = require("jsonwebtoken");
-const SuperAdmin = require("../../models/superAdminModel/createAdmin");
+// const SuperAdmin = require("../../models/superAdminModel/createAdmin");
 const ErrorHandler = require("../../utils/errorHandler");
 
 // / registeration of Admin
 const registerAdmin = asyncHandler(async (req, res) => {
-  const { adminName, adminEmail, adminPassword, role } = req.body;
-  console.log(adminName, adminEmail, adminPassword);
-  // res.send(adminName, password, email, role)
+  const { adminName, password, email, role } = req.body;
+  console.log(adminName, password, email, role);
+
   const adminExist = await Admin.findOne({ adminName });
-  console.log(adminName);
-
-  console.log("password");
-
   if (adminExist) {
     res.status(400);
-    throw new Error(`Admin with this ${adminEmail} already exists`);
+    throw new Error(`Admin with this ${email} already exists`);
   }
 
-  const admin = await Admin.create({
-    adminName,
-    adminEmail,
-    adminPassword,
-    role,
-  });
+  const admin = await Admin.create({ adminName, email, password, role });
   if (admin) {
     res.status(201).json({
       id: admin._id,
       adminName: admin.adminName,
-      adminEmail: admin.email,
+      email: admin.email,
       role: admin.role,
       token: generateToken(admin._id),
     });
@@ -100,4 +91,3 @@ const logoutAdmin = asyncHandler(async (req, res, next) => {
 // });
 
 module.exports = { registerAdmin, authAdmin, logoutAdmin };
-// module.exports = { registerAdmin, authAdmin, logoutAdmin, superAdmin };
