@@ -6,6 +6,7 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Demo from "./Components/pages/Demo";
 // import Navbar from "./Components/pages/Navbar.jsx";
 import Register from "./Components/pages/Register";
+import AdminLogin from "./Components/pages/AdminLogin.jsx";
 
 function App() {
   return (

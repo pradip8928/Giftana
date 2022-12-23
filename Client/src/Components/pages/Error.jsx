@@ -1,10 +1,10 @@
 import React from 'react'
 
-const Error = ({  children}) => {
+const Error = (props) => {
   return (
     <div>
       <div className="alert alert-success text-center" role="alert">
-  <strong>{children}</strong>
+  <strong>{props.error}</strong>
 </div>
     </div>
   )

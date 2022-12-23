@@ -11,13 +11,13 @@ const adminSchema = mongoose.Schema(
       maxLength: [30, "userName cannot exceed 30 characters"],
       minLength: [2, "userName should have more than 2 characters"],
     },
-    adminPassword: {
+    password: {
       type: String,
       default: "admin123",
       required: [true, "Please Enter your password"],
       minLength: [4, "Password should be greater than 4 characters"],
     },
-    adminEmail: {
+    email: {
       type: String,
       required: [true, "Please Enter a valid Email"],
       unique: true,
