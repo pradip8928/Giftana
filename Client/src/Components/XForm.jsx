@@ -18,28 +18,6 @@ export default function XForm({ postTo }) {
     adminConfirmPassword: "",
   });
 
-  const [alert, setAlert] = useState({
-    type: "error",
-    text: "This is a alert message",
-    show: false,
-  });
-
-  function onCloseAlert() {
-    setAlert({
-      type: "",
-      text: "",
-      show: false,
-    });
-  }
-
-  function onShowAlert(type, text) {
-    setAlert({
-      type: type,
-      text: text,
-      show: true,
-    });
-  }
-
   let name, value;
   const handleInputs = (e) => {
     name = e.target.name;
@@ -52,21 +30,6 @@ export default function XForm({ postTo }) {
       admin.adminPassword
     );
   };
-
-  <Alert
-    header={"Header"}
-    btnText={"Close"}
-    text={alert.text}
-    type={alert.type}
-    show={alert.show}
-    onClosePress={onCloseAlert}
-    pressCloseOnOutsideClick={true}
-    showBorderBottom={true}
-    alertStyles={{}}
-    headerStyles={{}}
-    textStyles={{}}
-    buttonStyles={{}}
-  />;
 
   // const postData = async (e) => {
   //   e.preventDefault();
@@ -156,15 +119,20 @@ export default function XForm({ postTo }) {
 
       if (res.status === 422 || !data) {
         // window.alert("Registration Failed  Please Fill the data properly");
-        onShowAlert(
-          "error",
-          "Registration Failed  Please Fill the data properly"
-        );
+        setMessage("Registration Failed  Please Fill the data properly");
       } else {
-        window.alert("Registration successfull");
+        // window.alert("Registration successfull");
+
+        console.log();
+
+        setMessage("Registration has done successfully");
+        setError("");
+        setLoading(false);
       }
     } else {
-      window.alert("password doesnt match");
+      // window.alert("password doesnt match");
+      console.log(error.response.data.message);
+      setError(error.response.data.message);
     }
   };
 
