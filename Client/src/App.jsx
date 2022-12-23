@@ -6,7 +6,10 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Demo from "./Components/pages/Demo";
 import Navbar from "./Components/pages/Navbar.jsx";
 import Register from "./Components/pages/Register";
-import AdminLogin from "./Components/pages/AdminLogin.jsx";
+ 
+import AdminLogin from "./Components/pages/AdminLogin";
+import Categories from "./Components/pages/Categories";
+ 
 
 function App() {
   return (
@@ -46,6 +49,15 @@ function App() {
                   to="/about"
                 >
                   Catolog
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link active  text-bold"
+                  aria-current="page"
+                  to="/categories"
+                >
+                  Categories
                 </Link>
               </li>
 
@@ -159,6 +171,48 @@ function App() {
               </>
             }
           />
+ 
+          <Route
+          path="/register"
+          exact
+          element={
+            <>
+
+              <Register />
+
+            </>
+          }
+        />
+        <Route
+          path="/login"
+          exact
+          element={
+            <>
+              <Register />
+              <Demo />
+
+            </>
+          }
+        />
+        <Route
+          path="/admin"
+          exact
+          element={
+            <>
+              <AdminLogin />
+            </>
+          }
+        />
+        <Route
+          path="/categories"
+          exact
+          element={
+            <>
+              <Categories />
+            </>
+          }
+        />
+ 
       </Routes>
     </Router>
   );
