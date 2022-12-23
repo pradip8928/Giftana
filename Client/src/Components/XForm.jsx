@@ -198,7 +198,7 @@ export default function XForm({ postTo }) {
           name="adminEmail"
           value={admin.adminEmail}
           data={handleInputs}
-          placeholder="abc@123gmail.com"
+          placeholder="abc@34423gmail.com"
         />
         <InputField
           type="password"
