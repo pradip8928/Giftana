@@ -6,81 +6,151 @@ import Error from "./pages/Error";
 import Loading from "./pages/Loading";
 
 export default function XForm({ postTo }) {
+
+  const [post, setPost] = useState(false);
+
+
   const [message, setMessage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [admin, setAdmin] = useState({
     adminName: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
+    adminEmail: "",
+    adminPassword: "",
+    adminConfirmPassword: "",
   });
 
   let name, value;
-  // const handleInputs = (e) => {
-  //   name = e.target.name;
-  //   value = e.target.value;
-  //   setAdmin({ ...admin, [name]: value });
-  // };
-  const handleInputs = (name, value) => {
+  const handleInputs = (e) => {
+    name = e.target.name;
+    value = e.target.value;
     setAdmin({ ...admin, [name]: value });
+    console.log(
+      "My data is",
+      admin.adminName,
+      admin.adminEmail,
+      admin.adminPassword
+    );
   };
 
   const postData = async (e) => {
     e.preventDefault();
     console.log(
+      "post data is working",
       admin.adminName,
-      admin.email,
-      admin.password,
-      admin.confirmPassword
+      admin.adminEmail,
+      admin.adminPassword,
+      admin.adminConfirmPassword
     );
     // --
 
-    setError("");
+    // setError('');
+    const { adminName, adminEmail, adminPassword } = admin;
 
-    if (admin.password !== admin.confirmPassword) {
-      setMessage("Passwords do not match");
-    } else {
-      // setMessage(null);
-      try {
-        const config = {
-          headers: { "Content-Type": "application/json" },
-        };
-        setLoading(true);
+     
+    if (admin.adminPassword === admin.adminConfirmPassword) {
+      e.preventDefault();
 
-        const { adminName, password, email } = admin;
-        // const { data } = await axios.post(
-        //   "localhost:3000/api/admin/register",
-        //   { adminName,  password, email },
-        //   config
-        // );
+      const res = await fetch("http://localhost:3000/api/admin/register", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          adminName: adminName,
+          email: adminEmail,
+          password: adminPassword,
+        }),
+      });
 
-        const res = await fetch("http://localhost:3000/api/admin/register", {
-          method: "post",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            adminName: adminName,
-            password: password,
-            email: email,
-          }),
-        });
-        const data = await res.json();
-        console.log(data);
-        setMessage("Registration has done successfully");
-        setError("");
-        setLoading(false);
+      const data = await res.json();
+      console.log("frontend data is", data);
 
-        // localStorage.setItem("userInfo", JSON.stringify(data));
-      } catch (error) {
-        setError(error.response.data.message);
-        setLoading(false);
-        console.log(error.response.data.message);
+      if (res.status === 422 || !data) {
+        // window.alert("Registration Failed  Please Fill the data properly");
+        onShowAlert(
+          "error",
+          "Registration Failed  Please Fill the data properly"
+        );
+      } else {
+        window.alert("Registration successfull");
       }
+    } else {
+      window.alert("password doesnt match");
     }
     // --
   };
+
+
+
+
+
+
+  // let name, value;
+  // const handleInputs = (e) => {
+  //   name = e.target.name;
+  //   value = e.target.value;
+  //   setAdmin({ ...admin, [name]: value });
+  // };
+  // const handleInputs = (name, value) => {
+  //   setAdmin({ ...admin, [name]: value });
+  // };
+
+  // const postData = async (e) => {
+  //   e.preventDefault();
+  //   console.log(
+  //     admin.adminName,
+  //     admin.email,
+  //     admin.password,
+  //     admin.confirmPassword
+  //   );
+  //   // --
+
+  //   setError("");
+
+  //   if (admin.password !== admin.confirmPassword) {
+  //     setMessage("Passwords do not match");
+  //   } else {
+  //     // setMessage(null);
+  //     try {
+  //       const config = {
+  //         headers: { "Content-Type": "application/json" },
+  //       };
+  //       setLoading(true);
+
+  //       const { adminName, password, email } = admin;
+  //       // const { data } = await axios.post(
+  //       //   "localhost:3000/api/admin/register",
+  //       //   { adminName,  password, email },
+  //       //   config
+  //       // );
+
+  //       const res = await fetch("http://localhost:3000/api/admin/register", {
+  //         method: "post",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify({
+  //           adminName: adminName,
+  //           password: password,
+  //           email: email,
+  //         }),
+  //       });
+  //       const data = await res.json();
+  //       console.log(data);
+  //       setMessage("Registration has done successfully");
+  //       setError("");
+  //       setLoading(false);
+
+  //       // localStorage.setItem("userInfo", JSON.stringify(data));
+  //     } catch (error) {
+  //       setError(error.response.data.message);
+  //       setLoading(false);
+  //       console.log(error.response.data.message);
+  //     }
+  //   }
+  //   // --
+  // };
 
   return (
     <>
@@ -89,42 +159,53 @@ export default function XForm({ postTo }) {
       {loading && <Loading />}
       <form
         className="adminForm m-4"
-        // action={postTo}
+        action={postTo}
+        method="POST"
         // onSubmit={postData}
-        // method="POST"
       >
         <InputField id="xxx001" label="ID" type="text" placeholder="ID" />
         <InputField
           type="text"
           label="Username"
+          // name="adminName"
           name="adminName"
           value={admin.adminName}
+          data={handleInputs}
           // onChange={handleInputs}
-           onChange={(e) => handleInputs(e.target.name, e.target.value)}
+          //  onChange={(e) => handleInputs(e.target.name, e.target.value)}
           placeholder="abcd1234"
         />
         <InputField
           type="email"
           label="Email"
-          value={admin.email}
-          onChange={(e) => handleInputs(e.target.name, e.target.value)}
+          name="adminEmail"
+          // value={admin.email}
+
+          // onChange={(e) => handleInputs(e.target.name, e.target.value)}
+          value={admin.adminEmail}
+          data={handleInputs}
           placeholder="abc@123gmail.com"
         />
         <InputField
           type="password"
-          name="password"
-          value={admin.password}
-          onChange={(e) => handleInputs(e.target.name, e.target.value)}
+          // name="password"
+          name="adminPassword"
+          value={admin.adminPassword}
+          // onChange={(e) => handleInputs(e.target.name, e.target.value)}
+          data={handleInputs}
           label="Password"
           placeholder="Password@123"
         />
         <InputField
           type="password"
           label="Confirm Password"
-          name="confirmPassword"
+          // name="confirmPassword"
+          name="adminConfirmPassword"
           placeholder=" Confirm Password"
-          value={admin.confirmPassword}
-          onChange={(e) => handleInputs(e.target.name, e.target.value)}
+          // value={admin.confirmPassword}
+          // onChange={(e) => handleInputs(e.target.name, e.target.value)}
+          value={admin.adminConfirmPassword}
+          data={handleInputs}
         />
         <Checkbox name="gender" label="Gender" fields={["Male", "Female"]} />
         <InputField type="text" label="First Name" placeholder="John" />

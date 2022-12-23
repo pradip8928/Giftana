@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Filter from "../Filter";
 import AddNewProduct from "../AddNewProduct";
 import ItemList from "../ItemList";
@@ -15,6 +16,32 @@ import caret from "/src/assets/icons/caret-down.svg";
 
 
 export default function Categories() {
+    const [data, setData] = useState([]);
+    useEffect(() => {
+        category()
+      }, []);
+
+
+      const category=()=>{
+        const config = {
+            headers: { "Content-Type": "application/json" },
+          };
+          // http://localhost:3000
+          axios
+            .get(
+              "http://localhost:3000/catalog/catagory/getAllProduct",
+              config
+            )
+            .then((result) => {
+               console.log(result.data.products);
+               console.log(result.data.products);
+                setData(result.data.products);
+             
+            });
+    }
+
+
+
     return (
         <div className="h-100 m-5 p-2 border rounded">
             <div className="row m-2 align-items-center">
@@ -30,7 +57,8 @@ export default function Categories() {
                     <Button name="+ Add new..." />
                 </div>
                 <div className="p-0">
-                    <ItemList categories={categoryList} />
+                    {/* <ItemList categories={categoryList} /> */}
+                    <ItemList categories={data} />
                 </div>
                 <div class="row">
                     <div className="col-md-1">
