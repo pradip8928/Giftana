@@ -78,9 +78,9 @@ const Register = () => {
 
          
       } catch (error) {
+        setError(error.response.data.message);
         setLoading(false);
         console.log(error.response.data.message);
-        setError(error.response.data.message);
         // setError("error  is occured while registering");
       }
     }
