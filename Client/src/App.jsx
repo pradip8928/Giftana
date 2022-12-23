@@ -6,7 +6,10 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Demo from "./Components/pages/Demo";
 // import Navbar from "./Components/pages/Navbar.jsx";
 import Register from "./Components/pages/Register";
-import AdminLogin from "./Components/pages/AdminLogin.jsx";
+ 
+import AdminLogin from "./Components/pages/AdminLogin";
+import Categories from "./Components/pages/Categories";
+ 
 
 function App() {
   return (
@@ -46,6 +49,15 @@ function App() {
                   to="/about"
                 >
                   Catolog
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link active  text-bold"
+                  aria-current="page"
+                  to="/categories"
+                >
+                  Categories
                 </Link>
               </li>
 
@@ -131,18 +143,44 @@ function App() {
           element={
             <>
               {/* <Navbar /> */}
+<<<<<<< HEAD
               <AdminLogin />
               {/* <Register /> */}
             </>
           }
         />
         <Route
+=======
+                <Register />
+              </>
+            }
+          />
+          <Route
+            path="/login"
+            exact
+            element={
+              <>
+                <Register />
+                <Demo/>
+              
+              </>
+            }
+          />
+ 
+          <Route
+>>>>>>> 567326da01f215b9c713489e92d330cec20ef9a8
           path="/register"
           exact
           element={
             <>
+<<<<<<< HEAD
               {/* <Navbar /> */}
               <Register />
+=======
+
+              <Register />
+
+>>>>>>> 567326da01f215b9c713489e92d330cec20ef9a8
             </>
           }
         />
@@ -153,9 +191,35 @@ function App() {
             <>
               <Register />
               <Demo />
+<<<<<<< HEAD
             </>
           }
         />
+=======
+
+            </>
+          }
+        />
+        <Route
+          path="/admin"
+          exact
+          element={
+            <>
+              <AdminLogin />
+            </>
+          }
+        />
+        <Route
+          path="/categories"
+          exact
+          element={
+            <>
+              <Categories />
+            </>
+          }
+        />
+ 
+>>>>>>> 567326da01f215b9c713489e92d330cec20ef9a8
       </Routes>
     </Router>
   );
