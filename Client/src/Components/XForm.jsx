@@ -5,11 +5,7 @@ import Checkbox from "./Checkbox";
 import Error from "./pages/Error";
 import Loading from "./pages/Loading";
 
-
-
 export default function XForm({ postTo }) {
-
-
   const [message, setMessage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -21,9 +17,12 @@ export default function XForm({ postTo }) {
   });
 
   let name, value;
-  const handleInputs = (e) => {
-    name = e.target.name;
-    value = e.target.value;
+  // const handleInputs = (e) => {
+  //   name = e.target.name;
+  //   value = e.target.value;
+  //   setAdmin({ ...admin, [name]: value });
+  // };
+  const handleInputs = (name, value) => {
     setAdmin({ ...admin, [name]: value });
   };
 
@@ -37,7 +36,7 @@ export default function XForm({ postTo }) {
     );
     // --
 
-    setError('');
+    setError("");
 
     if (admin.password !== admin.confirmPassword) {
       setMessage("Passwords do not match");
@@ -70,7 +69,7 @@ export default function XForm({ postTo }) {
         const data = await res.json();
         console.log(data);
         setMessage("Registration has done successfully");
-        setError('');
+        setError("");
         setLoading(false);
 
         // localStorage.setItem("userInfo", JSON.stringify(data));
@@ -88,28 +87,34 @@ export default function XForm({ postTo }) {
       {error && <Error> {error}</Error>}
       {message && <Error varient="danger"> {message}</Error>}
       {loading && <Loading />}
-      <form className="adminForm m-4" action={postTo} method="POST">
+      <form
+        className="adminForm m-4"
+        // action={postTo}
+        // onSubmit={postData}
+        // method="POST"
+      >
         <InputField id="xxx001" label="ID" type="text" placeholder="ID" />
         <InputField
           type="text"
           label="Username"
           name="adminName"
-          // value={admin.adminName}
+          value={admin.adminName}
           // onChange={handleInputs}
+           onChange={(e) => handleInputs(e.target.name, e.target.value)}
           placeholder="abcd1234"
         />
         <InputField
           type="email"
           label="Email"
           value={admin.email}
-          onChange={handleInputs}
+          onChange={(e) => handleInputs(e.target.name, e.target.value)}
           placeholder="abc@123gmail.com"
         />
         <InputField
           type="password"
           name="password"
           value={admin.password}
-          onChange={handleInputs}
+          onChange={(e) => handleInputs(e.target.name, e.target.value)}
           label="Password"
           placeholder="Password@123"
         />
@@ -119,7 +124,7 @@ export default function XForm({ postTo }) {
           name="confirmPassword"
           placeholder=" Confirm Password"
           value={admin.confirmPassword}
-          onChange={handleInputs}
+          onChange={(e) => handleInputs(e.target.name, e.target.value)}
         />
         <Checkbox name="gender" label="Gender" fields={["Male", "Female"]} />
         <InputField type="text" label="First Name" placeholder="John" />

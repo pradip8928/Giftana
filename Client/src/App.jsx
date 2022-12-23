@@ -11,13 +11,13 @@ import AdminLogin from "./Components/pages/AdminLogin.jsx";
 function App() {
   return (
     <Router>
-      <nav class="navbar  navbar-expand-lg bg-secondary">
-        <div class="container-fluid  ">
+      <nav className="navbar  navbar-expand-lg bg-secondary">
+        <div className="container-fluid  ">
           <Link className="navbar-brand" to="#">
             Smartstore
           </Link>
           <button
-            class="navbar-toggler"
+            className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarNavAltMarkup"
@@ -25,9 +25,9 @@ function App() {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
             <ul className="navbar-nav  me-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <Link

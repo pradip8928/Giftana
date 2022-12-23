@@ -30,11 +30,12 @@ const Register = () => {
       admin.confirmPassword
     );
     // --
+    setError("");
 
     if (admin.password !== admin.confirmPassword) {
       setMessage("Passwords do not match");
     } else {
-      setMessage(null);
+      // setMessage(null);
       try {
         const config = {
           headers: { "Content-Type": "application/json" },
@@ -73,7 +74,7 @@ const Register = () => {
         console.log(data);
         setMessage("Registration has done successfully");
         setLoading(false);
-
+        setError("");
         localStorage.setItem("userInfo", JSON.stringify(data));
 
          
