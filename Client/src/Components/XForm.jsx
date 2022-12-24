@@ -67,11 +67,11 @@ export default function XForm({ postTo }) {
       console.log("frontend data is", data);
 
       if (res.status === 422 || !data) {
-        // window.alert("Registration Failed  Please Fill the data properly");
-        onShowAlert(
-          "error",
-          "Registration Failed  Please Fill the data properly"
-        );
+        window.alert("Registration Failed  Please Fill the data properly");
+        // onShowAlert(
+        //   "error",
+        //   "Registration Failed  Please Fill the data properly"
+        // );
       } else {
         window.alert("Registration successfull");
       }

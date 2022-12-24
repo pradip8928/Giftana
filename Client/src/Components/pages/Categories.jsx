@@ -17,11 +17,10 @@ import caret from "/src/assets/icons/caret-down.svg";
 
 export default function Categories() {
     const [data, setData] = useState([]);
+    const [selectedItems, setSelectedItems] = useState([]);
     useEffect(() => {
         category()
       }, []);
-
-
       const category=()=>{
         const config = {
             headers: { "Content-Type": "application/json" },
@@ -41,6 +40,16 @@ export default function Categories() {
     }
 
 
+    
+    
+      const handleSubmit = (id) => {
+
+        console.log("hlw ");
+        // Make the API call here, passing the selectedItems array as a prop
+        console.log(`Selected items: ${id}`);
+        console.log(id);
+      };
+
 
     return (
         <div className="h-100 m-5 p-2 border rounded">
@@ -54,7 +63,25 @@ export default function Categories() {
             <div className="row m-2 pt-1 pb-1 border">
                 <div class="container">
                     <Button icon={filterIcon} />
+
+
+                    
+                   
                     <Button name="+ Add new..." />
+                </div>
+                <div class="container">
+                    <Button icon={filterIcon} />
+
+                     {/* -- */}
+                    
+                    
+
+
+                   
+  {/* form content goes here */}
+                    <Button  ids={handleSubmit}  name="+ Delete the item"   />
+ 
+                    {/* -- */}
                 </div>
                 <div className="p-0">
                     {/* <ItemList categories={categoryList} /> */}
