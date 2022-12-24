@@ -7,25 +7,9 @@ import checkIcon from "/src/assets/icons/check.svg"
 
 export default function ItemList(props) {
 
-    const [selectedItems, setSelectedItems] = useState([]);
+    // const [selectedItems, setSelectedItems] = useState([]);
      // checkbox
-    const handleCheckboxChange = (id) => {
-        console.log(id);
-        // Add or remove the ID from the array, depending on whether it is already present
-        if (selectedItems.includes(id)) {
-            console.log(id);
-            setSelectedItems(selectedItems.filter((item) => item !== id));
-        } else {
-            setSelectedItems([...selectedItems, id]);
-            console.log(selectedItems);
-
-            selectedItems.map((item) =>{
-                console.log(item);
-                console.log(1234);
-            })
-        }
-      };
-
+    
 
     return (
         <table className="table border-top">
@@ -46,7 +30,7 @@ export default function ItemList(props) {
                 {props.categories.map((category, index) => {
                     return( 
                         <tr key={index} >
-                        <td scope="row"><InputField type="checkbox"  onChange={() => handleCheckboxChange(category._id)} />{category._id}</td>
+                        <td scope="row"><InputField type="checkbox"   onChange={ props.data(category._id)} />{category._id}</td>
                         <td>{category.productName}</td>
                         <td>{category.productCompleteName}</td>
                         <td>{category.productAliasName}</td>

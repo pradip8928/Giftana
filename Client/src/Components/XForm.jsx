@@ -80,7 +80,7 @@ export default function XForm({ postTo }) {
 
   return (
     <>
-      {/* {error && <p> {error}</p>} */}
+      
       {error && <Error errMessage={error}> {error}</Error>}
       {message && <SuccessMessage varient="danger" successMessage={message}> {message}</SuccessMessage>}
       {loading && <Loading />}
@@ -88,7 +88,7 @@ export default function XForm({ postTo }) {
         className="adminForm m-4"
         action={postTo}
         method="POST"
-        // onSubmit={postData}
+       
       >
         <InputField id="xxx001" label="ID" type="text" placeholder="ID" />
         <InputField
