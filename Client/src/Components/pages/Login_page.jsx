@@ -11,7 +11,7 @@ export default function Login_page() {
             <input type="text" placeholder="username" />
             <input type="text" placeholder="password" />
             </div>
-            <button className="btn">Log in</button>
+            <button className="btnn">Log in</button>
             <span class="psw"><a href="#">Forgot password?</a></span>
             
            

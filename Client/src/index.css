@@ -3,7 +3,7 @@
     font-size: 16px;
     line-height: 24px;
     font-weight: 400;
-    color-scheme: light dark;
+    /* color-scheme: light dark; */
     color: rgba(255, 255, 255, 0.87);
     background-color: #fafafa;
     font-synthesis: none;
@@ -11,4 +11,11 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* overflow-x: hidden; */
 }
