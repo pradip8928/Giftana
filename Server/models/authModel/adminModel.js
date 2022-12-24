@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const validator = require("validator");
+const jwt = require("jsonwebtoken");
 
 const adminSchema = mongoose.Schema(
   {
@@ -46,6 +47,18 @@ adminSchema.pre("save", async function (next) {
   const salt = await bcrypt.genSalt(10); //generating the salt more higher the value more stronger the password
   this.password = await bcrypt.hash(this.password, salt);
 });
+
+// JWT token
+
+adminSchema.methods.getJWTToken = function () {
+  return jwt.sign(
+    { id: this._id },
+    "JXHFKRFUYRIUFYGERUXYFGXUOYGFUOYGRFXUXOYEGGR",
+    {
+      expiresIn: "5d",
+    }
+  );
+};
 
 const Admin = mongoose.model("Admin", adminSchema);
 module.exports = Admin;
