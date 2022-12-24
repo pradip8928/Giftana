@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Loading from "./Loading"
-import Error from "./Error"
+import Loading from "./Loading";
+import Error from "./Error";
 
 const Register = () => {
   const [message, setMessage] = useState(null);
@@ -9,9 +9,9 @@ const Register = () => {
   const [error, setError] = useState("");
   const [admin, setAdmin] = useState({
     adminName: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
+    adminEmail: "",
+    adminPassword: "",
+    adminConfirmPassword: "",
   });
 
   let name, value;
@@ -19,20 +19,27 @@ const Register = () => {
     name = e.target.name;
     value = e.target.value;
     setAdmin({ ...admin, [name]: value });
+    console.log(
+      "my data is",
+      admin.adminName,
+      admin.adminEmail,
+      admin.adminPassword,
+      admin.adminConfirmPassword
+    );
   };
 
   const postData = async (e) => {
     e.preventDefault();
     console.log(
       admin.adminName,
-      admin.email,
-      admin.password,
-      admin.confirmPassword
+      admin.adminEmail,
+      admin.adminPassword,
+      admin.adminConfirmPassword
     );
     // --
     setError("");
 
-    if (admin.password !== admin.confirmPassword) {
+    if (admin.adminPassword !== admin.adminConfirmPassword) {
       setMessage("Passwords do not match");
     } else {
       // setMessage(null);
@@ -42,15 +49,12 @@ const Register = () => {
         };
         setLoading(true);
 
-        const { adminName, password, email } = admin;
+        const { adminName, adminPassword, adminEmail } = admin;
         // const { data } = await axios.post(
         //   "localhost:3000/api/admin/register",
         //   { adminName,  password, email },
         //   config
         // );
-
-
-
 
         const res = await fetch("http://localhost:3000/api/admin/register", {
           method: "post",
@@ -59,13 +63,11 @@ const Register = () => {
           },
           body: JSON.stringify({
             adminName: adminName,
-            password: password,
-            email: email,
-             
+            password: adminPassword,
+            email: adminEmail,
           }),
         });
         const data = await res.json();
-
 
         // if (data !== undefined) {
         //   console.log("the objects is not define");
@@ -76,8 +78,6 @@ const Register = () => {
         setLoading(false);
         setError("");
         localStorage.setItem("userInfo", JSON.stringify(data));
-
-         
       } catch (error) {
         setError(error.response.data.message);
         setLoading(false);
@@ -89,13 +89,12 @@ const Register = () => {
   };
 
   return (
-
     <>
-    {error && <Error> {error}</Error>}
-        {message && <Error varient="danger"> {message}</Error>}
-        {loading && <Loading />}
-    <form>
-      {/* <div className="mb-3 row">
+      {error && <Error> {error}</Error>}
+      {message && <Error varient="danger"> {message}</Error>}
+      {loading && <Loading />}
+      <form>
+        {/* <div className="mb-3 row">
         <label htmlFor="staticId" className="col-sm-2 col-form-label">
           ID
         </label>
@@ -103,70 +102,68 @@ const Register = () => {
           <input type="text" className="form-control" id="ID" />
         </div>
       </div> */}
-      <div className="mb-3 row">
-        <label htmlFor="staticUsername" className="col-sm-2 col-form-label">
-          Username
-        </label>
-        <div className="col-sm-10">
-          <input
-            type="text"
-            className="form-control"
-            id="username"
-            name="adminName"
-            value={admin.adminName}
-            onChange={handleInputs}
-          />
+        <div className="mb-3 row">
+          <label htmlFor="staticUsername" className="col-sm-2 col-form-label">
+            User
+          </label>
+          <div className="col-sm-10">
+            <input
+              name="adminName"
+              type="text"
+              // value={admin.adminName}
+              // onChange={handleInputs}
+              placeholder="pradip"
+            />
+          </div>
         </div>
-      </div>
-      <div className="mb-3 row">
-        <label htmlFor="staticEmail" className="col-sm-2 col-form-label">
-          Email
-        </label>
-        <div className="col-sm-10">
-          <input
-            type="email"
-            className="form-control"
-            name="email"
-            id="email"
-            value={admin.email}
-            onChange={handleInputs}
-            placeholder="Email"
-          />
+        <div className="mb-3 row">
+          <label htmlFor="staticEmail" className="col-sm-2 col-form-label">
+            Email
+          </label>
+          <div className="col-sm-10">
+            <input
+              name="adminEmail"
+              type="text"
+              value={admin.adminEmail}
+              onChange={handleInputs}
+              placeholder="Email"
+            />
+            {/* <input type="text" /> */}
+          </div>
         </div>
-      </div>
-      <div className="mb-3 row">
-        <label htmlFor="inputPassword" className="col-sm-2 col-form-label">
-          Password
-        </label>
-        <div className="col-sm-10">
-          <input
-            type="password"
-            className="form-control"
-            id="inputPassword"
-            name="password"
-            placeholder="Password"
-            value={admin.password}
-            onChange={handleInputs}
-          />
+        <div className="mb-3 row">
+          <label htmlFor="inputPassword" className="col-sm-2 col-form-label">
+            Password
+          </label>
+          <div className="col-sm-10">
+            <input
+              type="password"
+              className="form-control"
+              id="inputPassword"
+              name="adminPassword"
+              placeholder="Password"
+              value={admin.adminPassword}
+              onChange={handleInputs}
+            />
+          </div>
         </div>
-      </div>
-      <div className="mb-3 row">
-        <label htmlFor="inputPassword" className="col-sm-2 col-form-label">
-          Confirm Password
-        </label>
-        <div className="col-sm-10">
-          <input
-            type="password"
-            className="form-control"
-            id="inputCofirmPassword"
-            name="confirmPassword"
-            placeholder=" Confirm Password"
-            value={admin.confirmPassword}
-            onChange={handleInputs}
-          />
+        <div className="mb-3 row">
+          <label htmlFor="inputPassword" className="col-sm-2 col-form-label">
+            Confirm Password
+          </label>
+          <div className="col-sm-10">
+            <input
+              type="password"
+              className="form-control"
+              id="inputCofirmPassword"
+              name="adminConfirmPassword"
+              placeholder=" Confirm Password"
+              value={admin.adminConfirmPassword}
+              onChange={handleInputs}
+            />
+          </div>
         </div>
-      </div>
-      {/* <div className="btn-group">
+        {/* <div className="btn-group">
         <label className="gender-label">gender</label>
         <input
           type="radio"
@@ -179,7 +176,6 @@ const Register = () => {
         <label className="btn btn-secondary" htmlFor="option1">
           Checked
         </label>
-
         <input
           type="radio"
           className="btn-check"
@@ -190,7 +186,6 @@ const Register = () => {
         <label className="btn btn-secondary" htmlFor="option2">
           Radio
         </label>
-
         <input
           type="radio"
           className="btn-check"
@@ -246,15 +241,15 @@ const Register = () => {
           rows="3"
         ></textarea>
       </div> */}
-      <input
-        type="submit"
-        name="register"
-        id="btn1"
-        value="Register"
-        onClick={postData}
-        className="form-field btns mx-auto"
-      />
-    </form>
+        <input
+          type="submit"
+          name="register"
+          id="btn1"
+          value="Register"
+          onClick={postData}
+          className="form-field btns mx-auto"
+        />
+      </form>
     </>
   );
 };
