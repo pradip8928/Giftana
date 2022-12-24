@@ -1,0 +1,66 @@
+.form-control {
+    display: block;
+    /* width: 76%; */
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    appearance: none;
+    border-radius: 0.375rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+
+
+}
+
+.form-group {
+    display: flex;
+    flex-direction: row;
+}
+
+#date-1{
+    margin-left: 95px;
+    margin-right: 129px;
+    margin-top: 16px;
+}
+#date{
+    margin-top: 14px;
+}
+
+.gender-label {
+    margin-right: 170px;
+    /* margin-left: 34px; */
+}
+
+.btn-group {
+    margin-bottom: 21px;
+    margin-left: -959px;
+}
+
+.mb-3 {
+    display: flex;
+    flex-direction: row;
+}
+
+#textarea {
+    margin-right: 89px;
+    margin-left: 68px;
+}
+
+@media only screen and  (max-width:1050px) {
+    /* .form-control{
+        background-color: black;
+    } */
+ .gender-label{
+    display: flex;
+    flex-direction: column;
+    margin-left: 950px;
+    margin-right: 100px;
+ }
+ .btn btn-secondary{
+    box-sizing: 10px;
+ }
+}
