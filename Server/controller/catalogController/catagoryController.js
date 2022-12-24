@@ -105,24 +105,50 @@ const deleteOneProduct = catchAsyncError(async(req, res, next) => {
     }
 });
 
+// const deleteMultipleProducts = catchAsyncError(async(req, res, next) => {
+//     try {
+//         // const productIds = req.query.productIds;
+//         const deleteProduct = await req.body;
+//         if (!deleteProduct) {
+//             return next(new ErrorHandler("Product not found", 404));
+//         }
+
+//         // const ids = await Catagory.find({
+//         //     _id: deleteProduct,
+//         // });
+
+//         // console.log(ids);
+//         const objectIds = deleteProduct.map((id) => mongoose.Types.ObjectId(id));
+//         await Catagory.deleteMany({ _id: { $in: objectIds } });
+//         // await Catagory.deleteMany({ _id: { $in: deleteProduct } });
+//         // await Catagory.deleteMany({ _id: { $in: productIds } });
+
+//         // deleteProduct.map(async(key) => {
+//         //     const objectId = mongoose.Types.ObjectId(key);
+//         //     // await Catagory.findByIdAndDelete({ _id: objectId });
+//         //     await Catagory.deleteOne({ _id: objectId });
+//         //     console.log(key);
+//         // });
+
+//         res.status(200).json({
+//             success: true,
+//             message: "products deleted successfully",
+//         });
+//     } catch (err) {
+//         console.log(`product is not deleted due to error: ${err.message}`);
+//         next(err);
+//     }
+// });
 const deleteMultipleProducts = catchAsyncError(async(req, res, next) => {
     try {
-        console.log("hlw");
         const deleteProduct = await req.body;
         if (!deleteProduct) {
             return next(new ErrorHandler("Product not found", 404));
         }
 
-        const ids = await Catagory.find({
-            _id: deleteProduct,
-        });
+        const objectIds = deleteProduct.map((id) => mongoose.Types.ObjectId(id));
 
-        console.log(ids);
-        deleteProduct.map(async(key) => {
-            const objectId = mongoose.Types.ObjectId(key);
-            await Catagory.findByIdAndDelete({ _id: objectId });
-            console.log(key);
-        });
+        await Catagory.deleteMany({ _id: { $in: objectIds } });
 
         res.status(200).json({
             success: true,
@@ -133,6 +159,8 @@ const deleteMultipleProducts = catchAsyncError(async(req, res, next) => {
         next(err);
     }
 });
+
+
 
 module.exports = {
     createProduct,

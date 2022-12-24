@@ -42,45 +42,47 @@ export default function Categories() {
 
     
     
-      const handleSubmit = (e) => {
+    //   const handleSubmit = (e) => {
 
-        const {value,checked}=e.target;
-        console.log(`${value} is ${checked}`);
-        console.log("hlw ");
-        // Make the API call here, passing the selectedItems array as a prop
-        // console.log(`Selected items: ${id}`);
-        // console.log(id);
-
-
-        if (checked) {
-            setSelectedItems([...selectedItems,value])
-        }else{
-            setSelectedItems(selectedItems.filter((e)=>{e!== value}))
-        }
-      };
+    //     const {value,checked}=e.target;
+    //     console.log(`${value} is ${checked}`);
+    //     console.log("hlw ");
+    //     // Make the API call here, passing the selectedItems array as a prop
+    //     // console.log(`Selected items: ${id}`);
+    //     // console.log(id);
 
 
-      const handleCheckboxChange = (id) => {
-        console.log(id);
+    //     // if (checked) {
+    //     //     setSelectedItems([...selectedItems,value])
+    //     // }else{
+    //     //     setSelectedItems(selectedItems.filter((e)=>{e!== value}))
+    //     // }
+    //   };
+
+
+    //   const handleCheckboxChange = (id) => {
+    //     console.log(id);
 
 
 
-        // Add or remove the ID from the array, depending on whether it is already present
-        if (selectedItems.includes(id)) {
-            console.log(id);
-            setSelectedItems(selectedItems.filter((item) => item !== id));
-        } else {
-            setSelectedItems([...selectedItems, id]);
-            console.log(selectedItems);
+    //     // Add or remove the ID from the array, depending on whether it is already present
+    //     if (selectedItems.includes(id)) {
+    //         console.log(id);
+    //         setSelectedItems(selectedItems.filter((item) => item !== id));
+    //     } else {
+    //         setSelectedItems([...selectedItems, id]);
+    //         console.log(selectedItems);
 
-            // selectedItems.map((item) =>{
-            //     console.log(item);
-            //     console.log(1234);
-            // })
-        }
-      };
+    //         // selectedItems.map((item) =>{
+    //         //     console.log(item);
+    //         //     console.log(1234);
+    //         // })
+    //     }
+    //   };
 
-
+const deleteAllItems=()=>{
+    console.log(`Delete button is Clicked`);
+}
 
     return (
         <div className="h-100 m-5 p-2 border rounded">
@@ -96,13 +98,12 @@ export default function Categories() {
                     <Button icon={filterIcon} />
                     <Button name="+ Add new..." />
                 </div>
-                <div class="container">
-                    <Button icon={filterIcon} />
-                </div>
+              
                 <div className="p-0">
                     {/* <ItemList categories={categoryList} /> */}
-                    <Button  ids={handleSubmit}  name="- Delete the item"   />
-                    <ItemList categories={data}     checkedItems={(e)=>handleCheckboxChange(e)}  />
+                    <Button  items={deleteAllItems}  name="- Delete the item"   />
+                    <ItemList categories={data}     />
+                    {/* <ItemList categories={data}     checkedItems={(e)=>handleCheckboxChange(e)}  /> */}
                 </div>
                 <div class="row">
                     <div className="col-md-1">
