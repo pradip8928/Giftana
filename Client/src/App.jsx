@@ -6,6 +6,7 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Demo from "./Components/pages/Demo";
 // import Navbar from "./Components/pages/Navbar.jsx";
 import Register from "./Components/pages/Register";
+import AdminLog from "./Components/pages/AdminLog";
 
 import AdminLogin from "./Components/pages/AdminLogin";
 import Categories from "./Components/pages/Categories";
@@ -141,7 +142,7 @@ function App() {
           path="/"
           element={
             <>
-              <Register />
+              <AdminLog />
               {/* <Demo /> */}
             </>
           }
