@@ -141,18 +141,18 @@ function App() {
           path="/"
           element={
             <>
-              {/* <Navbar /> */}
-              <AdminLogin />
+              <Register />
+              {/* <Demo /> */}
             </>
           }
         />
         <Route
-          path="/login"
+          path="/createadmin"
           exact
           element={
             <>
-              <Register />
-              <Demo />
+              {/* <Navbar /> */}
+              <AdminLogin />
             </>
           }
         />

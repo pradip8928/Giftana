@@ -26,6 +26,8 @@ export default function ItemList(props) {
               <td scope="row">
                 <InputField
                   type="checkbox"
+                  // ye fucntion kaha bnaya hai
+                  // haa tho kr tho rh hai pass bta zra kha hai
                   onChange={() => handleCheckboxChange(category._id)}
                 />
               </td>

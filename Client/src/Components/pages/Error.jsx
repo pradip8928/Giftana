@@ -3,8 +3,9 @@ import React from "react";
 const Error = (props) => {
   return (
     <div>
-      <div className="alert alert-success text-center" role="alert">
-        <strong>{props.error}</strong>
+      <div className="alert alert-danger  " role="alert">
+        <strong>{props.errMessage}</strong>
+        
       </div>
     </div>
   );

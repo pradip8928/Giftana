@@ -8,7 +8,7 @@ export default function AdminLogin() {
         <div>
             <div className="m-5 mb-0 row">
                 <div className="col">
-                    <button className="btn border"><img src="/src/assets/icons/arrow-left.svg" alt="" srcset="" /></button>
+                    <button className="btn border"><img src="/src/assets/icons/arrow-left.svg" alt="" srcSet="" /></button>
                     <strong className="p-2 h3">Edit customer details - demo</strong>
                 </div>
             </div>
