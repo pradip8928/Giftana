@@ -1,5 +1,4 @@
 import React from 'react';
-import Checkbox from './Checkbox';
 import InputField from './InputField';
 import checkIcon from "/src/assets/icons/check.svg"
 
