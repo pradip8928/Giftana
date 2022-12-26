@@ -1,18 +1,42 @@
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
+import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
 import Demo from "./Components/pages/Demo";
+import Navbar from "./Components/pages/Navbar.jsx";
+import Registraion_Form from "./Components/pages/Registraion_Form";
+import "../src/Components/css/Registraion_Form.css";
+import "../src/Components/css/Navbar.css";
+import "../src/Components/css/Login_page.css";
+
+import Login_page from "./Components/pages/Login_page";
+
+// =======
+// import { useState } from "react";
+// import reactLogo from "./assets/react.svg";
+// import "./App.css";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+// import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+// import Demo from "./Components/pages/Demo";
 // import Navbar from "./Components/pages/Navbar.jsx";
 import Register from "./Components/pages/Register";
-import AdminLog from "./Components/pages/AdminLog";
+// >>>>>>> bad1ec177aff56f6cc83dfe12044bcf551e53ac5
 
 import AdminLogin from "./Components/pages/AdminLogin";
 import Categories from "./Components/pages/Categories";
 
 function App() {
   return (
+    // <<<<<<< HEAD
+    // <div className="App">
+
+    //     <Navbar/>
+    //     <Login_page/>
+
+    //     </div>
+    // // =======
     <Router>
       <nav class="navbar  navbar-expand-lg bg-secondary">
         <div class="container-fluid  ">
@@ -127,9 +151,9 @@ function App() {
               </Link>
             </button>
             <button className="btn btn-outline-warning">
-              <Link className="text-decoration-none text-warning " to="/login">
+              <Link className="text-decoration-none text-warning " to="/">
                 {" "}
-                Login
+                Logout
               </Link>
             </button>
           </div>
@@ -142,7 +166,8 @@ function App() {
           path="/"
           element={
             <>
-              <AdminLog />
+              <Login_page />
+              {/* <Register /> */}
               {/* <Demo /> */}
             </>
           }
@@ -158,25 +183,8 @@ function App() {
           }
         />
 
-        <Route
-          path="/register"
-          exact
-          element={
-            <>
-              <Register />
-            </>
-          }
-        />
-        <Route
-          path="/login"
-          exact
-          element={
-            <>
-              <Register />
-              <Demo />
-            </>
-          }
-        />
+        <Route path="/register" exact element={<>{/* <Register /> */}</>} />
+        <Route path="/login" exact element={<>{/* <Navbar/> */}</>} />
         <Route
           path="/admin"
           exact
@@ -197,6 +205,7 @@ function App() {
         />
       </Routes>
     </Router>
+    // >>>>>>> bad1ec177aff56f6cc83dfe12044bcf551e53ac5
   );
 }
 
