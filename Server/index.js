@@ -25,7 +25,6 @@ const userRoutes = require("./routes/authRoutes/userRoutes");
 const adminRoutes = require("./routes/authRoutes/adminRoutes");
 const catagory = require("./routes/catalog/catagoryRoutes");
 
-
 require("./config/database");
 app.use(cors());
 app.options("*", cors());

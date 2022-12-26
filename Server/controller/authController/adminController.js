@@ -8,59 +8,113 @@ const ErrorHandler = require("../../utils/errorHandler");
 
 // / registeration of Admin
 const registerAdmin = asyncHandler(async(req, res) => {
+    console.log("in registerAdmin");
     const { adminName, password, email, role } = req.body;
-    console.log(adminName, password, email, role);
+    console.log("my data is", adminName, password, email, role);
 
+    if (!adminName || !email || !password) {
+        throw new Error(`Please fill the data properly`);
+    }
     const adminExist = await Admin.findOne({ adminName });
     if (adminExist) {
         res.status(400);
+        console.log("admin exist");
         throw new Error(`Admin with this ${email} already exists`);
     }
 
     const admin = await Admin.create({ adminName, email, password, role });
+
+    const token = admin.getJWTToken();
+
     if (admin) {
+        console.log("admin created");
         res.status(201).json({
             id: admin._id,
             adminName: admin.adminName,
             email: admin.email,
             role: admin.role,
-            token: generateToken(admin._id),
+            token,
+            // token: generateToken(admin._id),
         });
     } else {
         res.status(400);
         throw new Error(`Error Occured`);
     }
 });
-
 // Login
 
 // login or authenticated Admin
 const authAdmin = asyncHandler(async(req, res) => {
+    console.log("from frontend");
+    // const { adminName, password } = req.body;
+    // const admin = await Admin.findOne({ adminName });
+    // if (admin && (await admin.matchPassword(password))) {
+    //   // verify token
+    //   const token = generateToken(admin._id);
+    //   res.cookie("access_token", token, {
+    //     expires: new Date(Date.now() + 2000),
+    //     httpOnly: true,
+    //     // secure: process.env.NODE_ENV === "development",
+    //   });
+    //   res.send({
+    //     _id: admin._id,
+    //     adminName: admin.adminName,
+    //     email: admin.email,
+    //     role: admin.role,
+    //     token: generateToken(admin._id),
+    //   });
+    // } else {
+    //   res.status(401);
+    //
+
+    // }
+
     const { adminName, password } = req.body;
+
+    console.log("my data", adminName, password);
+
+    if (!adminName || !password) {
+        console.log("Invalid Email or Password");
+        throw new Error("Invalid Email or Password");
+    }
 
     const admin = await Admin.findOne({ adminName });
 
-    if (admin && (await admin.matchPassword(password))) {
-        // verify token
+    if (!admin) {
+        console.log("Invalid Credential");
+        throw new Error("Invalid Credential");
+    }
 
-        const token = generateToken(admin._id);
-        res.cookie("access_token", token, {
-            expires: new Date(Date.now() + 2000),
-            httpOnly: true,
-            // secure: process.env.NODE_ENV === "development",
-        });
+    const isPasswordMatched = await admin.matchPassword(password);
 
-        res.send({
-            _id: admin._id,
-            adminName: admin.adminName,
-            email: admin.email,
-            role: admin.role,
-            token: generateToken(admin._id),
-        });
-    } else {
-        res.status(401);
+    if (!isPasswordMatched) {
+        console.log("Invalid Email or Password");
         throw new Error("Invalid Email or Password");
     }
+
+    const token = admin.getJWTToken();
+
+    // res.send({
+    //   _id: admin._id,
+    //   adminName: admin.adminName,
+    //   email: admin.email,
+    //   role: admin.role,
+    //   token: token,
+    //   // token: generateToken(admin._id),
+    // });
+
+    // creating token and saving in cookie
+
+    const option = {
+        expires: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000),
+        httpOnly: true,
+    };
+
+    res.cookie("token", token, option).json({
+        success: true,
+        admin,
+        token,
+    });
 });
 
 // Logout Admin
