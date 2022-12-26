@@ -8,6 +8,31 @@ import SuccessMessage from "./pages/Success";
 // import Alert from "react-popup-alert";
 
 export default function XForm({ postTo }) {
+  // useEffect(async () => {
+  //   try {
+  //     const res = await fetch("http://localhost:3000/api/admin/register", {
+  //       method: "GET",
+  //       headers: {
+  //         Accept: "application/json",
+  //         "Content-Type": "application/json",
+  //       },
+  //       credentials: "include",
+  //     });
+
+  //     const data = await res.json();
+  //     console.log(data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }, []);
+
+  // useEffect(() => {
+  //   fetch("http://localhost:3000/api/admin/register")
+  //     .then((res) => res.json())
+  //     .then((jsonRes) => console.log(jsonRes))
+  //     .catch((err) => console.log(err));
+  // }, []);
+
   const [post, setPost] = useState(false);
   const [message, setMessage] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -64,9 +89,6 @@ export default function XForm({ postTo }) {
 
         const data = await res.json();
         console.log("frontend data is", data);
-
-        
-
         if (data.success === false) {
           setError(data.message);
         } else {
@@ -82,7 +104,12 @@ export default function XForm({ postTo }) {
     <>
       {/* {error && <p> {error}</p>} */}
       {error && <Error errMessage={error}> {error}</Error>}
-      {message && <SuccessMessage varient="danger" successMessage={message}> {message}</SuccessMessage>}
+      {message && (
+        <SuccessMessage varient="danger" successMessage={message}>
+          {" "}
+          {message}
+        </SuccessMessage>
+      )}
       {loading && <Loading />}
       <form
         className="adminForm m-4"

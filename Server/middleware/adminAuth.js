@@ -16,7 +16,15 @@ exports.authenticatedAdmin = catchAsyncError(async (req, res, next) => {
     "JXHFKRFUYRIUFYGERUXYFGXUOYGFUOYGRFXUXOYEGGR"
   );
 
+  const rootUser = await admin.find({ _id: decodedData._id, token: token });
+
+  if (!rootUser) {
+    throw new Error("user not found");
+  }
+
   req.admin = await admin.findById(decodedData.id);
+
+  req.rootUser = rootUser;
 
   next();
 });
