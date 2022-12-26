@@ -89,7 +89,6 @@ const updateProduct = catchAsyncError(async(req, res, next) => {
 // deleting the single item
 const deleteOneProduct = catchAsyncError(async(req, res, next) => {
     try {
-        console.log("hi");
         const product = await Catagory.findById(req.params.id);
 
         if (!product) {

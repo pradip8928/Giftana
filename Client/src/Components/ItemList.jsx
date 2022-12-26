@@ -8,23 +8,37 @@ import mongoose from "mongoose";
 
 export default function ItemList(props) {
   const [selectedItems, setSelectedItems] = useState([]);
-
+  useEffect(() => {
+    // Call the getData function when the component unmounts
+   
+      props.getData(selectedItems);
+    
+  }, [selectedItems]);
   
-  // checkbox
- 
   const handleCheckboxChange = (e) => {
-    const { value, checked } = e.target;
+   const { value, checked } = e.target;
+   console.log(`${value } is ${checked}`);
+ 
+   if (checked) {
+ 
+    console.log("item is checked");
+     setSelectedItems([...selectedItems, value]);
+   } else {
+     setSelectedItems(selectedItems.filter((id) => id !== value));
+   }
+    
+     props.getData(selectedItems)
+       
+    
+ };
+  
+ 
 
-    if (checked) {
-      //   console.log(`the checkbox is checked and its id is ${selectedItems}`);
-      setSelectedItems([...selectedItems, value]);
-    } else {
-      //   console.log(`the checkbox is unchecked and its id is ${selectedItems}`);
-      setSelectedItems(selectedItems.filter((id) => id !== value));
-    }
-  };
+
 
   const handleSubmit = (req, res) => {
+
+
     console.log("click");
     console.log(selectedItems);
 
@@ -76,7 +90,7 @@ export default function ItemList(props) {
 
   return (
     <>
-      <button onClick={handleSubmit}>Delete </button>
+      <button onClick={handleSubmit}>Delete the Product </button>
       <table className="table border-top">
         <thead>
           <tr className="">
@@ -92,7 +106,7 @@ export default function ItemList(props) {
           </tr>
         </thead>
         <tbody className="h-100 overflow-y-auto">
-          {/* // productName,productCompleteName,productAliasName,productPublished,productOrder,productStores */}
+        
           {props.categories.map((category, index) => {
             return (
               <tr key={index}>

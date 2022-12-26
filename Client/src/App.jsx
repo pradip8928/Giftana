@@ -13,6 +13,7 @@ import '../src/Components/css/Navbar.css';
 import '../src/Components/css/Login_page.css';
 
 import Login_page from './Components/pages/Login_page';
+// import updateProduct from "./Components/pages/updateProduct"
 
 // =======
 // import { useState } from "react";
@@ -179,6 +180,16 @@ function App() {
             <>
               {/* <Navbar /> */}
               <AdminLogin />
+            </>
+          }
+        />
+        <Route
+          path="/update"
+          exact
+          element={
+            <>
+              {/* <Navbar /> */}
+              {/* <updateProduct /> */}
             </>
           }
         />
