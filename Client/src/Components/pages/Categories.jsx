@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Filter from "../Filter";
-import AddNewProduct from "../AddNewProduct";
+import AddNewProduct from "../forms/formComponents/NewProductButton";
 import ItemList from "../ItemList";
-import Button from "../Button";
+import Button from "../forms/formComponents/Button";
 import Pagination from "../Pagination";
 
 import categoryList from "../../categories.js";

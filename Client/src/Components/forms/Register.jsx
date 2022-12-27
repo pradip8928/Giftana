@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Loading from "./Loading";
-import Error from "./Error";
+import Loading from "../pages/Loading";
+import Error from "../pages/Error";
 // import Loading from "./Loading";
-import SuccessMessage from "./Success";
+import SuccessMessage from "../pages/Success";
 
 const Register = () => {
   const [message, setMessage] = useState(null);
@@ -46,7 +46,7 @@ const Register = () => {
     <>
       <form method="POST">
         <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">
+          <label htmlFor="exampleInputEmail1" class="form-label">
             Email address
           </label>
           <input

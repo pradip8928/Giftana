@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Checkbox from "./Checkbox";
-import InputField from "./InputField";
+import Checkbox from "./forms/formComponents/Checkbox";
+import InputField from "./forms/formComponents/InputField";
 import checkIcon from "/src/assets/icons/check.svg";
 import mongoose from "mongoose";
 // import categories from "../categories";

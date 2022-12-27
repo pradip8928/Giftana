@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import InputField from "./InputField";
-import Checkbox from "./Checkbox";
+import InputField from "./formComponents/InputField";
+import Checkbox from "./formComponents/Checkbox";
 // import Loading from "./Loading"
-import Error from "./pages/Error";
-import Loading from "./pages/Loading";
-import SuccessMessage from "./pages/Success";
+import Error from "../pages/Error";
+import Loading from "../pages/Loading";
+import SuccessMessage from "../pages/Success";
 // import Alert from "react-popup-alert";
 
 export default function XForm({ postTo }) {
@@ -85,7 +85,7 @@ export default function XForm({ postTo }) {
       {message && <SuccessMessage varient="danger" successMessage={message}> {message}</SuccessMessage>}
       {loading && <Loading />}
       <form
-        className="adminForm m-4"
+        className="adminForm form m-4"
         action={postTo}
         method="POST"
        

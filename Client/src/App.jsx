@@ -5,14 +5,8 @@ import './App.css'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 // import "bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
-import Demo from "./Components/pages/Demo"
-import Navbar from "./Components/pages/Navbar.jsx";
-import Registraion_Form from './Components/pages/Registraion_Form'
-import '../src/Components/css/Registraion_Form.css';
-import '../src/Components/css/Navbar.css';
-import '../src/Components/css/Login_page.css';
 
-import Login_page from './Components/pages/Login_page';
+import Login_page from './Components/forms/Login_page';
 // import updateProduct from "./Components/pages/updateProduct"
 
 // =======
@@ -22,12 +16,13 @@ import Login_page from './Components/pages/Login_page';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 // import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 // import Demo from "./Components/pages/Demo";
-// import Navbar from "./Components/pages/Navbar.jsx";
-import Register from "./Components/pages/Register";
+import Navbar from "./Components/Navbar.jsx";
+import Register from "./Components/forms/Register";
 // >>>>>>> bad1ec177aff56f6cc83dfe12044bcf551e53ac5
 
 import AdminLogin from "./Components/pages/AdminLogin";
 import Categories from "./Components/pages/Categories";
+import NewCategory from "./Components/pages/AddNewCategory";
 
 function App() {
   return (
@@ -136,7 +131,7 @@ function App() {
                 <Link
                   className="nav-link active  text-bold"
                   aria-current="page"
-                  to="/admin"
+                  to="/createadmin"
                 >
                   System
                 </Link>
@@ -208,17 +203,8 @@ function App() {
           exact
           element={
             <>
-              {/* <Navbar/> */}
+              <Navbar/>
            <Login_page/>
-            </>
-          }
-        />
-        <Route
-          path="/admin"
-          exact
-          element={
-            <>
-              <AdminLogin />
             </>
           }
         />
@@ -228,6 +214,15 @@ function App() {
           element={
             <>
               <Categories />
+            </>
+          }
+        />
+        <Route
+          path="/new-category"
+          exact
+          element={
+            <>
+              <NewCategory />
             </>
           }
         />
