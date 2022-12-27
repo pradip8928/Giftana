@@ -116,7 +116,7 @@ const authAdmin = asyncHandler(async (req, res) => {
     token,
   });
 
-  res.send(admin);
+  // res.send(admin);
 });
 
 // Logout Admin
