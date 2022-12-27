@@ -15,10 +15,10 @@ import caret from "/src/assets/icons/caret-down.svg";
 
 export default function Categories() {
   const [data, setData] = useState([]);
-  const [selectedItems, setSelectedItems] = useState([]);
+  const [selectedData, setSelectedData] = useState([]);
   useEffect(() => {
     category();
-  }, []);
+  }, [data]);
   const category = () => {
     const config = {
       headers: { "Content-Type": "application/json" },
@@ -27,48 +27,42 @@ export default function Categories() {
     axios
       .get("http://localhost:3000/catalog/catagory/getAllProduct", config)
       .then((result) => {
-        console.log(result.data.products);
-        console.log(result.data.products);
         setData(result.data.products);
       });
   };
 
-  //   const handleSubmit = (e) => {
-
-  //     const {value,checked}=e.target;
-  //     console.log(`${value} is ${checked}`);
-  //     console.log("hlw ");
-  //     // Make the API call here, passing the selectedItems array as a prop
-  //     // console.log(`Selected items: ${id}`);
-  //     // console.log(id);
-
-  //     // if (checked) {
-  //     //     setSelectedItems([...selectedItems,value])
-  //     // }else{
-  //     //     setSelectedItems(selectedItems.filter((e)=>{e!== value}))
-  //     // }
-  //   };
-
-  //   const handleCheckboxChange = (id) => {
-  //     console.log(id);
-
-  //     // Add or remove the ID from the array, depending on whether it is already present
-  //     if (selectedItems.includes(id)) {
-  //         console.log(id);
-  //         setSelectedItems(selectedItems.filter((item) => item !== id));
-  //     } else {
-  //         setSelectedItems([...selectedItems, id]);
-  //         console.log(selectedItems);
-
-  //         // selectedItems.map((item) =>{
-  //         //     console.log(item);
-  //         //     console.log(1234);
-  //         // })
-  //     }
-  //   };
+  const getData = (ids) => {
+    if (ids.length > 0) {
+      setSelectedData(ids);
+    } else {
+      setSelectedData([]);
+    }
+  };
 
   const deleteAllItems = () => {
-    console.log(`Delete button is Clicked`);
+    // console.log(data);
+    console.log(`Delete button is Clicked ${selectedData}`);
+    console.log(selectedData);
+    const objectIds = selectedData.map((id) => mongoose.Types.ObjectId(id));
+
+    const config = {
+      headers: { "Content-Type": "application/json" },
+    };
+
+    axios
+      .delete(
+        `http://localhost:3000/catalog/catagory/products/deleteMultipleProducts`,
+        {
+          data: objectIds,
+        },
+        config
+      )
+      .then((result) => {
+        console.log(`deleted items successfully ${result}`);
+      })
+      .catch((err) => {
+        console.error(`Error retrieving items: ${err.message}`);
+      });
   };
 
   return (
@@ -87,9 +81,8 @@ export default function Categories() {
         </div>
 
         <div className="p-0">
-          {/* <ItemList categories={categoryList} /> */}
           <Button items={deleteAllItems} name="- Delete the item" />
-          <ItemList categories={data} />
+          <ItemList categories={data} getData={getData} />
           {/* <ItemList categories={data}     checkedItems={(e)=>handleCheckboxChange(e)}  /> */}
         </div>
         <div class="row">

@@ -64,7 +64,12 @@ const getProductDetail = catchAsyncError(async (req, res, next) => {
 // UPDATE A PRODUCT
 
 const updateProduct = catchAsyncError(async (req, res, next) => {
-  console.log("from postman to update my self");
+  console.log(
+    "from frontend to update my self",
+    req.body,
+    "and id is",
+    req.params.id
+  );
   try {
     let product = await Catagory.findById(req.params.id);
 
@@ -90,7 +95,6 @@ const updateProduct = catchAsyncError(async (req, res, next) => {
 // deleting the single item
 const deleteOneProduct = catchAsyncError(async (req, res, next) => {
   try {
-    console.log("hi");
     const product = await Catagory.findById(req.params.id);
 
     if (!product) {

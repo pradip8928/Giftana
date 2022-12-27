@@ -75,7 +75,7 @@ const authAdmin = asyncHandler(async (req, res) => {
 
   if (!adminName || !password) {
     console.log("Invalid Email or Password");
-    throw new Error("Please fill all the field");
+    throw new Error("Invalid Email or Password");
   }
 
   const admin = await Admin.findOne({ adminName });
@@ -88,7 +88,7 @@ const authAdmin = asyncHandler(async (req, res) => {
   const isPasswordMatched = await admin.matchPassword(password);
 
   if (!isPasswordMatched) {
-    console.log("Invalid Email or Passsssssssssword");
+    console.log("Invalid Email or Password");
     throw new Error("Invalid Email or Password");
   }
 
@@ -115,8 +115,6 @@ const authAdmin = asyncHandler(async (req, res) => {
     admin,
     token,
   });
-
-  // res.send(admin);
 });
 
 // Logout Admin
