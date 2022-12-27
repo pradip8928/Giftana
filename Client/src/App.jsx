@@ -1,6 +1,10 @@
 // <<<<<<< HEAD
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
+
+// import Posts from './Components/pages/Posts';
+import Pagination from './Components/Pagination';
+
 import './App.css'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 // import "bootstrap/dist/css/bootstrap.min.css";
@@ -29,15 +33,40 @@ import AdminLogin from "./Components/pages/AdminLogin";
 import Categories from "./Components/pages/Categories";
 
 function App() {
+
+  // const [posts, setPosts] = useState([]);
+  // const [loading, setLoading] = useState(false);
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const [postsPerPage] = useState(10);
+
+  // useEffect(() => {
+  //   const fetchPosts = async () => {
+  //     setLoading(true);
+  //     const res = await axios.get('https://jsonplaceholder.typicode.com/posts');
+  //     setPosts(res.data);
+  //     setLoading(false);
+  //   };
+
+  //   fetchPosts();
+  // }, []);
+
+  // Get current posts
+  // const indexOfLastPost = currentPage * postsPerPage;
+  // const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  // const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+
+  // Change page
+  // const paginate = pageNumber => setCurrentPage(pageNumber);
+
   return (
-// <<<<<<< HEAD
+    // <<<<<<< HEAD
     // <div className="App">
-    
-//     <Navbar/>
-//     <Login_page/>
-    
-//     </div>
-// // =======
+
+    //     <Navbar/>
+    //     <Login_page/>
+
+    //     </div>
+    // // =======
     <Router>
       <nav class="navbar  navbar-expand-lg bg-secondary">
         <div class="container-fluid  ">
@@ -84,6 +113,15 @@ function App() {
                 >
                   Categories
                 </Link>
+                {/* <Posts posts={currentPosts} loading={loading} />
+                <Pagination
+                  postsPerPage={postsPerPage}
+                  totalPosts={posts.length}
+                  paginate={paginate}
+                /> */}
+                 
+      <Pagination/>
+
               </li>
 
               <li className="nav-item">
@@ -198,7 +236,7 @@ function App() {
           element={
             <>
               {/* <Navbar/> */}
-           <Login_page/>
+              <Login_page />
             </>
           }
         />
@@ -222,7 +260,7 @@ function App() {
         />
       </Routes>
     </Router>
-// >>>>>>> bad1ec177aff56f6cc83dfe12044bcf551e53ac5
+    // >>>>>>> bad1ec177aff56f6cc83dfe12044bcf551e53ac5
   );
 }
 
