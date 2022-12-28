@@ -8,14 +8,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
 export default function ItemList(props) {
   const [modal, setModal] = useState(false);
-  // const [product, setProduct] = useState({
-  //   productName: "",
-  //   productCompleteName: "",
-  //   productAliasName: "",
-  //   productPublished: "",
-  //   productOrder: "",
-  //   productStores: "",
-  // });
+
   const [productId, setProductId] = useState("");
   const [productName, setProductName] = useState("");
   const [productCompleteName, setProductCompleteName] = useState("");
