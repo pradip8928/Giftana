@@ -4,20 +4,44 @@ import Checkbox from "./Checkbox";
 // import Loading from "./Loading"
 import Error from "./pages/Error";
 import Loading from "./pages/Loading";
-
-
+import SuccessMessage from "./pages/Success";
+// import Alert from "react-popup-alert";
 
 export default function XForm({ postTo }) {
+  // useEffect(async () => {
+  //   try {
+  //     const res = await fetch("http://localhost:3000/api/admin/register", {
+  //       method: "GET",
+  //       headers: {
+  //         Accept: "application/json",
+  //         "Content-Type": "application/json",
+  //       },
+  //       credentials: "include",
+  //     });
 
+  //     const data = await res.json();
+  //     console.log(data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }, []);
 
+  // useEffect(() => {
+  //   fetch("http://localhost:3000/api/admin/register")
+  //     .then((res) => res.json())
+  //     .then((jsonRes) => console.log(jsonRes))
+  //     .catch((err) => console.log(err));
+  // }, []);
+
+  const [post, setPost] = useState(false);
   const [message, setMessage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [admin, setAdmin] = useState({
     adminName: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
+    adminEmail: "",
+    adminPassword: "",
+    adminConfirmPassword: "",
   });
 
   let name, value;
@@ -25,37 +49,32 @@ export default function XForm({ postTo }) {
     name = e.target.name;
     value = e.target.value;
     setAdmin({ ...admin, [name]: value });
+    console.log(
+      "My data is",
+      admin.adminName,
+      admin.adminEmail,
+      admin.adminPassword
+    );
   };
 
   const postData = async (e) => {
-    e.preventDefault();
     console.log(
+      "post data is working",
       admin.adminName,
-      admin.email,
-      admin.password,
-      admin.confirmPassword
+      admin.adminEmail,
+      admin.adminPassword,
+      admin.adminConfirmPassword
     );
-    // --
 
-    setError('');
+    e.preventDefault();
+    const { adminName, adminEmail, adminPassword } = admin;
 
-    if (admin.password !== admin.confirmPassword) {
-      setMessage("Passwords do not match");
+    if (admin.adminPassword !== admin.adminConfirmPassword) {
+      setError("Passwords do not match");
     } else {
-      // setMessage(null);
+      setError("");
+
       try {
-        const config = {
-          headers: { "Content-Type": "application/json" },
-        };
-        setLoading(true);
-
-        const { adminName, password, email } = admin;
-        // const { data } = await axios.post(
-        //   "localhost:3000/api/admin/register",
-        //   { adminName,  password, email },
-        //   config
-        // );
-
         const res = await fetch("http://localhost:3000/api/admin/register", {
           method: "post",
           headers: {
@@ -63,30 +82,33 @@ export default function XForm({ postTo }) {
           },
           body: JSON.stringify({
             adminName: adminName,
-            password: password,
-            email: email,
+            email: adminEmail,
+            password: adminPassword,
           }),
         });
-        const data = await res.json();
-        console.log(data);
-        setMessage("Registration has done successfully");
-        setError('');
-        setLoading(false);
 
-        // localStorage.setItem("userInfo", JSON.stringify(data));
+        const data = await res.json();
+        console.log("frontend data is", data);
+        if (data.success === false) {
+          setError(data.message);
+        } else {
+          setMessage("Registration has done successfully");
+        }
       } catch (error) {
         setError(error.response.data.message);
-        setLoading(false);
-        console.log(error.response.data.message);
       }
     }
-    // --
   };
 
   return (
     <>
-      {error && <Error> {error}</Error>}
-      {message && <Error varient="danger"> {message}</Error>}
+      {error && <Error errMessage={error}> {error}</Error>}
+      {message && (
+        <SuccessMessage varient="danger" successMessage={message}>
+          {" "}
+          {message}
+        </SuccessMessage>
+      )}
       {loading && <Loading />}
       <form className="adminForm m-4" action={postTo} method="POST">
         <InputField id="xxx001" label="ID" type="text" placeholder="ID" />
@@ -94,32 +116,34 @@ export default function XForm({ postTo }) {
           type="text"
           label="Username"
           name="adminName"
-          // value={admin.adminName}
-          // onChange={handleInputs}
+          value={admin.adminName}
+          data={handleInputs}
           placeholder="abcd1234"
         />
+
         <InputField
           type="email"
           label="Email"
-          value={admin.email}
-          onChange={handleInputs}
-          placeholder="abc@123gmail.com"
+          name="adminEmail"
+          value={admin.adminEmail}
+          data={handleInputs}
+          placeholder="abc@34423gmail.com"
         />
         <InputField
           type="password"
-          name="password"
-          value={admin.password}
-          onChange={handleInputs}
+          name="adminPassword"
+          value={admin.adminPassword}
           label="Password"
+          data={handleInputs}
           placeholder="Password@123"
         />
         <InputField
           type="password"
           label="Confirm Password"
-          name="confirmPassword"
+          name="adminConfirmPassword"
           placeholder=" Confirm Password"
-          value={admin.confirmPassword}
-          onChange={handleInputs}
+          value={admin.adminConfirmPassword}
+          data={handleInputs}
         />
         <Checkbox name="gender" label="Gender" fields={["Male", "Female"]} />
         <InputField type="text" label="First Name" placeholder="John" />

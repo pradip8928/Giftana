@@ -1,51 +1,75 @@
 .App {
-    text-align: center;
+  text-align: center;
 }
 
 .form-control {
-    display: block;
-    width: 76%;
-    padding: 0.375rem 0.75rem;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    /* color: #212529; */
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
-    appearance: none;
-    border-radius: 0.375rem;
-    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  display: block;
+  width: 76%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  /* color: #212529; */
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  appearance: none;
+  border-radius: 0.375rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 .form-group {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 #date {
-    margin-left: 97px;
-    margin-right: 29px;
-    margin-top: 14px;
+  margin-left: 97px;
+  margin-right: 29px;
+  margin-top: 14px;
 }
 
 .gender-label {
-    margin-right: 103px;
+  margin-right: 103px;
 }
 
 .btn-group {
-    margin-bottom: 21px;
+  margin-bottom: 21px;
 }
 
 .mb-3 {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 #textarea {
+/* <<<<<<< HEAD */
     margin-right: 92px;
     margin-left: 63px;
 }
 
 
 
+/* ======= */
+  /* margin-right: 92px;
+  margin-left: 63px;
+} */
+
+.container {
+  font-size: 2rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 2rem;
+}
+
+.Account {
+  display: flex;
+  justify-content: space-between;
+  /* border: 1px solid white; */
+  gap: 30px;
+  align-items: center;
+}
+/* >>>>>>> e08c6f586a0d50249fd0f23377a4dbef0792feca */

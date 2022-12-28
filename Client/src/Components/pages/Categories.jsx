@@ -1,9 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Filter from "../Filter";
 import AddNewProduct from "../AddNewProduct";
 import ItemList from "../ItemList";
 import Button from "../Button";
+
 import Pagination from "../PaginationComponent";
+
+// import Pagination from "../Pagination";
+import InputField from "../InputField";
+
 
 import categoryList from "../../categories.js";
 
@@ -12,42 +18,110 @@ import refreshIcon from "/src/assets/icons/refresh.svg";
 import settingsIcon from "/src/assets/icons/settings.svg";
 import caret from "/src/assets/icons/caret-down.svg";
 
-
-
 export default function Categories() {
-    return (
-        <div className="h-100 m-5 p-2 border rounded">
-            <div className="row m-2 align-items-center">
-                <h1 className="container col-md-3 h-100 p-2">Manage Categories</h1>
-                <div className="col-md">
-                    <Button name="List" />
-                    <Button name="Tree" />
-                </div>
-            </div>
-            <div className="row m-2 pt-1 pb-1 border">
-                <div class="container">
-                    <Button icon={filterIcon} />
-                    <Button name="+ Add new..." />
-                </div>
-                <div className="p-0">
-                    <ItemList categories={categoryList} />
-                </div>
-                <div class="row">
-                    <div className="col-md-1">
-                        <Button icon={refreshIcon} />
-                    </div>
-                    <div className="col-md-8">
-                        <Pagination />
-                    </div>
-                    <div className="col-md-2">
-                        <Button icon={caret} name="per page"/>
-                    </div>
-                    <div className="col-md-1">
-                        <Button icon={settingsIcon} />
-                    </div>
-                </div>
-            </div>
+  const [data, setData] = useState([]);
+  const [selectedData, setSelectedData] = useState([]);
+  const [query, setQuery] = useState("");
+  const [filterdata, setFilterData] = useState([]);
+  useEffect(() => {
+    category();
+  }, [query]);
+  const category = () => {
+    const config = {
+      headers: { "Content-Type": "application/json" },
+    };
+    // http://localhost:3000
+    axios
+      .get(
+        `http://localhost:3000/catalog/catagory/getAllProduct?productName=${query}`,
+        config
+      )
+      .then((result) => {
+        setData(result.data.products);
+      });
+  };
 
+  const handleInput = (e) => {
+    // console.log(e.target.value);
+    setQuery(e.target.value);
+  };
+
+  const getData = (ids) => {
+    if (ids.length > 0) {
+      setSelectedData(ids);
+    } else {
+      setSelectedData([]);
+    }
+  };
+
+  const deleteAllItems = () => {
+    // console.log(data);
+    console.log(`Delete button is Clicked ${selectedData}`);
+    console.log(selectedData);
+    const objectIds = selectedData.map((id) => mongoose.Types.ObjectId(id));
+
+    const config = {
+      headers: { "Content-Type": "application/json" },
+    };
+
+    axios
+      .delete(
+        `http://localhost:3000/catalog/catagory/products/deleteMultipleProducts`,
+        {
+          data: objectIds,
+        },
+        config
+      )
+      .then((result) => {
+        console.log(`deleted items successfully ${result}`);
+      })
+      .catch((err) => {
+        console.error(`Error retrieving items: ${err.message}`);
+      });
+  };
+
+  return (
+    <div className="h-100 m-5 p-2 border rounded">
+      <div className="row m-2 align-items-center">
+        <h1 className="container col-md-3 h-100 p-2">Manage Categories</h1>
+        <div className="col-md">
+          <Button name="List" />
+          <Button name="Tree" />
         </div>
-    )
+      </div>
+      <div className="row m-2 pt-1 pb-1 border">
+        <div class="container">
+          <Button icon={filterIcon} />
+          <Button name="+ Add new..." />
+          {/* <input type="text" placeholder="search here" /> */}
+          <InputField
+            type="text"
+            name="adminName"
+            placeholder="search by product Name"
+            data={handleInput}
+          />
+        </div>
+
+        <div className="p-0">
+          <Button items={deleteAllItems} name="- Delete the item" />
+          <ItemList categories={data} getData={getData} />
+          {/* <ItemList categories={data}     checkedItems={(e)=>handleCheckboxChange(e)}  /> */}
+        </div>
+        <div class="row">
+          <div className="col-md-1">
+            <Button icon={refreshIcon} />
+          </div>
+          <div className="col-md-8">
+            <Pagination />
+          </div>
+          <div className="col-md-2">
+            <Button icon={caret} name="per page" />
+          </div>
+          <div className="col-md-1">
+            <Button icon={settingsIcon} />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }

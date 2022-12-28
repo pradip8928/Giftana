@@ -1,18 +1,16 @@
 const mongoose = require("mongoose");
 
-// productImage;
 // productName;
-// productPrice;
-// productQuantity
-// productAvalability
+// productCompleteName;
+// productAliasName;
+// productPublished;
+// productOrder;
+// productStores;
+
+// productName,productCompleteName,productAliasName,productPublished,productOrder,productStores
+// name ,cname,alias, published i.e. Boolean ,order,stores
 
 const catagorySchema = mongoose.Schema({
-  productImage: {
-    url: {
-      type: String,
-      required: true,
-    },
-  },
   productName: {
     type: String,
     required: [true, "Please Enter your name"],
@@ -20,37 +18,49 @@ const catagorySchema = mongoose.Schema({
     minLength: [2, "Name should have more than 2 characters"],
     trim: true,
   },
-  productPrice: {
+  productCompleteName: {
+    type: String,
+    required: [true, "Please Enter your name"],
+    maxLength: [30, "Name cannot exceed 30 characters"],
+    minLength: [2, "Name should have more than 2 characters"],
+    trim: true,
+  },
+  productAliasName: {
+    type: String,
+    required: [true, "Please Enter your name"],
+    maxLength: [30, "Name cannot exceed 30 characters"],
+    minLength: [2, "Name should have more than 2 characters"],
+    trim: true,
+  },
+  productPublished: {
+    type: Boolean,
+    required: [true, "Please Enter your name"],
+    // maxLength: [30, "Name cannot exceed 30 characters"],
+    // minLength: [2, "Name should have more than 2 characters"],
+    trim: true,
+  },
+  productOrder: {
     type: Number,
     required: [true, "Please Enter product price"],
     maxLength: [8, "price canot exceed 8 characters"],
     trim: true,
   },
-  category: {
-    type: String,
-    required: [true, "Please Enter Product Category"],
-    trim: true,
-  },
-  productQuantity: {
+  productStores: {
     type: Number,
-    required: [true, "Please Enter Product Stock"],
-    maxLength: [5, "stock cannot exceed 5 characters"],
-    default: 1,
+    required: [true, "Please Enter product price"],
+    maxLength: [8, "price canot exceed 8 characters"],
     trim: true,
   },
-  productAvalability: {
-    type: String,
-    required: true,
-    enum: ["In_Stock", "Not_In_Stock", "About_To_Finish"],
-    default: "Not_In_Stock",
-  },
+
+  // productAvalability: {
+  //     type: String,
+  //     required: true,
+  //     enum: ["In_Stock", "Not_In_Stock", "About_To_Finish"],
+  //     default: "Not_In_Stock",
+  // },
   createdAt: {
     type: Date,
     default: Date.now,
-  },
-  ratings: {
-    type: Number,
-    default: 0,
   },
 });
 
