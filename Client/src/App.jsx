@@ -35,6 +35,9 @@ import './Components/css/sale.module.css'
 // =======
 // >>>>>>> e08c6f586a0d50249fd0f23377a4dbef0792feca
 
+
+import AddCategory  from "./Components/pages/AddCategory";
+
 function App() {
 
   return (
@@ -196,12 +199,11 @@ function App() {
           }
         />
         <Route
-          path="/update"
+          path="/addProduct"
           exact
           element={
             <>
-              {/* <Navbar /> */}
-              {/* <updateProduct /> */}
+             <AddCategory/>
             </>
           }
         />
