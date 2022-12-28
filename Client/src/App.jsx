@@ -28,6 +28,9 @@ import Register from "./Components/pages/Register";
 import AdminLogin from "./Components/pages/AdminLogin";
 import Categories from "./Components/pages/Categories";
 
+
+import AddCategory  from "./Components/pages/AddCategory";
+
 function App() {
   return (
     // <<<<<<< HEAD
@@ -184,12 +187,11 @@ function App() {
           }
         />
         <Route
-          path="/update"
+          path="/addProduct"
           exact
           element={
             <>
-              {/* <Navbar /> */}
-              {/* <updateProduct /> */}
+             <AddCategory/>
             </>
           }
         />

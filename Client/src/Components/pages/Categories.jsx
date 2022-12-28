@@ -21,7 +21,9 @@ export default function Categories() {
   const [filterdata, setFilterData] = useState([]);
   useEffect(() => {
     category();
-  }, [query]);
+  }, [query,data]);
+
+
   const category = () => {
     const config = {
       headers: { "Content-Type": "application/json" },
@@ -77,7 +79,10 @@ export default function Categories() {
   };
 
   return (
+
+    
     <div className="h-100 m-5 p-2 border rounded">
+
       <div className="row m-2 align-items-center">
         <h1 className="container col-md-3 h-100 p-2">Manage Categories</h1>
         <div className="col-md">
