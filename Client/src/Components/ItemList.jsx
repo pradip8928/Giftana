@@ -8,6 +8,7 @@ export default function ItemList(props) {
         <table className="table border-top">
             <thead>
                 <tr className="">
+                
                     <th scope="col"><InputField type="checkbox" /></th>
                     <th scope="col">Name</th>
                     <th scope="col">Complete Name</th>

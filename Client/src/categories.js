@@ -1,4 +1,4 @@
-const categories = [
+const categories=[
     {
         name: "Apple",
         cname: null,

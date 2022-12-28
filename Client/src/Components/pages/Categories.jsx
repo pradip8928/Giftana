@@ -3,7 +3,7 @@ import Filter from "../Filter";
 import AddNewProduct from "../AddNewProduct";
 import ItemList from "../ItemList";
 import Button from "../Button";
-import Pagination from "../Pagination";
+import Pagination from "../PaginationComponent";
 
 import categoryList from "../../categories.js";
 

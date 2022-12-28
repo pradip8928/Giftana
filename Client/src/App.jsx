@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
   import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
@@ -9,9 +9,13 @@ import Register from "./Components/pages/Register";
  
 import AdminLogin from "./Components/pages/AdminLogin";
 import Categories from "./Components/pages/Categories";
+import PaginationComponent from "./Components/PaginationComponent";
+import './Components/css/Pagination.css'
+import './Components/css/sale.module.css'
  
 
 function App() {
+
   return (
     <Router>
       <nav class="navbar  navbar-expand-lg bg-secondary">
@@ -58,6 +62,8 @@ function App() {
                   to="/categories"
                 >
                   Categories
+                  {/* <Pagination data={images}/> */}
+                 
                 </Link>
               </li>
 
@@ -67,6 +73,7 @@ function App() {
                   aria-current="page"
                   to="/about"
                 >
+                  {/* <Pagination data={images}/> */}
                   Sales
                 </Link>
               </li>
@@ -95,6 +102,7 @@ function App() {
                   to="/"
                 >
                   CMS
+                  
                 </Link>
               </li>
               <li className="nav-item">
