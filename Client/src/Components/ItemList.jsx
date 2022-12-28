@@ -153,6 +153,7 @@ export default function ItemList(props) {
       if (data.success === true) {
         // setError(data.message);
         window.alert("updated successfully");
+        setModal(!toggle);
       } else {
         // setMessage("please refresh it and try again");
         window.alert("please refresh it and try again");
