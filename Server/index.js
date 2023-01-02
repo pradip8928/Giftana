@@ -24,6 +24,7 @@ const errorMiddleware = require("./middleware/errorHandler/error");
 const userRoutes = require("./routes/authRoutes/userRoutes");
 const adminRoutes = require("./routes/authRoutes/adminRoutes");
 const catagory = require("./routes/catalog/catagoryRoutes");
+const manageProducts = require("./routes/catalog/manageProductsRoutes")
 
 require("./config/database");
 app.use(cors());
@@ -42,9 +43,8 @@ const Port = process.env.PORT || 3000;
 
 app.use("/api/user", userRoutes);
 app.use("/api/admin", adminRoutes);
-
-// app.use("/api/catelogRoutes", catelogRoutes);
 app.use("/catalog", catagory);
+app.use("/catalog", manageProducts);
 app.use(notFound);
 // app.use(errorHandler);
 app.use(errorMiddleware);

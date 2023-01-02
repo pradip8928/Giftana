@@ -1,8 +1,7 @@
-// <<<<<<< HEAD
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import "./App.css";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
 
@@ -26,14 +25,14 @@ import NewCategory from "./Components/pages/AddNewCategory";
 
 function App() {
   return (
-// <<<<<<< HEAD
+    // <<<<<<< HEAD
     // <div className="App">
-    
-//     <Navbar/>
-//     <Login_page/>
-    
-//     </div>
-// // =======
+
+    //     <Navbar/>
+    //     <Login_page/>
+
+    //     </div>
+    // // =======
     <Router>
       <nav class="navbar  navbar-expand-lg bg-secondary">
         <div class="container-fluid  ">
@@ -148,9 +147,9 @@ function App() {
               </Link>
             </button>
             <button className="btn btn-outline-warning">
-              <Link className="text-decoration-none text-warning " to="/login">
+              <Link className="text-decoration-none text-warning " to="/">
                 {" "}
-                Login
+                Logout
               </Link>
             </button>
           </div>
@@ -163,7 +162,8 @@ function App() {
           path="/"
           element={
             <>
-              <Register />
+              <Login_page />
+              {/* <Register /> */}
               {/* <Demo /> */}
             </>
           }
@@ -179,12 +179,11 @@ function App() {
           }
         />
         <Route
-          path="/update"
+          path="/addProduct"
           exact
           element={
             <>
-              {/* <Navbar /> */}
-              {/* <updateProduct /> */}
+             <AddCategory/>
             </>
           }
         />
@@ -228,7 +227,7 @@ function App() {
         />
       </Routes>
     </Router>
-// >>>>>>> bad1ec177aff56f6cc83dfe12044bcf551e53ac5
+    // >>>>>>> bad1ec177aff56f6cc83dfe12044bcf551e53ac5
   );
 }
 

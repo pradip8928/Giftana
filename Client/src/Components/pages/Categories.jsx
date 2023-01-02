@@ -4,6 +4,7 @@ import AddNewProduct from "../forms/formComponents/NewProductButton";
 import ItemList from "../ItemList";
 import Button from "../forms/formComponents/Button";
 import Pagination from "../Pagination";
+import InputField from "../InputField";
 
 import categoryList from "../../categories.js";
 
@@ -15,43 +16,46 @@ import caret from "/src/assets/icons/caret-down.svg";
 export default function Categories() {
   const [data, setData] = useState([]);
   const [selectedData, setSelectedData] = useState([]);
+  const [query, setQuery] = useState("");
+  const [filterdata, setFilterData] = useState([]);
   useEffect(() => {
     category();
-    
-  }, [data]);
+  }, [query,data]);
+
+
   const category = () => {
     const config = {
       headers: { "Content-Type": "application/json" },
     };
     // http://localhost:3000
     axios
-      .get("http://localhost:3000/catalog/catagory/getAllProduct", config)
+      .get(
+        `http://localhost:3000/catalog/catagory/getAllProduct?productName=${query}`,
+        config
+      )
       .then((result) => {
-         
         setData(result.data.products);
       });
   };
 
+  const handleInput = (e) => {
+    // console.log(e.target.value);
+    setQuery(e.target.value);
+  };
 
- 
-
-
-const getData = (ids) => {
-   
-  if (ids.length > 0) {
-    setSelectedData(ids);
-  } else {
-    setSelectedData([]);
-  }
-};
+  const getData = (ids) => {
+    if (ids.length > 0) {
+      setSelectedData(ids);
+    } else {
+      setSelectedData([]);
+    }
+  };
 
   const deleteAllItems = () => {
-
     // console.log(data);
     console.log(`Delete button is Clicked ${selectedData}`);
     console.log(selectedData);
     const objectIds = selectedData.map((id) => mongoose.Types.ObjectId(id));
-    
 
     const config = {
       headers: { "Content-Type": "application/json" },
@@ -73,9 +77,11 @@ const getData = (ids) => {
       });
   };
 
- 
   return (
+
+    
     <div className="h-100 m-5 p-2 border rounded">
+
       <div className="row m-2 align-items-center">
         <h1 className="container col-md-3 h-100 p-2">Manage Categories</h1>
         <div className="col-md">
@@ -87,10 +93,16 @@ const getData = (ids) => {
         <div class="container">
           <Button icon={filterIcon} />
           <Button name="+ Add new..." />
+          {/* <input type="text" placeholder="search here" /> */}
+          <InputField
+            type="text"
+            name="adminName"
+            placeholder="search by product Name"
+            data={handleInput}
+          />
         </div>
 
         <div className="p-0">
-           
           <Button items={deleteAllItems} name="- Delete the item" />
           <ItemList categories={data} getData={getData} />
           {/* <ItemList categories={data}     checkedItems={(e)=>handleCheckboxChange(e)}  /> */}
