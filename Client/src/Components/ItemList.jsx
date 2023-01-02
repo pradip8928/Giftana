@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Checkbox from "./Checkbox";
-import InputField from "./InputField";
+import axios from "axios";
+import Checkbox from "./forms/formComponents/Checkbox";
+import InputField from "./forms/formComponents/InputField";
 import checkIcon from "/src/assets/icons/check.svg";
 import { AiOutlineEdit } from "react-icons/ai";
 import UpdateForm from "./pages/UpdateForm";
