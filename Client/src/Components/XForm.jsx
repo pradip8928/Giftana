@@ -5,9 +5,16 @@ import Checkbox from "./Checkbox";
 import Error from "./pages/Error";
 import Loading from "./pages/Loading";
 import SuccessMessage from "./pages/Success";
+import { useNavigate } from "react-router-dom";
 // import Alert from "react-popup-alert";
 
 export default function XForm({ postTo }) {
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      navigate("/");
+    }
+  }, []);
   // useEffect(async () => {
   //   try {
   //     const res = await fetch("http://localhost:3000/api/admin/register", {

@@ -10,23 +10,30 @@ import Pagination from "../PaginationComponent";
 // import Pagination from "../Pagination";
 import InputField from "../InputField";
 
-
 import categoryList from "../../categories.js";
 
 import filterIcon from "/src/assets/icons/filter.svg";
 import refreshIcon from "/src/assets/icons/refresh.svg";
 import settingsIcon from "/src/assets/icons/settings.svg";
 import caret from "/src/assets/icons/caret-down.svg";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Categories() {
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [selectedData, setSelectedData] = useState([]);
   const [query, setQuery] = useState("");
   const [filterdata, setFilterData] = useState([]);
+
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      navigate("/");
+    }
+  }, []);
+
   useEffect(() => {
     category();
-  }, [query,data]);
-
+  }, [query]);
 
   const category = () => {
     const config = {
@@ -76,6 +83,8 @@ export default function Categories() {
       )
       .then((result) => {
         console.log(`deleted items successfully ${result}`);
+        window.alert("deleted");
+        // window.location.reload();
       })
       .catch((err) => {
         console.error(`Error retrieving items: ${err.message}`);
@@ -83,10 +92,7 @@ export default function Categories() {
   };
 
   return (
-
-    
     <div className="h-100 m-5 p-2 border rounded">
-
       <div className="row m-2 align-items-center">
         <h1 className="container col-md-3 h-100 p-2">Manage Categories</h1>
         <div className="col-md">
@@ -103,6 +109,12 @@ export default function Categories() {
             type="text"
             name="adminName"
             placeholder="search by product Name"
+            data={handleInput}
+          />
+          <InputField
+            type="text"
+            name="adminName"
+            placeholder="search by productCompleteName"
             data={handleInput}
           />
         </div>

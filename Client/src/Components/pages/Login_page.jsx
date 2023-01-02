@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 
+import { Link, useNavigate } from "react-router-dom";
+
 export default function Login_page() {
+  const navigate = useNavigate();
   const [admin, setAdmin] = useState({
     userName: "",
     password: "",
@@ -41,7 +44,10 @@ export default function Login_page() {
       window.alert(data.message);
     } else {
       window.alert("Login successfull");
+
       // setMessage("Login Successfull");
+      localStorage.setItem("token", data.token);
+      navigate("/categories");
     }
   };
   return (

@@ -7,51 +7,65 @@ import UpdateForm from "./pages/UpdateForm";
 import axios from "axios";
 import mongoose from "mongoose";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import Error from "./pages/Error"
+import Error from "./pages/Error";
 import SuccessMessage from "./pages/Success";
 import Loading from "./pages/Loading";
 
 export default function ItemList(props) {
-// <<<<<<< HEAD
-// <<<<<<< HEAD
-    return (
-        <table className="table border-top">
-            <thead>
-                <tr className="">
-                
-                    <th scope="col"><InputField type="checkbox" /></th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Complete Name</th>
-                    <th scope="col">Alias</th>
-                    <th scope="col">Published</th>
-                    <th scope="col">Display Order</th>
-                    <th scope="col">Limited to stores</th>
-                </tr>
-            </thead>
-            <tbody className="h-100 overflow-y-auto">
-                {props.categories.map((category, index) => {
-                    return <tr key={index}>
-                        <td scope="row"><InputField type="checkbox" /></td>
-                        <td>{category.name}</td>
-                        <td>{category.cname}</td>
-                        <td>{category.alias}</td>
-                        <td>{category.published ? <img src={checkIcon} alt="Yes" /> : "-"}</td>
-                        <td>{category.order}</td>
-                        <td>{category.stores? category.stores: "-"}</td>
-                    </tr>
-                })}
-            </tbody>
-        </table>
-    );
-// =======
+  // <<<<<<< HEAD
+  // <<<<<<< HEAD
+  // return (
+  //   <table className="table border-top">
+  //     <thead>
+  //       <tr className="">
+  //         <th scope="col">
+  //           <InputField type="checkbox" />
+  //         </th>
+  //         <th scope="col">Name</th>
+  //         <th scope="col">Complete Name</th>
+  //         <th scope="col">Alias</th>
+  //         <th scope="col">Published</th>
+  //         <th scope="col">Display Order</th>
+  //         <th scope="col">Limited to stores</th>
+  //       </tr>
+  //     </thead>
+  //     <tbody className="h-100 overflow-y-auto">
+  //       {props.categories.map((category, index) => {
+  //         return (
+  //           <tr key={index}>
+  //             <td scope="row">
+  //               <InputField type="checkbox" />
+  //             </td>
+  //             <td>{category.productName}</td>
+  //             <td>{category.productCompleteName}</td>
+  //             <td>{category.productAliasName}</td>
+  //             <td>
+  //               {category.productPublished ? (
+  //                 <img src={checkIcon} alt="Yes" />
+  //               ) : (
+  //                 "-"
+  //               )}
+  //             </td>
+  //             <td>{category.productOrder}</td>
+  //             <td>{category.productStores ? category.productStores : "-"}</td>
+  //             <td>
+  //               <AiOutlineEdit onClick={() => updateForm(category)} />
+  //             </td>
+  //           </tr>
+  //         );
+  //       })}
+  //     </tbody>
+  //   </table>
+  // );
+  // =======
   const [modal, setModal] = useState(false);
-// >>>>>>> e08c6f586a0d50249fd0f23377a4dbef0792feca
-// =======
+  // >>>>>>> e08c6f586a0d50249fd0f23377a4dbef0792feca
+  // =======
   const [message, setMessage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  
-// >>>>>>> 22d40da7c8d00e7fa92d6614161151d5854b0c26
+
+  // >>>>>>> 22d40da7c8d00e7fa92d6614161151d5854b0c26
 
   // const [modal, setModal] = useState(false);
   const [productId, setProductId] = useState("");
@@ -76,13 +90,11 @@ export default function ItemList(props) {
     setProductPublished(product.productPublished);
     setProductOrder(product.productOrder);
     setProductStores(product.productStores);
-    
+
     setModal(!modal);
   };
 
-
-    
-  // To delete the products 
+  // To delete the products
   const [selectedItems, setSelectedItems] = useState([]);
 
   useEffect(() => {
@@ -125,14 +137,14 @@ export default function ItemList(props) {
         config
       )
       .then((result) => {
-        console.log(`deleted items successfully ${result}`);
-        
+        console.log(`deleted items successfully rijul ${result}`);
+        window.location.reload();
       })
       .catch((err) => {
         console.error(`Error retrieving items: ${err.message}`);
       });
   };
-    
+
   // const handleSubmit = () => {
   //     console.log("click");
   //     console.log(selectedItems);
@@ -182,7 +194,7 @@ export default function ItemList(props) {
       );
 
       const data = await res.json();
- 
+
       // if (data.success === true) {
       //   setError(data.message);
       //   // window.alert("updated successfully");
@@ -192,12 +204,11 @@ export default function ItemList(props) {
       //   // window.alert("please refresh it and try again");
       // }
 
-
-
-
       if (data.success === false) {
         setError(data.message);
       } else {
+        setModal(!toggle);
+        await window.location.reload();
         setMessage("Product updated successfully");
       }
     } catch (error) {
@@ -207,7 +218,7 @@ export default function ItemList(props) {
 
   return (
     <>
-        {error && <Error errMessage={error}> {error}</Error>}
+      {error && <Error errMessage={error}> {error}</Error>}
       {message && (
         <SuccessMessage varient="danger" successMessage={message}>
           {" "}
@@ -215,7 +226,6 @@ export default function ItemList(props) {
         </SuccessMessage>
       )}
       {loading && <Loading />}
-
 
       <button onClick={handleSubmit}>Delete the Product </button>
       <table className="table border-top">
@@ -234,15 +244,13 @@ export default function ItemList(props) {
         </thead>
         <tbody className="h-100 overflow-y-auto">
           {props.categories.map((category, index) => {
-            
             return (
               <>
                 <tr key={index}>
                   {/* <h1>{category.productName}</h1> */}
                   <td scope="row">
                     <InputField
-                    
-                     value={category._id}
+                      value={category._id}
                       type="checkbox"
                       data={(e) => {
                         handleCheckboxChange(e);

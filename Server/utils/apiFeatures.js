@@ -5,6 +5,7 @@ class ApiFeatures {
   }
 
   searchByProductName() {
+    // const keys = ["productName", "productCompleteName", "productAliasName"];
     const productName = this.queryStr.productName
       ? {
           productName: {
@@ -14,7 +15,7 @@ class ApiFeatures {
         }
       : {};
 
-    console.log(productName);
+    // console.log("search by", productName);
 
     this.query = this.query.find(productName);
 
@@ -30,7 +31,7 @@ class ApiFeatures {
 
     // filtering for price
 
-    console.log(queryCopy);
+    // console.log("query copy", queryCopy);
 
     let queryStr = JSON.stringify(queryCopy);
 

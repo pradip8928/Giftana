@@ -48,8 +48,10 @@ export default function Login_page() {
       setError(data.message);
       window.alert(data.message);
     } else {
-      window.alert("Login successfull");
+      // window.alert("Login successfull");
       setMessage("Login Successfull");
+      // localStorage.setItem("token" , );
+      console.log("token", data.token);
     }
   };
 

@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import XForm from "../XForm";
 import Sidebar from "../Sidebar";
 import sidebarOptions from "/src/sidebar.js";
+import { useNavigate } from "react-router-dom";
 
 export default function AdminLogin() {
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      navigate("/");
+    }
+  }, []);
+
   return (
     <div>
       <div className="m-5 mb-0 row">
