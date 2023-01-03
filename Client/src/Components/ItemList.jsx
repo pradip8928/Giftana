@@ -5,7 +5,6 @@ import InputField from "./forms/formComponents/InputField";
 import checkIcon from "/src/assets/icons/check.svg";
 import { AiOutlineEdit } from "react-icons/ai";
 import UpdateForm from "./pages/UpdateForm";
-import axios from "axios";
 import mongoose from "mongoose";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import Error from "./pages/Error"

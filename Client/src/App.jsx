@@ -25,14 +25,7 @@ import NewCategory from "./Components/pages/AddNewCategory";
 
 function App() {
   return (
-    // <<<<<<< HEAD
-    // <div className="App">
-
-    //     <Navbar/>
-    //     <Login_page/>
-
-    //     </div>
-    // // =======
+     
     <Router>
       <nav class="navbar  navbar-expand-lg bg-secondary">
         <div class="container-fluid  ">
@@ -183,7 +176,8 @@ function App() {
           exact
           element={
             <>
-             <AddCategory/>
+             {/* <AddCategory/> */}
+             <NewCategory/>
             </>
           }
         />

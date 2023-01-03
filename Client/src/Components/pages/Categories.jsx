@@ -4,9 +4,9 @@ import AddNewProduct from "../forms/formComponents/NewProductButton";
 import ItemList from "../ItemList";
 import Button from "../forms/formComponents/Button";
 import Pagination from "../Pagination";
-import InputField from "../InputField";
+import InputField from "../forms/formComponents/InputField";
 
-import categoryList from "../../categories.js";
+// import categoryList from "../../categories.js";
 
 import filterIcon from "/src/assets/icons/filter.svg";
 import refreshIcon from "/src/assets/icons/refresh.svg";
