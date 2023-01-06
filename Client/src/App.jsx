@@ -1,56 +1,34 @@
 import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
-// import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
-// <<<<<<< HEAD
+
 import Demo from "./Components/pages/Demo";
-import Navbar from "./Components/pages/Navbar.jsx";
-import Registraion_Form from "./Components/pages/Registraion_Form";
-import "../src/Components/css/Registraion_Form.css";
-import "../src/Components/css/Navbar.css";
-
-
-
-import Login_page from "./Components/pages/Login_page";
-// =======
-
-import Login_page from './Components/forms/Login_page';
-// import updateProduct from "./Components/pages/updateProduct"
-// >>>>>>> 68782268e01a85e696b33233dbe67663b08cbed2
-
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-// <<<<<<< HEAD
-// =======
-// import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-// import Demo from "./Components/pages/Demo";
 import Navbar from "./Components/Navbar.jsx";
-import Register from "./Components/forms/Register";
-// >>>>>>> bad1ec177aff56f6cc83dfe12044bcf551e53ac5
-// >>>>>>> 68782268e01a85e696b33233dbe67663b08cbed2
+// import Registraion_Form from "./Components/pages/Registraion_Form";
+import Registraion_Form  from "./Components/forms/Registration_Form";
+import Login_page from "./Components/forms/Login_page"
+// import "../src/Components/css/Registraion_Form.css";
+import "../src/Components/css/Navbar.css";
+// import "./Components/Navbar.jsx"
 
-import Register from "./Components/pages/Register";
+// import Login_page from "./Components/pages/Login_page";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+// import Register from "./Components/pages/Register";
 
 import Manage_Products from "./Components/pages/Manage_Products";
 import AdminLogin from "./Components/pages/AdminLogin";
 import './Components/css/Login_page.css'
 import Categories from "./Components/pages/Categories";
-// <<<<<<< HEAD
-
 import PaginationComponent from "./Components/PaginationComponent";
 import './Components/css/Pagination.css'
 import './Components/css/sale.module.css'
 import './Components/pages/Manage_Products'
 import './Components/css/Manage_Product.css'
-
-
-
-
 import AddCategory from "./Components/pages/AddCategory";
-// =======
 import NewCategory from "./Components/pages/AddNewCategory";
-// >>>>>>> 68782268e01a85e696b33233dbe67663b08cbed2
+
 
 function App() {
 

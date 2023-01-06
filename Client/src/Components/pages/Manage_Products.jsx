@@ -1,9 +1,10 @@
 import React from "react";
-import '../Button'
-import Button from "../Button";
+// import '../Button'
+// import Button from "../Button";
+// import Button from "../Button";
 // import Button from "./Button";
 // import './css/Button.css';
-
+// import '../Button'
 export default function Manage_Product() {
     return (
         <div className="main_container">
@@ -12,10 +13,10 @@ export default function Manage_Product() {
             </div>
             <div className="container">
                 <div className="container_btn">
-                    <Button className="filter_btn" name="Filter" onClick="<Toggle2/>" />
+                    {/* <Button className="filter_btn" name="Filter" onClick="<Toggle2/>" />
 
                     <Button name="+ Add items" />
-                    <Button className=" edit_btn" name="Edit"/>
+                    <Button className=" edit_btn" name="Edit"/> */}
                     
                     <hr></hr>
                 </div>

@@ -6,7 +6,7 @@ import checkIcon from "/src/assets/icons/check.svg";
 // import { AiOutlineEdit } from "react-icons/ai";
 import UpdateForm from "./pages/UpdateForm";
 // <<<<<<< HEAD
-import axios from "axios";
+// import axios from "axios";
 // import mongoose from "mongoose";
 // =======
 import mongoose from "mongoose";
