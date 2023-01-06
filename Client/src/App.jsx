@@ -1,54 +1,43 @@
-import {useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
+// import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-// import "bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
 import Demo from "./Components/pages/Demo";
 import Navbar from "./Components/pages/Navbar.jsx";
 import Registraion_Form from "./Components/pages/Registraion_Form";
 import "../src/Components/css/Registraion_Form.css";
 import "../src/Components/css/Navbar.css";
-import "../src/Components/css/Login_page.css";
+
+
 
 import Login_page from "./Components/pages/Login_page";
-// import updateProduct from "./Components/pages/updateProduct"
 
-// =======
-// import { useState } from "react";
-// import reactLogo from "./assets/react.svg";
-// import "./App.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-// import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-// import Demo from "./Components/pages/Demo";
-// import Navbar from "./Components/pages/Navbar.jsx";
-import Register from "./Components/pages/Register";
-// >>>>>>> bad1ec177aff56f6cc83dfe12044bcf551e53ac5
 
+import Register from "./Components/pages/Register";
+
+import Manage_Products from "./Components/pages/Manage_Products";
 import AdminLogin from "./Components/pages/AdminLogin";
+import './Components/css/Login_page.css'
 import Categories from "./Components/pages/Categories";
-// <<<<<<< HEAD
+
 import PaginationComponent from "./Components/PaginationComponent";
 import './Components/css/Pagination.css'
 import './Components/css/sale.module.css'
- 
-// =======
-// >>>>>>> e08c6f586a0d50249fd0f23377a4dbef0792feca
+import './Components/pages/Manage_Products'
+import './Components/css/Manage_Product.css'
 
 
-import AddCategory  from "./Components/pages/AddCategory";
+
+
+import AddCategory from "./Components/pages/AddCategory";
 
 function App() {
 
   return (
-    // <<<<<<< HEAD
-    // <div className="App">
 
-    //     <Navbar/>
-    //     <Login_page/>
-
-    //     </div>
-    // // =======
     <Router>
       <nav class="navbar  navbar-expand-lg bg-secondary">
         <div class="container-fluid  ">
@@ -75,6 +64,7 @@ function App() {
                   to="/"
                 >
                   Dashboard
+
                 </Link>
               </li>
 
@@ -84,7 +74,9 @@ function App() {
                   aria-current="page"
                   to="/about"
                 >
+
                   Catolog
+
                 </Link>
               </li>
               <li className="nav-item">
@@ -94,8 +86,9 @@ function App() {
                   to="/categories"
                 >
                   Categories
-                  {/* <Pagination data={images}/> */}
-                 
+
+
+
                 </Link>
               </li>
 
@@ -105,7 +98,7 @@ function App() {
                   aria-current="page"
                   to="/about"
                 >
-                  {/* <Pagination data={images}/> */}
+
                   Sales
                 </Link>
               </li>
@@ -124,6 +117,7 @@ function App() {
                   aria-current="page"
                   to="/"
                 >
+
                   Promotions
                 </Link>
               </li>
@@ -134,7 +128,7 @@ function App() {
                   to="/"
                 >
                   CMS
-                  
+
                 </Link>
               </li>
               <li className="nav-item">
@@ -203,7 +197,7 @@ function App() {
           exact
           element={
             <>
-             <AddCategory/>
+              <AddCategory />
             </>
           }
         />
@@ -228,7 +222,17 @@ function App() {
             </>
           }
         />
+        <Route
+          path="/manage_products"
+          exact
+          element={
+            <>
+              <Manage_Products />
+            </>
+          }
+        />
       </Routes>
+
     </Router>
     // >>>>>>> bad1ec177aff56f6cc83dfe12044bcf551e53ac5
   );

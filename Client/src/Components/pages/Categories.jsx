@@ -9,7 +9,7 @@ import Pagination from "../PaginationComponent";
 
 // import Pagination from "../Pagination";
 import InputField from "../InputField";
-
+// import Filter from "../Filter";
 
 import categoryList from "../../categories.js";
 
@@ -25,9 +25,11 @@ export default function Categories() {
   const [filterdata, setFilterData] = useState([]);
   useEffect(() => {
     category();
-  }, [query,data]);
+  }, [query, data]);
 
-
+  function filter_btn() {
+    document.getElementById('myid').style.display = "block";
+  }
   const category = () => {
     const config = {
       headers: { "Content-Type": "application/json" },
@@ -84,7 +86,7 @@ export default function Categories() {
 
   return (
 
-    
+
     <div className="h-100 m-5 p-2 border rounded">
 
       <div className="row m-2 align-items-center">
@@ -95,8 +97,12 @@ export default function Categories() {
         </div>
       </div>
       <div className="row m-2 pt-1 pb-1 border">
+   
+
         <div class="container">
-          <Button icon={filterIcon} />
+          <Button   icon={filterIcon} />
+          {/* sumit */}
+
           <Button name="+ Add new..." />
           {/* <input type="text" placeholder="search here" /> */}
           <InputField

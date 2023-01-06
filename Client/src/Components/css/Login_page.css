@@ -3,7 +3,7 @@
 
 * {
     font-family: "Poppins", cursive;
-    
+   
 
 }
 
@@ -11,19 +11,22 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 196px;
+    height: 700px;
+    background: linear-gradient(#e66465, #9198e5);
+    
 }
-.col-1 {
+ 
+ .col-1 {
     display: flex;
     align-items: center;
     justify-content: center;
 
 
-}
+} 
 
-input {
+ input {
     padding: 6px;
-width: 400px;
+    width: 400px;
     margin-top: 10px;
     border-radius: 5px;
     background-color: white;
@@ -36,7 +39,7 @@ input:hover {
 }
 
 .btnn {
-   
+
     font-size: 16px;
     background-color: rgb(104, 182, 242);
     width: 400px;
@@ -45,13 +48,14 @@ input:hover {
     margin-bottom: 6px;
 
 }
-.input-div{
+
+.input-div {
     display: flex;
     flex-direction: column;
 }
 
-.login h1{
+.login h1 {
     display: flex;
     flex-flow: left;
     font-size: 20px;
-}
+} 

@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import Checkbox from "./Checkbox";
 import InputField from "./InputField";
 import checkIcon from "/src/assets/icons/check.svg";
-import { AiOutlineEdit } from "react-icons/ai";
+// import { AiOutlineEdit } from "react-icons/ai";
 import UpdateForm from "./pages/UpdateForm";
 import axios from "axios";
-import mongoose from "mongoose";
+// import mongoose from "mongoose";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import Error from "./pages/Error"
 import SuccessMessage from "./pages/Success";
