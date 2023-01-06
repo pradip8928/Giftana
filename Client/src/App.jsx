@@ -4,6 +4,7 @@ import "./App.css";
 // import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
+// <<<<<<< HEAD
 import Demo from "./Components/pages/Demo";
 import Navbar from "./Components/pages/Navbar.jsx";
 import Registraion_Form from "./Components/pages/Registraion_Form";
@@ -13,8 +14,21 @@ import "../src/Components/css/Navbar.css";
 
 
 import Login_page from "./Components/pages/Login_page";
+// =======
+
+import Login_page from './Components/forms/Login_page';
+// import updateProduct from "./Components/pages/updateProduct"
+// >>>>>>> 68782268e01a85e696b33233dbe67663b08cbed2
 
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+// <<<<<<< HEAD
+// =======
+// import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+// import Demo from "./Components/pages/Demo";
+import Navbar from "./Components/Navbar.jsx";
+import Register from "./Components/forms/Register";
+// >>>>>>> bad1ec177aff56f6cc83dfe12044bcf551e53ac5
+// >>>>>>> 68782268e01a85e696b33233dbe67663b08cbed2
 
 import Register from "./Components/pages/Register";
 
@@ -22,6 +36,7 @@ import Manage_Products from "./Components/pages/Manage_Products";
 import AdminLogin from "./Components/pages/AdminLogin";
 import './Components/css/Login_page.css'
 import Categories from "./Components/pages/Categories";
+// <<<<<<< HEAD
 
 import PaginationComponent from "./Components/PaginationComponent";
 import './Components/css/Pagination.css'
@@ -33,6 +48,9 @@ import './Components/css/Manage_Product.css'
 
 
 import AddCategory from "./Components/pages/AddCategory";
+// =======
+import NewCategory from "./Components/pages/AddNewCategory";
+// >>>>>>> 68782268e01a85e696b33233dbe67663b08cbed2
 
 function App() {
 
@@ -144,7 +162,7 @@ function App() {
                 <Link
                   className="nav-link active  text-bold"
                   aria-current="page"
-                  to="/admin"
+                  to="/createadmin"
                 >
                   System
                 </Link>
@@ -197,19 +215,32 @@ function App() {
           exact
           element={
             <>
+              {/* <<<<<<< HEAD */}
               <AddCategory />
+              {/* ======= */}
+              {/* <AddCategory/> */}
+              <NewCategory />
+              {/* >>>>>>> 68782268e01a85e696b33233dbe67663b08cbed2 */}
             </>
           }
         />
 
-        <Route path="/register" exact element={<>{/* <Register /> */}</>} />
-        <Route path="/login" exact element={<>{/* <Navbar/> */}</>} />
         <Route
-          path="/admin"
+          path="/register"
           exact
           element={
             <>
-              <AdminLogin />
+              <Register />
+            </>
+          }
+        />
+        <Route
+          path="/login"
+          exact
+          element={
+            <>
+              <Navbar />
+              <Login_page />
             </>
           }
         />
@@ -223,11 +254,22 @@ function App() {
           }
         />
         <Route
+          // <<<<<<< HEAD
           path="/manage_products"
           exact
           element={
             <>
               <Manage_Products />
+            </>
+          }
+        />
+        <Route
+          path="/new-category"
+          exact
+          element={
+            <>
+              <NewCategory />
+              {/* >>>>>>> 68782268e01a85e696b33233dbe67663b08cbed2 */}
             </>
           }
         />

@@ -1,38 +1,13 @@
 import React, { useState, useEffect } from "react";
-import InputField from "./InputField";
-import Checkbox from "./Checkbox";
+import InputField from "./formComponents/InputField";
+import Checkbox from "./formComponents/Checkbox";
 // import Loading from "./Loading"
-import Error from "./pages/Error";
-import Loading from "./pages/Loading";
-import SuccessMessage from "./pages/Success";
+import Error from "../pages/Error";
+import Loading from "../pages/Loading";
+import SuccessMessage from "../pages/Success";
 // import Alert from "react-popup-alert";
 
 export default function XForm({ postTo }) {
-  // useEffect(async () => {
-  //   try {
-  //     const res = await fetch("http://localhost:3000/api/admin/register", {
-  //       method: "GET",
-  //       headers: {
-  //         Accept: "application/json",
-  //         "Content-Type": "application/json",
-  //       },
-  //       credentials: "include",
-  //     });
-
-  //     const data = await res.json();
-  //     console.log(data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   fetch("http://localhost:3000/api/admin/register")
-  //     .then((res) => res.json())
-  //     .then((jsonRes) => console.log(jsonRes))
-  //     .catch((err) => console.log(err));
-  // }, []);
-
   const [post, setPost] = useState(false);
   const [message, setMessage] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -89,6 +64,9 @@ export default function XForm({ postTo }) {
 
         const data = await res.json();
         console.log("frontend data is", data);
+
+        
+
         if (data.success === false) {
           setError(data.message);
         } else {
@@ -102,15 +80,16 @@ export default function XForm({ postTo }) {
 
   return (
     <>
+      
       {error && <Error errMessage={error}> {error}</Error>}
-      {message && (
-        <SuccessMessage varient="danger" successMessage={message}>
-          {" "}
-          {message}
-        </SuccessMessage>
-      )}
+      {message && <SuccessMessage varient="danger" successMessage={message}> {message}</SuccessMessage>}
       {loading && <Loading />}
-      <form className="adminForm m-4" action={postTo} method="POST">
+      <form
+        className="adminForm form m-4"
+        action={postTo}
+        method="POST"
+       
+      >
         <InputField id="xxx001" label="ID" type="text" placeholder="ID" />
         <InputField
           type="text"
@@ -178,3 +157,4 @@ export default function XForm({ postTo }) {
     </>
   );
 }
+

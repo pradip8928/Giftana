@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
-import Checkbox from "./Checkbox";
-import InputField from "./InputField";
+import axios from "axios";
+import Checkbox from "./forms/formComponents/Checkbox";
+import InputField from "./forms/formComponents/InputField";
 import checkIcon from "/src/assets/icons/check.svg";
 // import { AiOutlineEdit } from "react-icons/ai";
 import UpdateForm from "./pages/UpdateForm";
+// <<<<<<< HEAD
 import axios from "axios";
 // import mongoose from "mongoose";
+// =======
+import mongoose from "mongoose";
+// >>>>>>> 68782268e01a85e696b33233dbe67663b08cbed2
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import Error from "./pages/Error"
 import SuccessMessage from "./pages/Success";
