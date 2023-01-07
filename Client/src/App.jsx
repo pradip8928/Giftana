@@ -9,6 +9,7 @@ import Navbar from "./Components/Navbar.jsx";
 // import Registraion_Form from "./Components/pages/Registraion_Form";
 import Registraion_Form  from "./Components/forms/Registration_Form";
 import Login_page from "./Components/forms/Login_page"
+import Register from "./Components/forms/Register"
 // import "../src/Components/css/Registraion_Form.css";
 import "../src/Components/css/Navbar.css";
 // import "./Components/Navbar.jsx"

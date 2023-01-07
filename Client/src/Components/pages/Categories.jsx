@@ -3,9 +3,9 @@ import axios from "axios";
 import AddNewProduct from "../forms/formComponents/NewProductButton";
 import ItemList from "../ItemList";
 // <<<<<<< HEAD
-// import Button from "../Button";
+import Button from "../Button";
 
-
+import '../Button'
 import Pagination from "../PaginationComponent";
 
 // import Pagination from "../Pagination";
@@ -110,7 +110,7 @@ export default function Categories() {
           {/* sumit */}
 
           <Button name="+ Add new..." />
-          {/* <input type="text" placeholder="search here" /> */}
+        
           <InputField
             type="text"
             name="adminName"

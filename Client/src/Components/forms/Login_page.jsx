@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Navbar from "./Navbar";
+// import Navbar from "./Navbar";
 
 export default function Login_page() {
   const [admin, setAdmin] = useState({
@@ -48,7 +48,7 @@ export default function Login_page() {
   return (
     <>
       {/* <Navbar /> */}
-      <section>
+      {/* <section>
         <div className="col-1">
           <div className="login" id="main">
             <h1>SMARTSTORE</h1>
@@ -75,26 +75,35 @@ export default function Login_page() {
             <span class="psw">
               <a href="#">Forgot password?</a>
             </span>
-          </form>
-            {/* <form>
-              <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+          </form> */}
+          <div className="login-page-container">
+            
+            <div className="sub-container">
+              {/* <div><img src={require('')} alt="" /></div> */}
+              {/* add png "png_for_login_page.png" */}
+            <form>
+              <div class="mb-3"  id="login-page-first-sec-id">
+                <label for="exampleInputEmail1" class="form-label" >Username</label>
+                <input type="text" class="form-control" name={admin.userName} id="exampleInputEmail1"  onChange={handleInputs}aria-describedby="emailHelp"/>
                   <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
               </div>
-              <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1"/>
+              <div class="mb-3" id="login-page-first-sec-id">
+                <label for="exampleInputPassword1"  class="form-label">Password</label>
+                <input type="password" name="password" value={admin.password}
+                onChange={handleInputs} class="form-control" id="exampleInputPassword1"/>
               </div>
               <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1"/>
                   <label class="form-check-label" for="exampleCheck1">Check me out</label>
               </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </form> */}
-          </div>
+              <button type="submit" class="btn btn-primary" onClick={postData}>Submit</button>
+            
+            </form>
+            </div>
+            </div>
+          {/* </div>
         </div>
-      </section>
+      </section> */}
 
     </>
   );
