@@ -1,56 +1,75 @@
+ @import url('https://fonts.googleapis.com/css2?family=Alkalami&family=Bebas+Neue&family=Days+One&family=Fredoka+One&family=Libre+Baskerville:wght@700&family=Noto+Serif+JP:wght@600;700&family=Orbitron&family=Oswald:wght@500&family=Playfair+Display&display=swap');
 * {
+    font-family: "Poppins", cursive;
     margin: 0;
+    padding: 0;
     box-sizing: border-box;
-    padding-left: 0;
+
 }
-table{
+
+html,
+body {
+    min-height: 100%;
+    min-width: 100%;
+}
+
+
+table {
     font-size: 20px;
+    box-shadow: black;
 }
+
 .main_container {
-    border: 2px solid black;
-    margin: 9px;
-    padding: 10px;
-    height: 1000px;
-    width: 1500px;
+    display: flex;
+    padding: 179px;
+    padding-top: 45px;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+
+    flex-direction: column;
+    background: linear-gradient(#e66465, #9198e5);
+
+
+
 
 }
 .main_container h1{
-    float: left;
-   
+    font-family: 'Noto Serif JP', serif;
+    margin-bottom: 42px;
 }
-.container{
-    margin: 54px;
-    /* border: 2px solid black; */
-    padding: 6px;
-    margin-left: 1px;
-    width: 1443px;
-}
-.hear_row{
-    display: flex;
-    flex-direction: left;
-}
-.table{
-    width: 1443px;
-}
-.filter_btn{
-    margin: 0px;
-}
-.container_btn{
-    display: flex;
-    flex-direction: left;
+
+.table_first_row {
   
-    /* margin: 2px; */
+    border-radius: 9px;
+    margin-bottom: 23px;
+    box-shadow: 0 -6px 10px 0 rgba(23, 54, 33, 12);
 }
-.container_btn button{
-    margin: 2px;
-    border: snow;
-/* background-color: red; */
-border-radius: 0px;
-}
-.container_btn button:hover{
-    border: 0.1px solid ;
+
+.container {
     
+    /* border: 1px solid black; */
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 21px 40px 0 rgba(23, 54, 33, 12);
+
 }
-tr:hover{
+
+.container_btn button {
+    margin: 12px;
+    border: snow;
+    border: 0.5px;
+
+    border-radius: 5px;
+}
+th{
+    font-family: 'Noto Serif JP', serif;
+    font-size: 20px;
+}
+td{
+    font-family: 'Alkalami', serif;
+}
+
+tr:hover {
     background-color: aliceblue;
 }

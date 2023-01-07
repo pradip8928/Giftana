@@ -8,21 +8,21 @@ import Button from "../Button";
 export default function Manage_Product() {
     return (
         <div className="main_container">
-            <div className="main_container_h1">
+            {/* <div className="main_container_h1"> */}
                 <h1>Manage Products</h1>
-            </div>
+            {/* </div> */}
             <div className="container">
                 <div className="container_btn">
                     <Button className="filter_btn" name="Filter" onClick="<Toggle2/>" />
 
-                    <Button name="+ Add items" />
+                    <Button className=" edit_btn" name="+ Add items" />
                     <Button className=" edit_btn" name="Edit"/>
                     
-                    <hr></hr>
+                    {/* <hr></hr> */}
                 </div>
                 <table class="table">
-                    <thead>
-                        <tr>
+                    <thead >
+                        <tr className="table_first_row">
                         <th scope="col">#</th>
                             <th scope="col">img</th>
                             <th scope="col">Product Name</th>
