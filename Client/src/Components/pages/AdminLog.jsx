@@ -3,6 +3,7 @@ import "../css/AdminLog.css";
 import Error from "./Error";
 import Success from "./Success";
 import { useNavigate } from "react-router-dom";
+import Navbar from "./Navbar";
 
 export default function Login_page() {
   const [message, setMessage] = useState(null);
@@ -55,6 +56,7 @@ export default function Login_page() {
 
   return (
     <>
+    {/* <Navbar/> */}
       <div className="login-form-wrap">
         <h2>Login</h2>
         <form id="login-form" method="POST">
@@ -68,6 +70,7 @@ export default function Login_page() {
               value={admin.userName}
               onChange={handleInputs}
             />
+          
             <i class="validation">
               <span></span>
               <span></span>

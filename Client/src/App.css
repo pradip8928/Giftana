@@ -47,9 +47,17 @@ body {
 }
 
 #textarea {
-  margin-right: 92px;
-  margin-left: 63px;
+/* <<<<<<< HEAD */
+    margin-right: 92px;
+    margin-left: 63px;
 }
+
+
+
+/* ======= */
+  /* margin-right: 92px;
+  margin-left: 63px;
+} */
 
 .container {
   font-size: 2rem;
@@ -68,3 +76,4 @@ body {
   gap: 30px;
   align-items: center;
 }
+/* >>>>>>> e08c6f586a0d50249fd0f23377a4dbef0792feca */

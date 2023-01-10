@@ -1,31 +1,40 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-// import "bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
 
-import Login_page from './Components/forms/Login_page';
-// import updateProduct from "./Components/pages/updateProduct"
-
-// =======
-// import { useState } from "react";
-// import reactLogo from "./assets/react.svg";
-// import "./App.css";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-// import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-// import Demo from "./Components/pages/Demo";
+import Demo from "./Components/pages/Demo";
 import Navbar from "./Components/Navbar.jsx";
-import Register from "./Components/forms/Register";
-// >>>>>>> bad1ec177aff56f6cc83dfe12044bcf551e53ac5
+// import Registraion_Form from "./Components/pages/Registraion_Form";
+import Registraion_Form  from "./Components/forms/Registration_Form";
+import Login_page from "./Components/forms/Login_page"
+import Register from "./Components/forms/Register"
+// import "../src/Components/css/Registraion_Form.css";
+import "../src/Components/css/Navbar.css";
+// import "./Components/Navbar.jsx"
 
+// import Login_page from "./Components/pages/Login_page";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+// import Register from "./Components/pages/Register";
+
+import Manage_Products from "./Components/pages/Manage_Products";
 import AdminLogin from "./Components/pages/AdminLogin";
+import './Components/css/Login_page.css'
 import Categories from "./Components/pages/Categories";
+import PaginationComponent from "./Components/PaginationComponent";
+import './Components/css/Pagination.css'
+import './Components/css/sale.module.css'
+import './Components/pages/Manage_Products'
+import './Components/css/Manage_Product.css'
+import AddCategory from "./Components/pages/AddCategory";
 import NewCategory from "./Components/pages/AddNewCategory";
 
+
 function App() {
+
   return (
-     
+
     <Router>
       <nav class="navbar  navbar-expand-lg bg-secondary">
         <div class="container-fluid  ">
@@ -52,6 +61,7 @@ function App() {
                   to="/"
                 >
                   Dashboard
+
                 </Link>
               </li>
 
@@ -61,7 +71,9 @@ function App() {
                   aria-current="page"
                   to="/about"
                 >
+
                   Catolog
+
                 </Link>
               </li>
               <li className="nav-item">
@@ -71,6 +83,9 @@ function App() {
                   to="/categories"
                 >
                   Categories
+
+
+
                 </Link>
               </li>
 
@@ -80,6 +95,7 @@ function App() {
                   aria-current="page"
                   to="/about"
                 >
+
                   Sales
                 </Link>
               </li>
@@ -98,6 +114,7 @@ function App() {
                   aria-current="page"
                   to="/"
                 >
+
                   Promotions
                 </Link>
               </li>
@@ -108,6 +125,7 @@ function App() {
                   to="/"
                 >
                   CMS
+
                 </Link>
               </li>
               <li className="nav-item">
@@ -176,8 +194,12 @@ function App() {
           exact
           element={
             <>
-             {/* <AddCategory/> */}
-             <NewCategory/>
+              {/* <<<<<<< HEAD */}
+              <AddCategory />
+              {/* ======= */}
+              {/* <AddCategory/> */}
+              <NewCategory />
+              {/* >>>>>>> 68782268e01a85e696b33233dbe67663b08cbed2 */}
             </>
           }
         />
@@ -196,8 +218,8 @@ function App() {
           exact
           element={
             <>
-              <Navbar/>
-           <Login_page/>
+              <Navbar />
+              <Login_page />
             </>
           }
         />
@@ -211,15 +233,27 @@ function App() {
           }
         />
         <Route
+          // <<<<<<< HEAD
+          path="/manage_products"
+          exact
+          element={
+            <>
+              <Manage_Products />
+            </>
+          }
+        />
+        <Route
           path="/new-category"
           exact
           element={
             <>
               <NewCategory />
+              {/* >>>>>>> 68782268e01a85e696b33233dbe67663b08cbed2 */}
             </>
           }
         />
       </Routes>
+
     </Router>
     // >>>>>>> bad1ec177aff56f6cc83dfe12044bcf551e53ac5
   );

@@ -147,3 +147,6 @@ input[type="submit"]:hover {
   padding: 10px 0;
   border-radius: 0 0 4px 4px;
 }
+*{
+  background-color: #329dd5;
+}

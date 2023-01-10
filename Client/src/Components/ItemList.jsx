@@ -3,21 +3,62 @@ import axios from "axios";
 import Checkbox from "./forms/formComponents/Checkbox";
 import InputField from "./forms/formComponents/InputField";
 import checkIcon from "/src/assets/icons/check.svg";
-import { AiOutlineEdit } from "react-icons/ai";
+// import { AiOutlineEdit } from "react-icons/ai";
 import UpdateForm from "./pages/UpdateForm";
+// <<<<<<< HEAD
+// import axios from "axios";
+// import mongoose from "mongoose";
+// =======
 import mongoose from "mongoose";
+// >>>>>>> 68782268e01a85e696b33233dbe67663b08cbed2
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import Error from "./pages/Error"
 import SuccessMessage from "./pages/Success";
 import Loading from "./pages/Loading";
 
 export default function ItemList(props) {
+// <<<<<<< HEAD
+// <<<<<<< HEAD
+    return (
+        <table className="table border-top">
+            <thead>
+                <tr className="">
+                
+                    <th scope="col"><InputField type="checkbox" /></th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Complete Name</th>
+                    <th scope="col">Alias</th>
+                    <th scope="col">Published</th>
+                    <th scope="col">Display Order</th>
+                    <th scope="col">Limited to stores</th>
+                </tr>
+            </thead>
+            <tbody className="h-100 overflow-y-auto">
+                {props.categories.map((category, index) => {
+                    return <tr key={index}>
+                        <td scope="row"><InputField type="checkbox" /></td>
+                        <td>{category.name}</td>
+                        <td>{category.cname}</td>
+                        <td>{category.alias}</td>
+                        <td>{category.published ? <img src={checkIcon} alt="Yes" /> : "-"}</td>
+                        <td>{category.order}</td>
+                        <td>{category.stores? category.stores: "-"}</td>
+                    </tr>
+                })}
+            </tbody>
+        </table>
+    );
+// =======
+  const [modal, setModal] = useState(false);
+// >>>>>>> e08c6f586a0d50249fd0f23377a4dbef0792feca
+// =======
   const [message, setMessage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   
+// >>>>>>> 22d40da7c8d00e7fa92d6614161151d5854b0c26
 
-  const [modal, setModal] = useState(false);
+  // const [modal, setModal] = useState(false);
   const [productId, setProductId] = useState("");
   const [productName, setProductName] = useState("");
   const [productCompleteName, setProductCompleteName] = useState("");
@@ -45,7 +86,7 @@ export default function ItemList(props) {
   };
 
 
-
+    
   // To delete the products 
   const [selectedItems, setSelectedItems] = useState([]);
 
@@ -96,7 +137,7 @@ export default function ItemList(props) {
         console.error(`Error retrieving items: ${err.message}`);
       });
   };
-
+    
   // const handleSubmit = () => {
   //     console.log("click");
   //     console.log(selectedItems);

@@ -17,7 +17,8 @@
         "react-bootstrap": "^2.7.0",
         "react-dom": "^18.2.0",
         "react-icons": "^4.7.1",
-        "react-popup-alert": "^2.0.0",
+        "react-paginate": "^8.1.4",
+        "react-popup-alert": "^1.0.7",
         "react-router-dom": "^6.5.0",
         "reactstrap": "^9.1.5"
     },
