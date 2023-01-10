@@ -26,6 +26,7 @@ const adminRoutes = require("./routes/authRoutes/adminRoutes");
 const catagory = require("./routes/catalog/catagoryRoutes");
 const manageProducts = require("./routes/catalog/manageProductsRoutes")
 const reviewProduct = require("./routes/catalog/reviewProductRoutes")
+const manufacturer = require("./routes/catalog/manufacturerProductRoutes")
 
 require("./config/database");
 app.use(cors());
@@ -47,6 +48,7 @@ app.use("/api/admin", adminRoutes);
 app.use("/catalog", catagory);
 app.use("/catalog", manageProducts);
 app.use("/catalog", reviewProduct);
+app.use("/catalog", manufacturer);
 app.use(notFound);
 // app.use(errorHandler);
 app.use(errorMiddleware);
