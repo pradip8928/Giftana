@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import "./css/Pagination.css";
+// import "./css/Pagination.css";
 import categories from "../categories";
+import pagination from "./css/pagination.module.css";
 const renderData = (categories) => {
   return (
     <ul>
@@ -93,10 +94,10 @@ function PaginationComponent() {
     <>
       <h1>Demo Page</h1> <br />
       {renderData(categories)}
-      <ul className="pageNumbers">
+      <ul className={pagination.pageNumbers}>
         <li>
           <button
-          className="pagbtn"
+          className={pagination.pagbtn}
             onClick={handlePrevbtn}
             disabled={currentPage == pages[0] ? true : false}
           >
@@ -109,7 +110,7 @@ function PaginationComponent() {
 
         <li>
           <button
-          className="pagbtn"
+          className={pagination.pagbtn}
             onClick={handleNextbtn}
             disabled={currentPage == pages[pages.length - 1] ? true : false}
           >
@@ -117,7 +118,7 @@ function PaginationComponent() {
           </button>
         </li>
       </ul>
-      <button onClick={handleLoadMore} className="loadmore">
+      <button onClick={handleLoadMore} className={pagination.loadmore}>
         Load More
       </button>
     </>

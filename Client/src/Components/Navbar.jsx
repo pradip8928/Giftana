@@ -94,6 +94,7 @@ export default function Navbar() {
               <a class="nav-link" href="#">Plug</a>
             </li>
             
+            
           </div>
 
         </div>

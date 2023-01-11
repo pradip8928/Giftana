@@ -105,7 +105,7 @@ export default function Categories() {
       <div className="row m-2 pt-1 pb-1 border">
    
 
-        <div class="container">
+        <div className="container">
           <Button   icon={filterIcon} />
           {/* sumit */}
 

@@ -1,0 +1,28 @@
+* {
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+html,
+body {
+    min-height: 100%;
+    min-width: 100%;
+}
+.admin_login_main_container{
+    background: linear-gradient(#e66465, #9198e5);
+    margin-top: -48px; 
+    /* margin-top is temporary soln  */
+    height: 100vh;
+}
+.sub_container_admin_log{
+
+}
+.container-fluid{
+    /* margin: 23px; */
+}
+#tital_of_admin_login_page{
+    margin-top: 23px;
+}

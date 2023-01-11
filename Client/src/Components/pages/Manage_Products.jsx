@@ -5,24 +5,25 @@ import Button from "../Button";
 // import Button from "./Button";
 // import './css/Button.css';
 // import '../Button'
+import Manage_ProductCss from "../css/Manage_Product.module.css";
 export default function Manage_Product() {
     return (
-        <div className="main_container">
+        <div className={Manage_ProductCss.main_container}>
             {/* <div className="main_container_h1"> */}
                 <h1>Manage Products</h1>
             {/* </div> */}
-            <div className="container">
-                <div className="container_btn">
-                    <Button className="filter_btn" name="Filter" onClick="<Toggle2/>" />
+            <div className={Manage_ProductCss.container}>
+                <div className={Manage_ProductCss.container_btn}>
+                    <Button className={Manage_ProductCss.filter_btn} name="Filter" onClick=" " />
 
-                    <Button className=" edit_btn" name="+ Add items" />
-                    <Button className=" edit_btn" name="Edit"/>
+                    <Button className={Manage_ProductCss.edit_btn} name="+ Add items" />
+                    <Button className={ Manage_ProductCss.edit_btn} name="Edit"/>
                     
                     {/* <hr></hr> */}
                 </div>
-                <table class="table">
+                <table className={Manage_ProductCss.table}>
                     <thead >
-                        <tr className="table_first_row">
+                        <tr className={Manage_ProductCss.table_first_row}>
                         <th scope="col">#</th>
                             <th scope="col">img</th>
                             <th scope="col">Product Name</th>

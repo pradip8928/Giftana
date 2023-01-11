@@ -23,12 +23,17 @@ import AdminLogin from "./Components/pages/AdminLogin";
 import './Components/css/Login_page.css'
 import Categories from "./Components/pages/Categories";
 import PaginationComponent from "./Components/PaginationComponent";
-import './Components/css/Pagination.css'
+// import './Components/css/Pagination.css'
 import './Components/css/sale.module.css'
 import './Components/pages/Manage_Products'
-import './Components/css/Manage_Product.css'
+// import './Components/css/Manage_Product.css'
 import AddCategory from "./Components/pages/AddCategory";
 import NewCategory from "./Components/pages/AddNewCategory";
+import Edit_page from "./Components/pages/Edit_page";
+import './Components/css/Edit_page.css'
+// import './Components/css/categories.css'
+import './Components/css/categories.css'
+import './Components/css/Admin_Login_page.css';
 
 
 function App() {
@@ -166,7 +171,7 @@ function App() {
           </div>
         </div>
       </nav>
-
+{/* <Navbar/> */}
       {/* routes */}
       <Routes>
         <Route
@@ -239,6 +244,16 @@ function App() {
           element={
             <>
               <Manage_Products />
+            </>
+          }
+        />
+        <Route
+          // <<<<<<< HEAD
+          path="/edit_page"
+          exact
+          element={
+            <>
+              <Edit_page />
             </>
           }
         />
