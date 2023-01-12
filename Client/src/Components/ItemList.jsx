@@ -3,60 +3,22 @@ import axios from "axios";
 import Checkbox from "./forms/formComponents/Checkbox";
 import InputField from "./forms/formComponents/InputField";
 import checkIcon from "/src/assets/icons/check.svg";
-// import { AiOutlineEdit } from "react-icons/ai";
+import { AiOutlineEdit } from "react-icons/ai";
 import UpdateForm from "./pages/UpdateForm";
-// <<<<<<< HEAD
-// import axios from "axios";
-// import mongoose from "mongoose";
-// =======
 import mongoose from "mongoose";
-// >>>>>>> 68782268e01a85e696b33233dbe67663b08cbed2
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import Error from "./pages/Error"
 import SuccessMessage from "./pages/Success";
 import Loading from "./pages/Loading";
 
 export default function ItemList(props) {
-// <<<<<<< HEAD
-// <<<<<<< HEAD
-    return (
-        <table className="table border-top">
-            <thead>
-                <tr className="">
-                
-                    <th scope="col"><InputField type="checkbox" /></th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Complete Name</th>
-                    <th scope="col">Alias</th>
-                    <th scope="col">Published</th>
-                    <th scope="col">Display Order</th>
-                    <th scope="col">Limited to stores</th>
-                </tr>
-            </thead>
-            <tbody className="h-100 overflow-y-auto">
-                {props.categories.map((category, index) => {
-                    return <tr key={index}>
-                        <td scope="row"><InputField type="checkbox" /></td>
-                        <td>{category.name}</td>
-                        <td>{category.cname}</td>
-                        <td>{category.alias}</td>
-                        <td>{category.published ? <img src={checkIcon} alt="Yes" /> : "-"}</td>
-                        <td>{category.order}</td>
-                        <td>{category.stores? category.stores: "-"}</td>
-                    </tr>
-                })}
-            </tbody>
-        </table>
-    );
-// =======
+ 
   const [modal, setModal] = useState(false);
-// >>>>>>> e08c6f586a0d50249fd0f23377a4dbef0792feca
-// =======
   const [message, setMessage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   
-// >>>>>>> 22d40da7c8d00e7fa92d6614161151d5854b0c26
+ 
 
   // const [modal, setModal] = useState(false);
   const [productId, setProductId] = useState("");
@@ -68,20 +30,17 @@ export default function ItemList(props) {
   const [productStores, setProductStores] = useState("");
 
   const toggle = () => {
-    // window.alert("product name is", name);
     setModal(!modal);
   };
 
   const updateForm = (product) => {
     setProductId(product._id);
-    // window.alert(name);
     setProductName(product.productName);
     setProductCompleteName(product.productCompleteName);
     setProductAliasName(product.productAliasName);
     setProductPublished(product.productPublished);
     setProductOrder(product.productOrder);
     setProductStores(product.productStores);
-    
     setModal(!modal);
   };
 
@@ -92,7 +51,6 @@ export default function ItemList(props) {
 
   useEffect(() => {
     // Call the getData function when the component unmounts
-
     props.getData(selectedItems);
   }, [selectedItems]);
 
@@ -106,52 +64,38 @@ export default function ItemList(props) {
     } else {
       setSelectedItems(selectedItems.filter((id) => id !== value));
     }
-
     props.getData(selectedItems);
   };
 
-  const handleSubmit = (req, res) => {
-    console.log("click");
-    console.log(selectedItems);
+  // const handleSubmit = (req, res) => {
+  //   console.log("click");
+  //   console.log(selectedItems);
 
-    const objectIds = selectedItems.map((id) => mongoose.Types.ObjectId(id));
-    console.log(objectIds);
+  //   const objectIds = selectedItems.map((id) => mongoose.Types.ObjectId(id));
+  //   console.log(objectIds);
 
-    const config = {
-      headers: { "Content-Type": "application/json" },
-    };
-
-    axios
-      .delete(
-        `http://localhost:3000/catalog/catagory/products/deleteMultipleProducts`,
-        {
-          data: objectIds,
-        },
-        config
-      )
-      .then((result) => {
-        console.log(`deleted items successfully ${result}`);
-        
-      })
-      .catch((err) => {
-        console.error(`Error retrieving items: ${err.message}`);
-      });
-  };
-    
-  // const handleSubmit = () => {
-  //     console.log("click");
-  //     console.log(selectedItems);
-  //     const config = {
-  //       headers: { "Content-Type": "application/json" },
-  //     };
-  //     // http://localhost:3000
-  //     axios
-  //       .delete(`http://localhost:3000/catalog/catagory/products/deleteMultipleProducts?productIds=${JSON.stringify(selectedItems)}`, config)
-  //       .then((result) => {
-  //         console.log(`deleted items successfully ${result}`);
-  //       });
+  //   const config = {
+  //     headers: { "Content-Type": "application/json" },
   //   };
 
+  //   axios
+  //     .delete(
+  //       `http://localhost:3000/catalog/catagory/products/deleteMultipleProducts`,
+  //       {
+  //         data: objectIds,
+  //       },
+  //       config
+  //     )
+  //     .then((result) => {
+  //       console.log(`deleted items successfully ${result}`);
+        
+  //     })
+  //     .catch((err) => {
+  //       console.error(`Error retrieving items: ${err.message}`);
+  //     });
+  // };
+    
+ 
   // UPDATING THE PRODUCT
 
   const postData = async (e) => {
@@ -187,19 +131,6 @@ export default function ItemList(props) {
       );
 
       const data = await res.json();
- 
-      // if (data.success === true) {
-      //   setError(data.message);
-      //   // window.alert("updated successfully");
-      //   setModal(!toggle);
-      // } else {
-      //   setMessage("please refresh it and try again");
-      //   // window.alert("please refresh it and try again");
-      // }
-
-
-
-
       if (data.success === false) {
         setError(data.message);
       } else {
@@ -222,7 +153,7 @@ export default function ItemList(props) {
       {loading && <Loading />}
 
 
-      <button onClick={handleSubmit}>Delete the Product </button>
+      {/* <button onClick={handleSubmit}>Delete the Product </button> */}
       <table className="table border-top">
         <thead>
           <tr className="">

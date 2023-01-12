@@ -194,12 +194,8 @@ function App() {
           exact
           element={
             <>
-              {/* <<<<<<< HEAD */}
-              <AddCategory />
-              {/* ======= */}
-              {/* <AddCategory/> */}
+              {/* <AddCategory /> */}
               <NewCategory />
-              {/* >>>>>>> 68782268e01a85e696b33233dbe67663b08cbed2 */}
             </>
           }
         />
@@ -233,7 +229,7 @@ function App() {
           }
         />
         <Route
-          // <<<<<<< HEAD
+           
           path="/manage_products"
           exact
           element={
