@@ -67,6 +67,7 @@ const catagorySchema = mongoose.Schema({
         type: Boolean,
         required: [true, "Please Enter your name"],
         trim: true,
+        default: false
     },
     showOnHomePage: {
         type: Boolean,

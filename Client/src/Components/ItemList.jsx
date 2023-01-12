@@ -190,7 +190,7 @@ export default function ItemList(props) {
                   <td>{category.productCompleteName}</td>
                   <td>{category.productAliasName}</td>
                   <td>
-                    {category.published ? (
+                    {category.productPublished ? (
                       <img src={checkIcon} alt="Yes" />
                     ) : (
                       "-"

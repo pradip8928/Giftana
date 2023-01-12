@@ -105,7 +105,7 @@ export default function Categories() {
       <div className="row m-2 pt-1 pb-1 border">
    
 
-        <div class="container">
+        <div className="container">
           <Button   icon={filterIcon} />
           {/* sumit */}
 
@@ -128,9 +128,9 @@ export default function Categories() {
           <div className="col-md-1">
             <Button icon={refreshIcon} />
           </div>
-          <div className="col-md-8">
+          {/* <div className="col-md-8">
             <Pagination />
-          </div>
+          </div> */}
           <div className="col-md-2">
             <Button icon={caret} name="per page" />
           </div>
