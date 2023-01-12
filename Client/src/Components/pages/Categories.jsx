@@ -2,11 +2,22 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import AddNewProduct from "../forms/formComponents/NewProductButton";
 import ItemList from "../ItemList";
-import Button from "../forms/formComponents/Button";
-import Pagination from "../";
-import InputField from "../InputField";
+// <<<<<<< HEAD
+import Button from "../Button";
 
-import categoryList from "../../categories.js";
+import "../Button";
+import Pagination from "../PaginationComponent";
+
+// import Pagination from "../Pagination";
+// import InputField from "../InputField";
+// import Filter from "../Filter";
+// =======
+// import Button from "../forms/formComponents/Button";
+// import Pagination from "../Pagination";
+import InputField from "../forms/formComponents/InputField";
+// >>>>>>> 68782268e01a85e696b33233dbe67663b08cbed2
+
+// import categoryList from "../../categories.js";
 
 import filterIcon from "/src/assets/icons/filter.svg";
 import refreshIcon from "/src/assets/icons/refresh.svg";
@@ -31,6 +42,9 @@ export default function Categories() {
     category();
   }, [query]);
 
+  function filter_btn() {
+    document.getElementById("myid").style.display = "block";
+  }
   const category = () => {
     const config = {
       headers: { "Content-Type": "application/json" },
@@ -59,6 +73,33 @@ export default function Categories() {
     }
   };
 
+  // const deleteAllItems = () => {
+  //   // console.log(data);
+  //   console.log(`Delete button is Clicked ${selectedData}`);
+  //   console.log(selectedData);
+  //   const objectIds = selectedData.map((id) => mongoose.Types.ObjectId(id));
+
+  //   const config = {
+  //     headers: { "Content-Type": "application/json" },
+  //   };
+
+  //   axios
+  //     .delete(
+  //       `http://localhost:3000/catalog/catagory/products/deleteMultipleProducts`,
+  //       {
+  //         data: objectIds,
+  //       },
+  //       config
+  //     )
+  //     .then((result) => {
+  //       console.log(`deleted items successfully ${result}`);
+  //       category();
+  //       setSelectedData([]);
+  //     })
+  //     .catch((err) => {
+  //       console.error(`Error retrieving items: ${err.message}`);
+  //     });
+  // };
   const deleteAllItems = () => {
     // console.log(data);
     console.log(`Delete button is Clicked ${selectedData}`);
@@ -79,8 +120,8 @@ export default function Categories() {
       )
       .then((result) => {
         console.log(`deleted items successfully ${result}`);
-        window.alert("deleted");
-        // window.location.reload();
+        setSelectedData([]);
+        category();
       })
       .catch((err) => {
         console.error(`Error retrieving items: ${err.message}`);
@@ -97,10 +138,12 @@ export default function Categories() {
         </div>
       </div>
       <div className="row m-2 pt-1 pb-1 border">
-        <div class="container">
+        <div className="container">
           <Button icon={filterIcon} />
+          {/* sumit */}
+
           <Button name="+ Add new..." />
-          {/* <input type="text" placeholder="search here" /> */}
+
           <InputField
             type="text"
             name="adminName"
@@ -124,9 +167,9 @@ export default function Categories() {
           <div className="col-md-1">
             <Button icon={refreshIcon} />
           </div>
-          <div className="col-md-8">
+          {/* <div className="col-md-8">
             <Pagination />
-          </div>
+          </div> */}
           <div className="col-md-2">
             <Button icon={caret} name="per page" />
           </div>

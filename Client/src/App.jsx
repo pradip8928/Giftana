@@ -2,24 +2,37 @@ import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-// import "bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
 
-import Login_page from "./Components/forms/Login_page";
-// import updateProduct from "./Components/pages/updateProduct"
-
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-// import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-// import Demo from "./Components/pages/Demo";
+// import  Demo  from "./Components/pages/Demo";
 import Navbar from "./Components/Navbar.jsx";
+// import Registraion_Form from "./Components/pages/Registraion_Form";
+import Registraion_Form from "./Components/forms/Registration_Form";
+import Login_page from "./Components/forms/Login_page";
 import Register from "./Components/forms/Register";
-// >>>>>>> bad1ec177aff56f6cc83dfe12044bcf551e53ac5
 
+import "../src/Components/css/Navbar.css";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Manage_Products from "./Components/pages/Manage_Products";
 import AdminLogin from "./Components/pages/AdminLogin";
+import "./Components/css/Login_page.css";
 import Categories from "./Components/pages/Categories";
+import PaginationComponent from "./Components/PaginationComponent";
+// import './Components/css/Pagination.css'
+import "./Components/css/sale.module.css";
+import "./Components/pages/Manage_Products";
+// import './Components/css/Manage_Product.css'
+import AddCategory from "./Components/pages/AddCategory";
 import NewCategory from "./Components/pages/AddNewCategory";
+import Edit_page from "./Components/pages/Edit_page";
+import "./Components/css/Edit_page.css";
+import "./Components/css/categories.css";
+import "./Components/css/Admin_Login_page.css";
 
 function App() {
+  const removeAccess = () => {
+    localStorage.removeItem("token");
+  };
   return (
     <Router>
       <nav class="navbar  navbar-expand-lg bg-secondary">
@@ -134,7 +147,7 @@ function App() {
                 Register
               </Link>
             </button>
-            <button className="btn btn-outline-warning">
+            <button className="btn btn-outline-warning" onClick={removeAccess}>
               <Link className="text-decoration-none text-warning " to="/">
                 {" "}
                 Logout
@@ -143,7 +156,7 @@ function App() {
           </div>
         </div>
       </nav>
-
+      {/* <Navbar/> */}
       {/* routes */}
       <Routes>
         <Route
@@ -170,8 +183,8 @@ function App() {
           exact
           element={
             <>
-              <Navbarr />
-              <AddCategory />
+              {/* <AddCategory /> */}
+              <NewCategory />
             </>
           }
         />
@@ -200,8 +213,27 @@ function App() {
           exact
           element={
             <>
-              <Navbarr />
+              {/* <Navbarr /> */}
               <Categories />
+            </>
+          }
+        />
+        <Route
+          path="/manage_products"
+          exact
+          element={
+            <>
+              <Manage_Products />
+            </>
+          }
+        />
+        <Route
+          // <<<<<<< HEAD
+          path="/edit_page"
+          exact
+          element={
+            <>
+              <Edit_page />
             </>
           }
         />
@@ -211,6 +243,7 @@ function App() {
           element={
             <>
               <NewCategory />
+              {/* >>>>>>> 68782268e01a85e696b33233dbe67663b08cbed2 */}
             </>
           }
         />
