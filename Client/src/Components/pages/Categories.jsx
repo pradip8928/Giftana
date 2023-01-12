@@ -31,7 +31,7 @@ export default function Categories() {
   const [filterdata, setFilterData] = useState([]);
   useEffect(() => {
     category();
-  }, [query, data]);
+  }, [query,data]);
 
   function filter_btn() {
     document.getElementById('myid').style.display = "block";
@@ -64,6 +64,35 @@ export default function Categories() {
     }
   };
 
+ 
+
+  // const deleteAllItems = () => {
+  //   // console.log(data);
+  //   console.log(`Delete button is Clicked ${selectedData}`);
+  //   console.log(selectedData);
+  //   const objectIds = selectedData.map((id) => mongoose.Types.ObjectId(id));
+
+  //   const config = {
+  //     headers: { "Content-Type": "application/json" },
+  //   };
+
+  //   axios
+  //     .delete(
+  //       `http://localhost:3000/catalog/catagory/products/deleteMultipleProducts`,
+  //       {
+  //         data: objectIds,
+  //       },
+  //       config
+  //     )
+  //     .then((result) => {
+  //       console.log(`deleted items successfully ${result}`);
+  //       category();
+  //       setSelectedData([]);
+  //     })
+  //     .catch((err) => {
+  //       console.error(`Error retrieving items: ${err.message}`);
+  //     });
+  // };
   const deleteAllItems = () => {
     // console.log(data);
     console.log(`Delete button is Clicked ${selectedData}`);
@@ -84,6 +113,8 @@ export default function Categories() {
       )
       .then((result) => {
         console.log(`deleted items successfully ${result}`);
+        setSelectedData([]);
+        category();
       })
       .catch((err) => {
         console.error(`Error retrieving items: ${err.message}`);

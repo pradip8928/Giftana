@@ -141,6 +141,10 @@ export default function ItemList(props) {
     }
   };
 
+
+
+  
+
   return (
     <>
         {error && <Error errMessage={error}> {error}</Error>}
@@ -184,6 +188,7 @@ export default function ItemList(props) {
                         handleCheckboxChange(e);
                       }}
                       checked={category.selectedItems}
+                      defaultChecked={false}
                     />
                   </td>
                   <td>{category.productName}</td>
@@ -196,10 +201,9 @@ export default function ItemList(props) {
                       "-"
                     )}
                   </td>
-                  <td>{category.order}</td>
-                  <td>{category.stores ? category.stores : "-"}</td>
+                  <td>{category.productOrder}</td>
+                  <td>{category.productStores ? category.productStores : "-"}</td>
                   <td>
-                    {/* <AiOutlineEdit onClick={() => handleUpdate(category)} /> */}
                     <AiOutlineEdit onClick={() => updateForm(category)} />
                   </td>
                 </tr>
