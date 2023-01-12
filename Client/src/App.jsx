@@ -4,32 +4,146 @@ import "./App.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
-import Demo from "./Components/pages/Navbarr";
-// import Navbar from "./Components/pages/Navbar.jsx";
-import Registraion_Form from "./Components/pages/Registraion_Form";
-import "../src/Components/css/Registraion_Form.css";
-import "../src/Components/css/Navbar.css";
-import "../src/Components/css/Login_page.css";
-import Navbarr from "./Components/pages/Navbarr";
 
-import Login_page from "./Components/pages/Login_page";
+import Login_page from "./Components/forms/Login_page";
+// import updateProduct from "./Components/pages/updateProduct"
 
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-
-import Register from "./Components/pages/Register";
+// import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+// import Demo from "./Components/pages/Demo";
+import Navbar from "./Components/Navbar.jsx";
+import Register from "./Components/forms/Register";
+// >>>>>>> bad1ec177aff56f6cc83dfe12044bcf551e53ac5
 
 import AdminLogin from "./Components/pages/AdminLogin";
 import Categories from "./Components/pages/Categories";
-// <<<<<<< HEAD
-import PaginationComponent from "./Components/PaginationComponent";
-import "./Components/css/Pagination.css";
-import "./Components/css/sale.module.css";
-
-import AddCategory from "./Components/pages/AddCategory";
+import NewCategory from "./Components/pages/AddNewCategory";
 
 function App() {
   return (
     <Router>
+      <nav class="navbar  navbar-expand-lg bg-secondary">
+        <div class="container-fluid  ">
+          <Link className="navbar-brand" to="#">
+            Smartstore
+          </Link>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <ul className="navbar-nav  me-auto mb-2 mb-lg-0">
+              <li className="nav-item">
+                <Link
+                  className="nav-link active   text-bold"
+                  aria-current="page"
+                  to="/"
+                >
+                  Dashboard
+                </Link>
+              </li>
+
+              <li className="nav-item">
+                <Link
+                  className="nav-link active  text-bold"
+                  aria-current="page"
+                  to="/about"
+                >
+                  Catolog
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link active  text-bold"
+                  aria-current="page"
+                  to="/categories"
+                >
+                  Categories
+                </Link>
+              </li>
+
+              <li className="nav-item">
+                <Link
+                  className="nav-link active  text-bold"
+                  aria-current="page"
+                  to="/about"
+                >
+                  Sales
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link active  text-bold"
+                  aria-current="page"
+                  to="/"
+                >
+                  Customers
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link active  text-bold"
+                  aria-current="page"
+                  to="/"
+                >
+                  Promotions
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link active  text-bold"
+                  aria-current="page"
+                  to="/"
+                >
+                  CMS
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link active  text-bold"
+                  aria-current="page"
+                  to="/"
+                >
+                  Configuration
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link active  text-bold"
+                  aria-current="page"
+                  to="/createadmin"
+                >
+                  System
+                </Link>
+              </li>
+            </ul>
+
+            <button className="me-2 btn btn-outline-warning">
+              <Link
+                className="text-decoration-none text-warning "
+                to="/register"
+              >
+                {" "}
+                Register
+              </Link>
+            </button>
+            <button className="btn btn-outline-warning">
+              <Link className="text-decoration-none text-warning " to="/">
+                {" "}
+                Logout
+              </Link>
+            </button>
+          </div>
+        </div>
+      </nav>
+
       {/* routes */}
       <Routes>
         <Route
@@ -67,19 +181,17 @@ function App() {
           exact
           element={
             <>
-              <Navbarr />
-              <AdminLogin />
+              <Register />
             </>
           }
         />
-        <Route path="/login" exact element={<>{/* <Navbar/> */}</>} />
         <Route
-          path="/admin"
+          path="/login"
           exact
           element={
             <>
-              <Navbarr />
-              <AdminLogin />
+              <Navbar />
+              <Login_page />
             </>
           }
         />
@@ -90,6 +202,15 @@ function App() {
             <>
               <Navbarr />
               <Categories />
+            </>
+          }
+        />
+        <Route
+          path="/new-category"
+          exact
+          element={
+            <>
+              <NewCategory />
             </>
           }
         />

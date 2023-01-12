@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Filter from "../Filter";
-import AddNewProduct from "../AddNewProduct";
+import AddNewProduct from "../forms/formComponents/NewProductButton";
 import ItemList from "../ItemList";
-import Button from "../Button";
-
-import Pagination from "../PaginationComponent";
-
-// import Pagination from "../Pagination";
+import Button from "../forms/formComponents/Button";
+import Pagination from "../";
 import InputField from "../InputField";
 
 import categoryList from "../../categories.js";

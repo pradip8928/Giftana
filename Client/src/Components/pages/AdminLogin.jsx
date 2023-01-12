@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
-import XForm from "../XForm";
-import Sidebar from "../Sidebar";
+import React from "react";
+import XForm from "../forms/XForm";
+import Sidebar from "/src/Components/Sidebar";
 import sidebarOptions from "/src/sidebar.js";
 import { useNavigate } from "react-router-dom";
 
@@ -11,9 +11,8 @@ export default function AdminLogin() {
       navigate("/");
     }
   }, []);
-
   return (
-    <div>
+    <div className="container-fluid">
       <div className="m-5 mb-0 row">
         <div className="col">
           <button className="btn border">
@@ -23,10 +22,10 @@ export default function AdminLogin() {
         </div>
       </div>
       <div className="row">
-        <div className="col-md-2">
+        <div className="col-md-2 row-sm">
           <Sidebar buttons={sidebarOptions} />
         </div>
-        <div className="col-md-10">
+        <div className="col-md-10 row-sm">
           <XForm postTo="/" />
         </div>
       </div>
