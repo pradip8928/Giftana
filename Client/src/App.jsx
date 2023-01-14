@@ -10,14 +10,9 @@ import Navbar from "./Components/Navbar.jsx";
 import Registraion_Form  from "./Components/forms/Registration_Form";
 import Login_page from "./Components/forms/Login_page"
 import Register from "./Components/forms/Register"
-// import "../src/Components/css/Registraion_Form.css";
+ 
 import "../src/Components/css/Navbar.css";
-// import "./Components/Navbar.jsx"
-
-// import Login_page from "./Components/pages/Login_page";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-// import Register from "./Components/pages/Register";
-
 import Manage_Products from "./Components/pages/Manage_Products";
 import AdminLogin from "./Components/pages/AdminLogin";
 import './Components/css/Login_page.css'
@@ -30,9 +25,10 @@ import './Components/pages/Manage_Products'
 import AddCategory from "./Components/pages/AddCategory";
 import NewCategory from "./Components/pages/AddNewCategory";
 import Edit_page from "./Components/pages/Edit_page";
-// import './Components/css/Edit_page.css'
-// import './Components/css/categories.css'
-// import './Components/css/categories.css'
+
+import './Components/css/Edit_page.css'
+import './Components/css/categories.css'
+// >>>>>>> 2d473010447e3608fcc8231055eba1fa0a3da26e
 import './Components/css/Admin_Login_page.css';
 
 
@@ -235,12 +231,8 @@ function App() {
           exact
           element={
             <>
-              {/* <<<<<<< HEAD */}
-              <AddCategory />
-              {/* ======= */}
-              {/* <AddCategory/> */}
+              {/* <AddCategory /> */}
               <NewCategory />
-              {/* >>>>>>> 68782268e01a85e696b33233dbe67663b08cbed2 */}
             </>
           }
         />
@@ -274,7 +266,7 @@ function App() {
           }
         />
         <Route
-          // <<<<<<< HEAD
+           
           path="/manage_products"
           exact
           element={
