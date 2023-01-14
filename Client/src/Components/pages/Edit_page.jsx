@@ -1,11 +1,12 @@
 import React from "react";
 import XForm from '../forms/XForm';
 // import './components/forms/formComponents/XForm';
+import editCss from "../css/Edit_page.module.css"
 export default function Edit_page() {
     return (
-        <><div className="edit_page_main_container">
+        <><div className={editCss.edit_page_main_container}>
             <h1>Edit Product Details</h1>
-            <div className="edit_page_container">
+            <div className={editCss.edit_page_container}>
                 <XForm/>
                 {/* <form className="form-class">
                     <div class="mb-3 row">

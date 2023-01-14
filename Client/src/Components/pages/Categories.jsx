@@ -7,6 +7,7 @@ import Button from "../Button";
 
 import '../Button'
 import Pagination from "../PaginationComponent";
+import cateCss from "../css/categories.module.css"
 
 // import Pagination from "../Pagination";
 // import InputField from "../InputField";
@@ -105,7 +106,7 @@ export default function Categories() {
       <div className="row m-2 pt-1 pb-1 border">
    
 
-        <div className="container">
+        <div className={ cateCss.container}>
           <Button   icon={filterIcon} />
           {/* sumit */}
 
