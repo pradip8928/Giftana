@@ -12,7 +12,7 @@ import SuccessMessage from "./pages/Success";
 import Loading from "./pages/Loading";
 
 export default function ItemList(props) {
- 
+ let counter=1;
   const [modal, setModal] = useState(false);
   const [message, setMessage] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -164,6 +164,7 @@ export default function ItemList(props) {
             <th scope="col">
               <InputField type="checkbox" />
             </th>
+            <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">Complete Name</th>
             <th scope="col">Alias</th>
@@ -191,6 +192,7 @@ export default function ItemList(props) {
                       defaultChecked={false}
                     />
                   </td>
+                  <td>{ counter++}</td>
                   <td>{category.productName}</td>
                   <td>{category.productCompleteName}</td>
                   <td>{category.productAliasName}</td>
