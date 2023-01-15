@@ -22,16 +22,19 @@
  }
  
  .main_container {
-     display: flex;
+     /* display: flex; */
      padding: 179px;
-     padding-top: 70px;
+     /* position: fixed;               */
+  /* edited position  */
+     padding-top: 100px;
      align-items: center;
      justify-content: center;
-     /* height: 100%; */
+   
      width: 100%;
      height: 130vh;
      flex-direction: column;
-     background: linear-gradient(#e66465, #9198e5);
+     /* background: linear-gradient(#e66465, #9198e5); */
+     background: linear-gradient(#ffffff, #4887fc);
  }
  
  .main_container h1 {

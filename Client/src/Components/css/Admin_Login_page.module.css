@@ -12,7 +12,8 @@ body {
     min-width: 100%;
 }
 .admin_login_main_container{
-    background: linear-gradient(#e66465, #9198e5);
+    /* background: linear-gradient(#e66465, #9198e5); */
+    background: linear-gradient(#ffffff, #4887fc);
     margin-top: -48px; 
     /* margin-top is temporary soln  */
     height: 100vh;

@@ -1,5 +1,7 @@
 import React from "react";
+//Registration_from.css===Registraion_form.jsx
 
+//can delete XForm is also a registration form
 export default function Registraion_Form() {
   return (
     <form>
