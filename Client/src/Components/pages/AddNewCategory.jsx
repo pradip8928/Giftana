@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import NewCategory from "../forms/NewCategory";
 import Sidebar from "/src/Components/Sidebar";
 import { useNavigate } from "react-router-dom";

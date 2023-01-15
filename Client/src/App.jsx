@@ -25,13 +25,15 @@ import "./Components/pages/Manage_Products";
 import AddCategory from "./Components/pages/AddCategory";
 import NewCategory from "./Components/pages/AddNewCategory";
 import Edit_page from "./Components/pages/Edit_page";
-import "./Components/css/Edit_page.css";
-import "./Components/css/categories.css";
+
+// import "./Components/css/categories.css";
+// >>>>>>> 2d473010447e3608fcc8231055eba1fa0a3da26e
 import "./Components/css/Admin_Login_page.css";
 
 function App() {
   const removeAccess = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("user_role");
   };
   return (
     <Router>
@@ -72,13 +74,31 @@ function App() {
                   Catolog
                 </Link>
               </li>
-              <li className="nav-item">
+              <li className="nav-item" id="drop_down_id">
                 <Link
                   className="nav-link active  text-bold"
                   aria-current="page"
                   to="/categories"
                 >
                   Categories
+                </Link>
+              </li>
+              <li className="nav-item" id="drop_down_id">
+                <Link
+                  className="nav-link active  text-bold"
+                  aria-current="page"
+                  to="/manage_products"
+                >
+                  Manage Product
+                </Link>
+              </li>
+              <li className="nav-item" id="drop_down_id">
+                <Link
+                  className="nav-link active  text-bold"
+                  aria-current="page"
+                  to="/edit_page"
+                >
+                  Edit CD
                 </Link>
               </li>
 
@@ -169,15 +189,16 @@ function App() {
             </>
           }
         />
-        {/* <Route
+        <Route
           path="/createadmin"
           exact
           element={
             <>
-              <Navbarr />
+              {/* <Navbar /> */}
+              <AdminLogin />
             </>
           }
-        /> */}
+        />
         <Route
           path="/addProduct"
           exact

@@ -42,7 +42,7 @@
  .table_first_row {
      border-radius: 9px;
      margin-bottom: 23px;
-     box-shadow: 0 -1px 8px 0 rgba(23, 54, 33, 12);
+     /* box-shadow: 0 -1px 8px 0 rgba(23, 54, 33, 12); */
  }
  
  .container {

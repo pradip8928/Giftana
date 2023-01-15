@@ -49,7 +49,9 @@ export default function Login_page() {
       // setMessage("Login Successfull");
       console.log(data.token);
       localStorage.setItem("token", data.token);
-      // navigate("/categories");
+      localStorage.setItem("user_role", data.admin.role);
+
+      navigate("/categories");
     }
   };
   return (

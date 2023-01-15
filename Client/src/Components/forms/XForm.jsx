@@ -15,6 +15,15 @@ export default function XForm({ postTo }) {
       navigate("/");
     }
   }, []);
+
+  const loginUserRole = localStorage.getItem("user_role");
+
+  useEffect(() => {
+    if (loginUserRole !== "superadmin") {
+      navigate("/categories");
+    }
+  }, []);
+
   const [post, setPost] = useState(false);
   const [message, setMessage] = useState(null);
   const [loading, setLoading] = useState(false);

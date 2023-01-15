@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import AddNewProduct from "../forms/formComponents/NewProductButton";
 import ItemList from "../ItemList";
-// <<<<<<< HEAD
 import Button from "../Button";
-
 import "../Button";
 import Pagination from "../PaginationComponent";
+// <<<<<<< HEAD
+import cateCss from "../css/categories.module.css";
 
 // import Pagination from "../Pagination";
 // import InputField from "../InputField";
@@ -14,11 +14,9 @@ import Pagination from "../PaginationComponent";
 // =======
 // import Button from "../forms/formComponents/Button";
 // import Pagination from "../Pagination";
+// =======
+// >>>>>>> 2d473010447e3608fcc8231055eba1fa0a3da26e
 import InputField from "../forms/formComponents/InputField";
-// >>>>>>> 68782268e01a85e696b33233dbe67663b08cbed2
-
-// import categoryList from "../../categories.js";
-
 import filterIcon from "/src/assets/icons/filter.svg";
 import refreshIcon from "/src/assets/icons/refresh.svg";
 import settingsIcon from "/src/assets/icons/settings.svg";
@@ -138,7 +136,7 @@ export default function Categories() {
         </div>
       </div>
       <div className="row m-2 pt-1 pb-1 border">
-        <div className="container">
+        <div className={cateCss.container}>
           <Button icon={filterIcon} />
           {/* sumit */}
 
@@ -161,15 +159,12 @@ export default function Categories() {
         <div className="p-0">
           <Button items={deleteAllItems} name="- Delete the item" />
           <ItemList categories={data} getData={getData} />
-          {/* <ItemList categories={data}     checkedItems={(e)=>handleCheckboxChange(e)}  /> */}
         </div>
         <div class="row">
           <div className="col-md-1">
             <Button icon={refreshIcon} />
           </div>
-          {/* <div className="col-md-8">
-            <Pagination />
-          </div> */}
+
           <div className="col-md-2">
             <Button icon={caret} name="per page" />
           </div>
