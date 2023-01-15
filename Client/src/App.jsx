@@ -25,9 +25,11 @@ import "./Components/pages/Manage_Products";
 import AddCategory from "./Components/pages/AddCategory";
 import NewCategory from "./Components/pages/AddNewCategory";
 import Edit_page from "./Components/pages/Edit_page";
+ 
 import "./Components/css/Edit_page.css";
 import "./Components/css/categories.css";
 import "./Components/css/Admin_Login_page.css";
+ 
 
 function App() {
   const removeAccess = () => {
@@ -72,7 +74,7 @@ function App() {
                   Catolog
                 </Link>
               </li>
-              <li className="nav-item">
+              <li className="nav-item" id="drop_down_id">
                 <Link
                   className="nav-link active  text-bold"
                   aria-current="page"
@@ -80,6 +82,42 @@ function App() {
                 >
                   Categories
                 </Link>
+             
+                
+
+               
+              </li>
+              <li className="nav-item" id="drop_down_id">
+                <Link
+                  className="nav-link active  text-bold"
+                  aria-current="page"
+                  to="/manage_products"
+                >
+                 Manage Product
+
+
+
+                </Link>
+             
+                
+
+               
+              </li>
+              <li className="nav-item" id="drop_down_id">
+                <Link
+                  className="nav-link active  text-bold"
+                  aria-current="page"
+                  to="/edit_page"
+                >
+                Edit CD
+
+
+
+                </Link>
+             
+                
+
+               
               </li>
 
               <li className="nav-item">

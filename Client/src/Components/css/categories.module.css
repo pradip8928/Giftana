@@ -1,0 +1,21 @@
+.container{
+    box-shadow: none;
+    display: flex;
+}
+.container input{
+    width: 100%;
+    margin-top: 0px;
+}
+.container button{
+    margin: 20px;
+    padding: 4px;
+  
+}
+.container button img{
+ 
+    padding-left: 13px;
+}
+/* #adminName{
+    width: 100%;
+    margin-top: 10px;
+} */
