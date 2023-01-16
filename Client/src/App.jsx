@@ -161,7 +161,7 @@ function App() {
             <button className="me-2 btn btn-outline-warning">
               <Link
                 className="text-decoration-none text-warning "
-                to="/register"
+                to="/createadmin"
               >
                 {" "}
                 Register
