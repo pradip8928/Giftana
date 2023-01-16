@@ -22,6 +22,7 @@ import refreshIcon from "/src/assets/icons/refresh.svg";
 import settingsIcon from "/src/assets/icons/settings.svg";
 import caret from "/src/assets/icons/caret-down.svg";
 import { Link, useNavigate } from "react-router-dom";
+import PaginationComponent from "../PaginationComponent";
 
 export default function Categories() {
   const navigate = useNavigate();
@@ -172,6 +173,7 @@ export default function Categories() {
             <Button icon={settingsIcon} />
           </div>
         </div>
+        <PaginationComponent />
       </div>
     </div>
   );

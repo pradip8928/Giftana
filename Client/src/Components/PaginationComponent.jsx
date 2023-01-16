@@ -92,12 +92,12 @@ function PaginationComponent() {
 
   return (
     <>
-      <h1>Demo Page</h1> <br />
-      {renderData(categories)}
+      {/* <h1>Demo Page</h1> <br />
+      {renderData(categories)} */}
       <ul className={pagination.pageNumbers}>
         <li>
           <button
-          className={pagination.pagbtn}
+            className={pagination.pagbtn}
             onClick={handlePrevbtn}
             disabled={currentPage == pages[0] ? true : false}
           >
@@ -110,7 +110,7 @@ function PaginationComponent() {
 
         <li>
           <button
-          className={pagination.pagbtn}
+            className={pagination.pagbtn}
             onClick={handleNextbtn}
             disabled={currentPage == pages[pages.length - 1] ? true : false}
           >
@@ -118,9 +118,9 @@ function PaginationComponent() {
           </button>
         </li>
       </ul>
-      <button onClick={handleLoadMore} className={pagination.loadmore}>
+      {/* <button onClick={handleLoadMore} className={pagination.loadmore}>
         Load More
-      </button>
+      </button> */}
     </>
   );
 }

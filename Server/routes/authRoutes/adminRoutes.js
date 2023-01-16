@@ -14,10 +14,10 @@ const {
   logoutAdmin,
 } = require("../../controller/authController/adminController");
 
-// router
-//   .route("/register")
-//   .post(authenticatedAdmin, authorizeRoles("superadmin"), registerAdmin);
-router.route("/register").post(registerAdmin);
+router
+  .route("/register")
+  .post(authenticatedAdmin, authorizeRoles("superadmin"), registerAdmin);
+// router.route("/register").post(registerAdmin);
 //   .post(registerAdmin);
 // router.route("/register").post(registerAdmin);
 router.route("/login").post(authAdmin);
