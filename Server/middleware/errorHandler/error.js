@@ -25,6 +25,14 @@ module.exports = (err, req, res, next) => {
     err = new ErrorHandler(message, 400);
   }
 
+  if (
+    err.name ===
+    "Operation `admins.findOne()` buffering timed out after 10000ms"
+  ) {
+    const message = `check your internet connection`;
+    err = new ErrorHandler(message, 400);
+  }
+
   res.status(err.statusCode).json({
     success: false,
     message: err.message,

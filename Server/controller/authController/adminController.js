@@ -46,28 +46,6 @@ const registerAdmin = asyncHandler(async (req, res) => {
 // login or authenticated Admin
 const authAdmin = asyncHandler(async (req, res) => {
   console.log("from frontend");
-  // const { adminName, password } = req.body;
-  // const admin = await Admin.findOne({ adminName });
-  // if (admin && (await admin.matchPassword(password))) {
-  //   // verify token
-  //   const token = generateToken(admin._id);
-  //   res.cookie("access_token", token, {
-  //     expires: new Date(Date.now() + 2000),
-  //     httpOnly: true,
-  //     // secure: process.env.NODE_ENV === "development",
-  //   });
-  //   res.send({
-  //     _id: admin._id,
-  //     adminName: admin.adminName,
-  //     email: admin.email,
-  //     role: admin.role,
-  //     token: generateToken(admin._id),
-  //   });
-  // } else {
-  //   res.status(401);
-  //
-
-  // }
 
   const { adminName, password } = req.body;
 
@@ -94,16 +72,9 @@ const authAdmin = asyncHandler(async (req, res) => {
 
   const token = admin.getJWTToken();
 
-  // res.send({
-  //   _id: admin._id,
-  //   adminName: admin.adminName,
-  //   email: admin.email,
-  //   role: admin.role,
-  //   token: token,
-  //   // token: generateToken(admin._id),
-  // });
-
   // creating token and saving in cookie
+
+  console.log("created token is", token);
 
   const option = {
     expires: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000),

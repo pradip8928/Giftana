@@ -27,7 +27,11 @@ const getAllProduct = catchAsyncError(async (req, res, next) => {
 
     //   const apiFeature = new ApiFeatures(Product.find(), req.query)
 
-    const apiFeature = new ApiFeatures(Catagory.find(), req.query)
+    const data = await Catagory.find();
+
+    // console.log("my all data is", data);
+
+    const apiFeature = await new ApiFeatures(Catagory.find(), req.query)
       .searchByProductName()
       .filterByProductPrice();
 

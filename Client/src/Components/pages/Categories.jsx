@@ -3,7 +3,9 @@ import axios from "axios";
 import AddNewProduct from "../forms/formComponents/NewProductButton";
 import ItemList from "../ItemList";
 import Button from "../Button";
+ 
 import '../Button'
+ 
 import Pagination from "../PaginationComponent";
 // <<<<<<< HEAD
 import cateCss from "../css/categories.module.css"
@@ -21,18 +23,27 @@ import filterIcon from "/src/assets/icons/filter.svg";
 import refreshIcon from "/src/assets/icons/refresh.svg";
 import settingsIcon from "/src/assets/icons/settings.svg";
 import caret from "/src/assets/icons/caret-down.svg";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Categories() {
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [selectedData, setSelectedData] = useState([]);
   const [query, setQuery] = useState("");
   const [filterdata, setFilterData] = useState([]);
+
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      navigate("/");
+    }
+  }, []);
+
   useEffect(() => {
     category();
-  }, [query,data]);
+  }, [query]);
 
   function filter_btn() {
-    document.getElementById('myid').style.display = "block";
+    document.getElementById("myid").style.display = "block";
   }
   const category = () => {
     const config = {
@@ -61,8 +72,6 @@ export default function Categories() {
       setSelectedData([]); 
     }
   };
-
- 
 
   // const deleteAllItems = () => {
   //   // console.log(data);
@@ -120,10 +129,7 @@ export default function Categories() {
   };
 
   return (
-
-
     <div className="h-100 m-5 p-2 border rounded">
-
       <div className="row m-2 align-items-center">
         <h1 className="container col-md-3 h-100 p-2">Manage Categories</h1>
         <div className="col-md">
@@ -132,18 +138,26 @@ export default function Categories() {
         </div>
       </div>
       <div className="row m-2 pt-1 pb-1 border">
+ 
    
 
         <div className={ cateCss.container}>
           <Button   icon={filterIcon} />
+ 
           {/* sumit */}
 
           <Button name="+ Add new..." />
-        
+
           <InputField
             type="text"
             name="adminName"
             placeholder="search by product Name"
+            data={handleInput}
+          />
+          <InputField
+            type="text"
+            name="adminName"
+            placeholder="search by productCompleteName"
             data={handleInput}
           />
         </div>

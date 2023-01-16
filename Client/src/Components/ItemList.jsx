@@ -7,46 +7,70 @@ import { AiOutlineEdit } from "react-icons/ai";
 import UpdateForm from "./pages/UpdateForm";
 import mongoose from "mongoose";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import Error from "./pages/Error"
+import Error from "./pages/Error";
 import SuccessMessage from "./pages/Success";
 import Loading from "./pages/Loading";
+import Dropdown from "./forms/formComponents/Dropdown";
 
 export default function ItemList(props) {
+ 
  let counter=1;
+ 
   const [modal, setModal] = useState(false);
   const [message, setMessage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  
- 
 
   // const [modal, setModal] = useState(false);
   const [productId, setProductId] = useState("");
-  const [productName, setProductName] = useState("");
-  const [productCompleteName, setProductCompleteName] = useState("");
-  const [productAliasName, setProductAliasName] = useState("");
-  const [productPublished, setProductPublished] = useState("");
-  const [productOrder, setProductOrder] = useState("");
-  const [productStores, setProductStores] = useState("");
+  const [link, setLink] = useState("");
+  const [parentCategory, setparentCategory] = useState("");
+  const [displayOrder, setdisplayOrder] = useState("");
+  const [isPublished, setIsPublished] = useState(false);
+  const [isShowOnPage, setisShowOnPage] = useState(false);
+  const [contentSliderName, setcontentSliderName] = useState("");
+  const [contentSliderCompleteName, setcontentSliderCompleteName] =
+    useState("");
+  const [contentSliderDescription, setcontentSliderDescription] = useState("");
+  const [badgeText, setbadgeText] = useState("");
+  const [pageSize, setpageSize] = useState("");
+  const [alias, setalias] = useState("");
+  const [isChecked, setIsChecked] = useState(false);
 
   const toggle = () => {
     setModal(!modal);
   };
 
   const updateForm = (product) => {
+    console.log(
+      product.productExternalLink,
+      product.productCategory,
+      product.productOrder,
+      product.productPublished,
+      product.showOnHomePage,
+      product.contentSliderName,
+      product.contentSliderCompleteName
+    );
+
     setProductId(product._id);
-    setProductName(product.productName);
-    setProductCompleteName(product.productCompleteName);
-    setProductAliasName(product.productAliasName);
-    setProductPublished(product.productPublished);
-    setProductOrder(product.productOrder);
-    setProductStores(product.productStores);
+    setLink(product.productExternalLink);
+    setparentCategory(product.productParentCategory);
+    setdisplayOrder(product.productOrder);
+    setIsPublished(product.productPublished);
+    setisShowOnPage(product.showOnHomePage);
+    setcontentSliderName(product.productName);
+    setcontentSliderCompleteName(product.productCompleteName);
+    setbadgeText(product.productBadgeText);
+    setpageSize(product.pageSizeOptions);
+    setalias(product.productAliasName);
+    setcontentSliderDescription(product.productDesc);
+
+    console.log(product);
+
     setModal(!modal);
   };
 
-
-    
-  // To delete the products 
+  // To delete the products
   const [selectedItems, setSelectedItems] = useState([]);
 
   useEffect(() => {
@@ -88,28 +112,17 @@ export default function ItemList(props) {
   //     )
   //     .then((result) => {
   //       console.log(`deleted items successfully ${result}`);
-        
+
   //     })
   //     .catch((err) => {
   //       console.error(`Error retrieving items: ${err.message}`);
   //     });
   // };
-    
- 
+
   // UPDATING THE PRODUCT
 
   const postData = async (e) => {
     e.preventDefault();
-    console.log(
-      "my posted data is ",
-      productCompleteName,
-      productName,
-      productAliasName,
-      productOrder,
-      productPublished,
-      productStores,
-      productId
-    );
 
     try {
       const res = await fetch(
@@ -120,12 +133,17 @@ export default function ItemList(props) {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            productName,
-            productCompleteName,
-            productAliasName,
-            productOrder,
-            productPublished,
-            productStores,
+            productExternalLink: link,
+            productParentCategory: parentCategory,
+            productOrder: displayOrder,
+            productPublished: isPublished,
+            showOnHomePage: isShowOnPage,
+            productName: contentSliderName,
+            productCompleteName: contentSliderCompleteName,
+            productDesc: contentSliderDescription,
+            productBadgeText: badgeText,
+            pageSizeOptions: pageSize,
+            productAliasName: alias,
           }),
         }
       );
@@ -134,6 +152,8 @@ export default function ItemList(props) {
       if (data.success === false) {
         setError(data.message);
       } else {
+        setModal(!toggle);
+        window.location.reload();
         setMessage("Product updated successfully");
       }
     } catch (error) {
@@ -141,13 +161,9 @@ export default function ItemList(props) {
     }
   };
 
-
-
-  
-
   return (
     <>
-        {error && <Error errMessage={error}> {error}</Error>}
+      {error && <Error errMessage={error}> {error}</Error>}
       {message && (
         <SuccessMessage varient="danger" successMessage={message}>
           {" "}
@@ -155,7 +171,6 @@ export default function ItemList(props) {
         </SuccessMessage>
       )}
       {loading && <Loading />}
-
 
       {/* <button onClick={handleSubmit}>Delete the Product </button> */}
       <table className="table border-top">
@@ -175,15 +190,13 @@ export default function ItemList(props) {
         </thead>
         <tbody className="h-100 overflow-y-auto">
           {props.categories.map((category, index) => {
-            
             return (
               <>
                 <tr key={index}>
                   {/* <h1>{category.productName}</h1> */}
                   <td scope="row">
                     <InputField
-                    
-                     value={category._id}
+                      value={category._id}
                       type="checkbox"
                       data={(e) => {
                         handleCheckboxChange(e);
@@ -204,7 +217,9 @@ export default function ItemList(props) {
                     )}
                   </td>
                   <td>{category.productOrder}</td>
-                  <td>{category.productStores ? category.productStores : "-"}</td>
+                  <td>
+                    {category.productStores ? category.productStores : "-"}
+                  </td>
                   <td>
                     <AiOutlineEdit onClick={() => updateForm(category)} />
                   </td>
@@ -216,9 +231,9 @@ export default function ItemList(props) {
       </table>
 
       <Modal isOpen={modal} toggle={toggle} fullscreen>
-        <ModalHeader toggle={toggle}>Update the product </ModalHeader>
+        <ModalHeader toggle={toggle}>Update the product</ModalHeader>
         <ModalBody>
-          <form>
+          {/* <form>
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">
                 ProductName
@@ -340,6 +355,177 @@ export default function ItemList(props) {
                 // value={product.productStores}
               />
             </div>
+          </form> */}
+          <form
+            className="form"
+            method="POST"
+            action={props.postTo}
+            // onSubmit={submitProductData}
+          >
+            <InputField
+              type="text"
+              label="External Link"
+              value={link}
+              data={(e) => {
+                setLink(e.target.value);
+                console.log(link);
+              }}
+            />
+            <InputField
+              type="text"
+              label="Parent category"
+              placeholder="[Unspecified]"
+              value={parentCategory}
+              data={(e) => {
+                setparentCategory(e.target.value);
+                console.log(parentCategory);
+              }}
+            />
+            <InputField
+              type="Number"
+              label="Display order"
+              value={displayOrder}
+              // value="0"
+              data={(e) => {
+                setdisplayOrder(e.target.value);
+                console.log(displayOrder);
+              }}
+            />
+            <InputField
+              type="checkbox"
+              checked
+              label="Published"
+              value={isPublished}
+              data={(e) => {
+                setIsPublished(e.target.checked);
+                console.log(isPublished);
+              }}
+            />
+            <InputField
+              type="checkbox"
+              label="Show on Home Page"
+              value={isShowOnPage}
+              data={(e) => {
+                setisShowOnPage(e.target.checked);
+              }}
+            />
+            <div className="border m-2 p-2 row">
+              <InputField
+                type="text"
+                label="Name"
+                value={contentSliderName}
+                data={(e) => {
+                  setcontentSliderName(e.target.value);
+                }}
+              />
+              <InputField
+                type="text"
+                label="Complete Name"
+                value={contentSliderCompleteName}
+                data={(e) => {
+                  setcontentSliderCompleteName(e.target.value);
+                }}
+              />
+              <div className="mb-2 form-group">
+                <label htmlFor="textarea" class="col-form-label col-sm-2">
+                  Top Description
+                </label>
+                <textarea
+                  className=" p-2 col-form-control col-sm-10"
+                  name="textarea"
+                  rows="2"
+                  value={contentSliderDescription}
+                  data={(e) => {
+                    setcontentSliderDescription(e.target.value);
+                  }}
+                ></textarea>
+              </div>
+              <div className="row">
+                <div className="col-md-2"></div>
+                <div className="col-md-10">
+                  {/* <Button type="" name="Show Description" icon={reverseIcon} /> */}
+                </div>
+              </div>
+              <InputField
+                type="text"
+                label="Badge Text"
+                value={badgeText}
+                data={(e) => {
+                  setbadgeText(e.target.value);
+                }}
+              />
+            </div>
+            <Dropdown
+              label="Badge Style"
+              options={[
+                "Secondary",
+                "Primary",
+                "Warning",
+                "Danger",
+                "Success",
+                "Info",
+                "Light",
+                "Dark",
+              ]}
+            />
+            {/* <PhotoUpload label="Picutre" /> */}
+            <hr className="" />
+            <Dropdown label="Default view mode" options={["Grid", "List"]} />
+            <Dropdown
+              label="Allow customers to select page size"
+              options={["Yes", "No"]}
+            />
+            <InputField
+              type="text"
+              label="Page size options (comma separated)"
+              value={pageSize}
+              data={(e) => {
+                setpageSize(e.target.value);
+              }}
+            />
+            <hr className="" />
+            <InputField
+              type="text"
+              label="Alias"
+              value={alias}
+              data={(e) => {
+                setalias(e.target.value);
+              }}
+            />
+            <Dropdown
+              label="Category template"
+              options={["Products in Grid or Lines"]}
+            />
+            <Dropdown label="Discounts" options={["Searching..."]} />
+            <Dropdown
+              label="Limited to stores"
+              options={[
+                "Smartstore 5 Backend Demo Shop",
+                "Smartstore 5 Backend Demo Shop 2",
+              ]}
+            >
+              {/* <Button
+          type=""
+          icon={thunderIcon}
+          name="Transfer this store configuration to children"
+          items={() => {
+            console.log("clicked");
+          }}
+        /> */}
+            </Dropdown>
+            <Dropdown
+              label="Limited to customer roles"
+              options={["Searching..."]}
+            >
+              {/* <Button
+          type=""
+          icon={thunderIcon}
+          name="Transfer this ACL configuration to children"
+          items={() => {
+            console.log("clicked");
+          }}
+        /> */}
+            </Dropdown>
           </form>
         </ModalBody>
         <ModalFooter>
