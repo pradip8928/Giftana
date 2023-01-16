@@ -1,6 +1,6 @@
-.form-control {
+/* .form-control {
     display: block;
-    /* width: 76%; */
+    
     padding: 0.375rem 0.75rem;
     font-size: 1rem;
     font-weight: 400;
@@ -32,8 +32,8 @@
 
 .gender-label {
     margin-right: 170px;
-    /* margin-left: 34px; */
-}
+  
+
 
 .btn-group {
     margin-bottom: 21px;
@@ -51,9 +51,7 @@
 }
 
 @media only screen and  (max-width:1050px) {
-    /* .form-control{
-        background-color: black;
-    } */
+   
  .gender-label{
     display: flex;
     flex-direction: column;
@@ -63,4 +61,4 @@
  .btn btn-secondary{
     box-sizing: 10px;
  }
-}
+} */

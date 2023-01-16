@@ -1,3 +1,4 @@
+ 
 import React from "react";
 import NewCategory from "../forms/NewCategory";
 import Sidebar from "/src/Components/Sidebar";
@@ -38,6 +39,7 @@ export default function AdminLogin() {
         </div>
         <div className="col-md-10 row-sm">
           <NewCategory />
+ 
         </div>
       </div>
     </div>

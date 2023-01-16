@@ -54,9 +54,9 @@ export default function Navbar() {
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="#">
-                Dashboard
-              </a>
+ 
+              <a class="nav-link" href="/#">Dashboard</a>
+ 
             </li>
             <li class="nav-item dropdown">
               <a
@@ -69,16 +69,21 @@ export default function Navbar() {
                 Catolog
               </a>
               <ul class="dropdown-menu">
-                <li>
-                  <a class="dropdown-item" href="#">
-                    Categories
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    Manage products
-                  </a>
-                </li>
+ 
+                <li><a class="dropdown-item" href="/categories">Categories</a></li>
+                <li><a class="dropdown-item" href="#">Manage products</a></li>
+
+                <li><a class="dropdown-item" href="#">Product reviews</a></li>
+                <li><a class="dropdown-item" href="#">Manufactures</a></li>
+                <li><a class="dropdown-item" href="#">Product tags</a></li>
+                <li><a class="dropdown-item" href="#">Low stock report</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <div className="catolog-attribute"><h4>Attributes</h4></div>
+                <li><a class="dropdown-item" href="#">Product Attributes</a></li>
+                <li><a class="dropdown-item" href="#">Specification Attributes</a></li>
+                <li><a class="dropdown-item" href="#">Checkout Attributes</a></li>
+
+ 
 
                 <li>
                   <a class="dropdown-item" href="#">

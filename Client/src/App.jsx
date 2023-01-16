@@ -2,20 +2,25 @@ import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
+// import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
+import "../node_modules/bootstrap/dist/js/bootstrap.bundle";
 
 // import  Demo  from "./Components/pages/Demo";
 import Navbar from "./Components/Navbar.jsx";
 // import Registraion_Form from "./Components/pages/Registraion_Form";
 import Registraion_Form from "./Components/forms/Registration_Form";
-import Login_page from "./Components/forms/Login_page";
-import Register from "./Components/forms/Register";
+ 
+import Login_page from "./Components/forms/Login_page"
+import Register from "./Components/forms/Register"
+ 
 
 import "../src/Components/css/Navbar.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Manage_Products from "./Components/pages/Manage_Products";
 import AdminLogin from "./Components/pages/AdminLogin";
-import "./Components/css/Login_page.css";
+ 
+// import './Components/css/Login_page.css'
+ 
 import Categories from "./Components/pages/Categories";
 import PaginationComponent from "./Components/PaginationComponent";
 // import './Components/css/Pagination.css'
@@ -26,9 +31,14 @@ import AddCategory from "./Components/pages/AddCategory";
 import NewCategory from "./Components/pages/AddNewCategory";
 import Edit_page from "./Components/pages/Edit_page";
  
-import "./Components/css/Edit_page.css";
-import "./Components/css/categories.css";
-import "./Components/css/Admin_Login_page.css";
+import "./Components/css/Login_page.css"
+import AddNewProduct from "./Components/forms/formComponents/NewProductButton";
+
+// import './Components/css/Edit_page.css'
+// import './Components/css/categories.css'
+// >>>>>>> 2d473010447e3608fcc8231055eba1fa0a3da26e
+// import './Components/css/Admin_Login_page.css';
+
  
 
 function App() {
@@ -37,6 +47,7 @@ function App() {
   };
   return (
     <Router>
+      
       <nav class="navbar  navbar-expand-lg bg-secondary">
         <div class="container-fluid  ">
           <Link className="navbar-brand" to="#">
@@ -82,10 +93,10 @@ function App() {
                 >
                   Categories
                 </Link>
-             
-                
 
-               
+
+
+
               </li>
               <li className="nav-item" id="drop_down_id">
                 <Link
@@ -93,15 +104,15 @@ function App() {
                   aria-current="page"
                   to="/manage_products"
                 >
-                 Manage Product
+                  Manage Product
 
 
 
                 </Link>
-             
-                
 
-               
+
+
+
               </li>
               <li className="nav-item" id="drop_down_id">
                 <Link
@@ -109,15 +120,15 @@ function App() {
                   aria-current="page"
                   to="/edit_page"
                 >
-                Edit CD
+                  Edit CD
 
 
 
                 </Link>
-             
-                
 
-               
+
+
+
               </li>
 
               <li className="nav-item">
@@ -136,6 +147,15 @@ function App() {
                   to="/"
                 >
                   Customers
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link active  text-bold"
+                  aria-current="page"
+                  to="/addproduct"
+                >
+                  Add Product
                 </Link>
               </li>
               <li className="nav-item">
@@ -237,6 +257,15 @@ function App() {
           }
         />
         <Route
+          path="/addproduct"
+          exact
+          element={
+            <>
+              <AddNewProduct/>
+            </>
+          }
+        />
+        <Route
           path="/login"
           exact
           element={
@@ -257,6 +286,7 @@ function App() {
           }
         />
         <Route
+ 
           path="/manage_products"
           exact
           element={

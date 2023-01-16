@@ -1,3 +1,4 @@
+ 
 import React from "react";
 import XForm from "../forms/XForm";
 import Sidebar from "/src/Components/Sidebar";
@@ -20,7 +21,7 @@ export default function AdminLogin() {
               <button className="btn border">
                 <img src="/src/assets/icons/arrow-left.svg" alt="" srcSet="" />
               </button>
-              <strong className="p-2 h3">Edit customer details - demo</strong>
+              <strong className="p-2 h3">Edit customer details - demo</strong> 
             </div>
           </div>
           <div className="row">

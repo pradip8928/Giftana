@@ -23,12 +23,13 @@ body {
     height: 100vh;
 
 
-    background: linear-gradient(#e66465, #9198e5);
+    /* background: linear-gradient(#e66465, #9198e5); */
+    background: linear-gradient(#ffffff, #4887fc);
 
 }
 
 .sub-container {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     border-radius: 10px;
     padding: 23px;
     margin: 10px;
