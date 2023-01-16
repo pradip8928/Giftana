@@ -16,7 +16,10 @@
   background-color: inherit;
   font-family: inherit; 
   margin: 0I
-} */
-/* .navbar{
+} 
+.navbar{
     background-color: #0d6efd;
 } */
+navbar{
+    background-color:blue ;
+}
