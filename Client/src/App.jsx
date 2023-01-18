@@ -27,7 +27,9 @@ import NewCategory from "./Components/pages/AddNewCategory";
 import Edit_page from "./Components/pages/Edit_page";
 import './Components/css/Edit_page.css'
 import './Components/css/categories.css'
-import './Components/css/Admin_Login_page.css';
+import './Components/css/Admin_Login_page.css'
+
+ 
 
 
 function App() {
@@ -213,7 +215,7 @@ function App() {
           exact
           element={
             <>
-              <Navbar />
+              {/* <Navbar /> */}
               <Login_page />
             </>
           }
@@ -253,10 +255,11 @@ function App() {
           element={
             <>
               <NewCategory />
-              {/* >>>>>>> 68782268e01a85e696b33233dbe67663b08cbed2 */}
+       
             </>
           }
         />
+        
       </Routes>
 
     </Router>

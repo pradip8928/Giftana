@@ -3,13 +3,14 @@ import axios from "axios";
 import AddNewProduct from "../forms/formComponents/NewProductButton";
 import ItemList from "../ItemList";
 import Button from "../Button";
-import '../Button'
+import "../Button";
 import Pagination from "../PaginationComponent";
 import InputField from "../forms/formComponents/InputField";
 import filterIcon from "/src/assets/icons/filter.svg";
 import refreshIcon from "/src/assets/icons/refresh.svg";
 import settingsIcon from "/src/assets/icons/settings.svg";
 import caret from "/src/assets/icons/caret-down.svg";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 export default function Categories() {
   const [data, setData] = useState([]);
@@ -18,10 +19,10 @@ export default function Categories() {
   const [filterdata, setFilterData] = useState([]);
   useEffect(() => {
     category();
-  }, [query,data]);
+  }, [query, data]);
 
   function filter_btn() {
-    document.getElementById('myid').style.display = "block";
+    document.getElementById("myid").style.display = "block";
   }
   const category = () => {
     const config = {
@@ -47,11 +48,9 @@ export default function Categories() {
     if (ids.length > 0) {
       setSelectedData(ids);
     } else {
-      setSelectedData([]); 
+      setSelectedData([]);
     }
   };
-
- 
 
   // const deleteAllItems = () => {
   //   // console.log(data);
@@ -109,10 +108,7 @@ export default function Categories() {
   };
 
   return (
-
-
     <div className="h-100 m-5 p-2 border rounded">
-
       <div className="row m-2 align-items-center">
         <h1 className="container col-md-3 h-100 p-2">Manage Categories</h1>
         <div className="col-md">
@@ -121,32 +117,30 @@ export default function Categories() {
         </div>
       </div>
       <div className="row m-2 pt-1 pb-1 border">
-   
-
         <div className="container">
-          <Button   icon={filterIcon} />
+          <Button icon={filterIcon} />
           {/* sumit */}
 
-          <Button name="+ Add new..." />
-        
+          <Link  to="/addProduct"><Button name="+ Add new..." ></Button></Link>
+          <Button items={deleteAllItems} name="- Delete the item" />
+        </div>
+        <div className="container">
           <InputField
-            type="text"
+            type="search"
             name="adminName"
             placeholder="search by product Name"
             data={handleInput}
+            
           />
         </div>
-
         <div className="p-0">
-          <Button items={deleteAllItems} name="- Delete the item" />
           <ItemList categories={data} getData={getData} />
-         
         </div>
         <div class="row">
           <div className="col-md-1">
             <Button icon={refreshIcon} />
           </div>
-          
+
           <div className="col-md-2">
             <Button icon={caret} name="per page" />
           </div>

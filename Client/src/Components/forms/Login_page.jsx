@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 // import Navbar from "./Navbar";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Login_page() {
+  const navigate = useNavigate();
   const [admin, setAdmin] = useState({
     userName: "",
     password: "",
@@ -41,46 +43,23 @@ export default function Login_page() {
       // setError(data.message);
       window.alert(data.message);
     } else {
+       
+
+
       window.alert("Login successfull");
+
       // setMessage("Login Successfull");
+      localStorage.setItem("token", data.token);
+      navigate("/categories");
     }
   };
   return (
     <>
-      {/* <Navbar /> */}
-      {/* <section>
-        <div className="col-1">
-          <div className="login" id="main">
-            <h1>SMARTSTORE</h1>
-            <form>
-            <div className="input-div">
-              <input
-                type="text"
-                placeholder="username"
-                name="userName"
-                value={admin.userName}
-                onChange={handleInputs}
-              />
-              <input
-                type="text"
-                placeholder="password"
-                name="password"
-                value={admin.password}
-                onChange={handleInputs}
-              />
-            </div>
-            <button className="btnn" onClick={postData}>
-              Log in
-            </button>
-            <span class="psw">
-              <a href="#">Forgot password?</a>
-            </span>
-          </form> */}
+     
           <div className="login-page-container">
             
             <div className="sub-container">
-              {/* <div><img src={require('')} alt="" /></div> */}
-              {/* add png "png_for_login_page.png" */}
+        
             <form>
               <div class="mb-3"  id="login-page-first-sec-id">
                 <label for="exampleInputEmail1" class="form-label" >Username</label>

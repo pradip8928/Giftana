@@ -32,6 +32,17 @@ export default function XForm({ postTo }) {
     );
   };
 
+
+
+  // message Disappere
+  useEffect(() => {
+    if(message){
+      setTimeout(() => {
+          setMessage(null);
+      }, 3000);
+    }
+  }, [message]);
+
   const postData = async (e) => {
     console.log(
       "post data is working",

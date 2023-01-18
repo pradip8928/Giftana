@@ -18,7 +18,14 @@ export default function ItemList(props) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   
- 
+  useEffect(() => {
+    if(message || error) {
+      setTimeout(() => {
+          setMessage(null);
+          setError(null);
+      }, 3000);
+    }
+  }, [message,error]);
 
   // const [modal, setModal] = useState(false);
   const [productId, setProductId] = useState("");

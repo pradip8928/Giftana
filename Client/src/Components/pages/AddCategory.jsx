@@ -7,7 +7,7 @@ const AddCategory = () => {
 
     const [message, setMessage] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState("");
+    const [error, setError] = useState(null);
     const [addCategory, setCategory] = useState({
       productName: "",
       productCompleteName: "",
@@ -16,6 +16,21 @@ const AddCategory = () => {
       productOrder:"",
       productStores:""
     });
+// message disapper 
+    useEffect(() => {
+      if(message){
+        setTimeout(() => {
+            setMessage(null);
+        }, 3000);
+      }
+    }, [message]);
+    useEffect(() => {
+      if(error){
+        setTimeout(() => {
+          setError(null);
+        }, 3000);
+      }
+    }, [error]);
   
   
       let name, value;

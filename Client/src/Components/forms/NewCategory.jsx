@@ -16,7 +16,19 @@ import SuccessMessage from "../pages/Success";
 
     const [message, setMessage] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState("");
+    const [error, setError] = useState(null);
+
+
+    useEffect(() => {
+      if(message || error) {
+        setTimeout(() => {
+            setMessage(null);
+            setError(null);
+        }, 3000);
+      }
+    }, [message,error]);
+
+    
     const [addCategory, setCategory] = useState({
       productName: "",
       productCompleteName: "",
