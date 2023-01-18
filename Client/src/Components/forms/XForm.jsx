@@ -5,9 +5,16 @@ import Checkbox from "./formComponents/Checkbox";
 import Error from "../pages/Error";
 import Loading from "../pages/Loading";
 import SuccessMessage from "../pages/Success";
+import { useNavigate } from "react-router-dom";
 // import Alert from "react-popup-alert";
 
 export default function XForm({ postTo }) {
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      navigate("/");
+    }
+  }, []);
   const [post, setPost] = useState(false);
   const [message, setMessage] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -76,8 +83,6 @@ export default function XForm({ postTo }) {
         const data = await res.json();
         console.log("frontend data is", data);
 
-        
-
         if (data.success === false) {
           setError(data.message);
         } else {
@@ -91,16 +96,15 @@ export default function XForm({ postTo }) {
 
   return (
     <>
-      
       {error && <Error errMessage={error}> {error}</Error>}
-      {message && <SuccessMessage varient="danger" successMessage={message}> {message}</SuccessMessage>}
+      {message && (
+        <SuccessMessage varient="danger" successMessage={message}>
+          {" "}
+          {message}
+        </SuccessMessage>
+      )}
       {loading && <Loading />}
-      <form
-        className="adminForm form m-4"
-        action={postTo}
-        method="POST"
-       
-      >
+      <form className="adminForm form m-4" action={postTo} method="POST">
         <InputField id="xxx001" label="ID" type="text" placeholder="ID" />
         <InputField
           type="text"
@@ -168,4 +172,3 @@ export default function XForm({ postTo }) {
     </>
   );
 }
-

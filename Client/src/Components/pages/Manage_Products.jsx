@@ -20,7 +20,7 @@ export default function Manage_Product() {
       .get(`http://localhost:3000/catalog/manageProducts/getAllProduct`, config)
       .then((result) => {
         setData(result.data.products);
-          // console.log(data);
+          console.log(data);
       });
   };
 

@@ -1,9 +1,16 @@
-import React,{useState,useEffect} from "react";
-import Error from "./Error"
+import React, { useState, useEffect } from "react";
+import Error from "./Error";
 import Success from "./Success";
-import Loading from "./Loading"
+import Loading from "./Loading";
+import { useNavigate } from "react-router-dom";
 
 const AddCategory = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      navigate("/");
+    }
+  }, []);
 
     const [message, setMessage] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -62,30 +69,34 @@ const AddCategory = () => {
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({productName, productCompleteName, productAliasName,productPublished,productOrder,productStores}),
-          });
-  
-          const data = await res.json();
-          console.log("frontend data is", data);
-  
-          
-  
-          if (data.success === false) {
-            setError(data.message);
-          } else {
-            setMessage("Product Added in the category Successfully");
+            body: JSON.stringify({
+              productName,
+              productCompleteName,
+              productAliasName,
+              productPublished,
+              productOrder,
+              productStores,
+            }),
           }
-        } catch (error) {
-          setError(error.response.data.message);
-        }
-      }
-    };
-  
+        );
 
+        const data = await res.json();
+        console.log("frontend data is", data);
+
+        if (data.success === false) {
+          setError(data.message);
+        } else {
+          setMessage("Product Added in the category Successfully");
+        }
+      } catch (error) {
+        setError(error.response.data.message);
+      }
+    }
+  };
 
   return (
     <div>
-        {error && <Error errMessage={error}> {error}</Error>}
+      {error && <Error errMessage={error}> {error}</Error>}
       {message && (
         <SuccessMessage varient="danger" successMessage={message}>
           {" "}
@@ -94,7 +105,6 @@ const AddCategory = () => {
       )}
       {loading && <Loading />}
 
-      
       <form onSubmit={postData}>
         {message && <p>{message}</p>}
         {error && <p>{error}</p>}

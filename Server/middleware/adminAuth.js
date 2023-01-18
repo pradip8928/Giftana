@@ -1,6 +1,5 @@
 const catchAsyncError = require("./errorHandler/catchAsyncError");
 const admin = require("../models/authModel/adminModel");
-
 const jwt = require("jsonwebtoken");
 
 exports.authenticatedAdmin = catchAsyncError(async(req, res, next) => {

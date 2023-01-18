@@ -15,6 +15,7 @@ export default function InputField(props) {
         placeholder={props.placeholder}
         value={props.value}
         onChange={props.data}
+        // style={{ height: "40px", width: "50vw", fontSize: "20px" }}
       />
     </div>
   );

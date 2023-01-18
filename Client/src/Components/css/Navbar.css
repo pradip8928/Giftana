@@ -1,6 +1,25 @@
-.catolog-attribute {
+/* .catolog-attribute {
   
     margin-bottom: 2px;
     margin-top: 2px;
     margin-left: 15px;
+}
+.drop_down{
+    overflow: hidden;
+}
+#drop_down_id{
+    font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit; 
+  margin: 0I
+} 
+.navbar{
+    background-color: #0d6efd;
+} */
+navbar{
+    background-color:blue ;
 }
