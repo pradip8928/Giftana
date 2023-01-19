@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 // import Navbar from "./Navbar";
-
 import { Link, useNavigate } from "react-router-dom";
+
+// import { Link, useNavigate } from "react-router-dom";
 
 export default function Login_page() {
   const navigate = useNavigate();
@@ -47,7 +48,6 @@ export default function Login_page() {
       window.alert("Login successfull");
 
       // setMessage("Login Successfull");
-      console.log(data.token);
       localStorage.setItem("token", data.token);
       localStorage.setItem("user_role", data.admin.role);
 

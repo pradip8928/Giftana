@@ -194,7 +194,7 @@ function App() {
           exact
           element={
             <>
-              {/* <Navbar /> */}
+              {/* <Navbarr /> */}
               <AdminLogin />
             </>
           }
@@ -224,7 +224,7 @@ function App() {
           exact
           element={
             <>
-              <Navbar />
+              {/* <Navbar /> */}
               <Login_page />
             </>
           }
@@ -264,7 +264,6 @@ function App() {
           element={
             <>
               <NewCategory />
-              {/* >>>>>>> 68782268e01a85e696b33233dbe67663b08cbed2 */}
             </>
           }
         />

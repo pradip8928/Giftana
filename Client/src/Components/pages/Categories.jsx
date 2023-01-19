@@ -21,8 +21,13 @@ import filterIcon from "/src/assets/icons/filter.svg";
 import refreshIcon from "/src/assets/icons/refresh.svg";
 import settingsIcon from "/src/assets/icons/settings.svg";
 import caret from "/src/assets/icons/caret-down.svg";
-import { Link, useNavigate } from "react-router-dom";
-import PaginationComponent from "../PaginationComponent";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  useNavigate,
+} from "react-router-dom";
 
 export default function Categories() {
   const navigate = useNavigate();
@@ -119,6 +124,7 @@ export default function Categories() {
       )
       .then((result) => {
         console.log(`deleted items successfully ${result}`);
+        location.reload();
         setSelectedData([]);
         category();
       })
@@ -137,15 +143,18 @@ export default function Categories() {
         </div>
       </div>
       <div className="row m-2 pt-1 pb-1 border">
-        <div className={cateCss.container}>
+        <div className="container">
           <Button icon={filterIcon} />
-
           {/* sumit */}
 
-          <Button name="+ Add new..." items={() => navigate("/addProduct")} />
-
+          <Link to="/addProduct">
+            <Button name="+ Add new..."></Button>
+          </Link>
+          <Button items={deleteAllItems} name="- Delete the item" />
+        </div>
+        <div className="container">
           <InputField
-            type="text"
+            type="search"
             name="adminName"
             placeholder="search by product Name"
             data={handleInput}
@@ -157,9 +166,7 @@ export default function Categories() {
             data={handleInput}
           /> */}
         </div>
-
         <div className="p-0">
-          <Button items={deleteAllItems} name="- Delete the item" />
           <ItemList categories={data} getData={getData} />
         </div>
         <div class="row">
@@ -174,7 +181,7 @@ export default function Categories() {
             <Button icon={settingsIcon} />
           </div>
         </div>
-        <PaginationComponent />
+        {/* <PaginationComponent /> */}
       </div>
     </div>
   );

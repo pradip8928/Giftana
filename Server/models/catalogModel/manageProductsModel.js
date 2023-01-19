@@ -26,7 +26,11 @@ const manageProductSchema = mongoose.Schema({
         minLength: [2, "Product SKU value  should have more than 2 characters"],
         trim: true,
     },
-
+    productImage: {
+        type: String,
+        required: [true, "Please Enter product Image Link"],
+        trim: true,
+    },
 
 
 

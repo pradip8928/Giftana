@@ -20,7 +20,7 @@ export default function Manage_Product() {
       .get(`http://localhost:3000/catalog/manageProducts/getAllProduct`, config)
       .then((result) => {
         setData(result.data.products);
-        //   console.log(data);
+          console.log(data);
       });
   };
 
@@ -68,15 +68,19 @@ export default function Manage_Product() {
               return (
                 <>
                   <tr key={manageProducts.id}>
-                    <td scope="row">{counter++}</td>
-                    <td>Mark</td>
+                    <td >{counter++}</td>
+                    <td> {manageProducts.productPublished ? (
+                        <img className={Manage_ProductCss.productImages} src={`data:image/png;base64,${manageProducts.productImage}`} alt="Yes" />
+                      ) : (
+                        "-"
+                      )}</td>
                     <td>{manageProducts.productName}</td>
                     <td> {manageProducts.productSKU}</td>
                     <td> {manageProducts.productPrice}</td>
                     <td> {manageProducts.productStockQuantity}</td>
                     <td> {manageProducts.productLimitationInStore}</td>
                     <td> {formattedDate}</td>
-                    {/* <td>  {manageProducts.productPublished }</td> */}
+                    
                     <td>
                       {" "}
                       {manageProducts.productPublished ? (
