@@ -14,6 +14,7 @@ import Dropdown from "./forms/formComponents/Dropdown";
 
 export default function ItemList(props) {
   let counter = 1;
+
   const [modal, setModal] = useState(false);
   const [message, setMessage] = useState(null);
   const [loading, setLoading] = useState(false);

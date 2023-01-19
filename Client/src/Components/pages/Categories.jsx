@@ -138,7 +138,8 @@ export default function Categories() {
       </div>
       <div className="row m-2 pt-1 pb-1 border">
         <div className={cateCss.container}>
-          {/* <Button icon={filterIcon} /> */}
+          <Button icon={filterIcon} />
+
           {/* sumit */}
 
           <Button name="+ Add new..." items={() => navigate("/addProduct")} />
