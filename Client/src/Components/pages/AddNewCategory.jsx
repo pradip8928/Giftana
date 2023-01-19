@@ -1,5 +1,4 @@
- 
-import React,{useEffect ,useState} from "react";
+import React, { useEffect } from "react";
 import NewCategory from "../forms/NewCategory";
 import Sidebar from "/src/Components/Sidebar";
 import { useNavigate } from "react-router-dom";
@@ -39,7 +38,6 @@ export default function AdminLogin() {
         </div>
         <div className="col-md-10 row-sm">
           <NewCategory />
- 
         </div>
       </div>
     </div>

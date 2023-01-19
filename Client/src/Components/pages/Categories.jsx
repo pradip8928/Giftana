@@ -3,12 +3,10 @@ import axios from "axios";
 import AddNewProduct from "../forms/formComponents/NewProductButton";
 import ItemList from "../ItemList";
 import Button from "../Button";
- 
-import '../Button'
- 
+import "../Button";
 import Pagination from "../PaginationComponent";
 // <<<<<<< HEAD
-import cateCss from "../css/categories.module.css"
+import cateCss from "../css/categories.module.css";
 
 // import Pagination from "../Pagination";
 // import InputField from "../InputField";
@@ -23,7 +21,13 @@ import filterIcon from "/src/assets/icons/filter.svg";
 import refreshIcon from "/src/assets/icons/refresh.svg";
 import settingsIcon from "/src/assets/icons/settings.svg";
 import caret from "/src/assets/icons/caret-down.svg";
-import { BrowserRouter as Router, Routes, Route, Link,useNavigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  useNavigate,
+} from "react-router-dom";
 
 export default function Categories() {
   const navigate = useNavigate();
@@ -40,7 +44,7 @@ export default function Categories() {
 
   useEffect(() => {
     category();
-  }, [query, data]);
+  }, [query]);
 
   function filter_btn() {
     document.getElementById("myid").style.display = "block";
@@ -120,6 +124,7 @@ export default function Categories() {
       )
       .then((result) => {
         console.log(`deleted items successfully ${result}`);
+        location.reload();
         setSelectedData([]);
         category();
       })
@@ -142,7 +147,9 @@ export default function Categories() {
           <Button icon={filterIcon} />
           {/* sumit */}
 
-          <Link  to="/addProduct"><Button name="+ Add new..." ></Button></Link>
+          <Link to="/addProduct">
+            <Button name="+ Add new..."></Button>
+          </Link>
           <Button items={deleteAllItems} name="- Delete the item" />
         </div>
         <div className="container">
@@ -151,14 +158,13 @@ export default function Categories() {
             name="adminName"
             placeholder="search by product Name"
             data={handleInput}
-            
           />
-          <InputField
+          {/* <InputField
             type="text"
             name="adminName"
             placeholder="search by productCompleteName"
             data={handleInput}
-          />
+          /> */}
         </div>
         <div className="p-0">
           <ItemList categories={data} getData={getData} />
@@ -175,6 +181,7 @@ export default function Categories() {
             <Button icon={settingsIcon} />
           </div>
         </div>
+        {/* <PaginationComponent /> */}
       </div>
     </div>
   );

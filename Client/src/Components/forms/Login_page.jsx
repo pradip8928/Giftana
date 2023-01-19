@@ -45,13 +45,12 @@ export default function Login_page() {
       // setError(data.message);
       window.alert(data.message);
     } else {
-       
-
-
       window.alert("Login successfull");
 
       // setMessage("Login Successfull");
       localStorage.setItem("token", data.token);
+      localStorage.setItem("user_role", data.admin.role);
+
       navigate("/categories");
     }
   };

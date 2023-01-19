@@ -1,14 +1,16 @@
 import React from "react";
-import XForm from '../forms/XForm';
+import XForm from "../forms/XForm";
 // import './components/forms/formComponents/XForm';
-import editCss from "../css/Edit_page.module.css"
+import editCss from "../css/Edit_page.module.css";
+// import './Components/css/Edit_page.css'
 export default function Edit_page() {
-    return (
-        <><div className={editCss.edit_page_main_container}>
-            <h1>Edit Product Details</h1>
-            <div className={editCss.edit_page_container}>
-                <XForm/>
-                {/* <form className="form-class">
+  return (
+    <>
+      <div className={editCss.edit_page_main_container}>
+        <h1>Edit Product Details</h1>
+        <div className={editCss.edit_page_container}>
+          <XForm />
+          {/* <form className="form-class">
                     <div class="mb-3 row">
                         <label for="staticId" class="col-sm-2 col-form-label">
                             ID
@@ -119,8 +121,8 @@ export default function Edit_page() {
                         ></textarea>
                     </div>
                 </form> */}
-            </div>
-            </div>
-        </>
-    )
+        </div>
+      </div>
+    </>
+  );
 }

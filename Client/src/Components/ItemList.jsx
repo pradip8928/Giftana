@@ -13,9 +13,8 @@ import Loading from "./pages/Loading";
 import Dropdown from "./forms/formComponents/Dropdown";
 
 export default function ItemList(props) {
- 
- let counter=1;
- 
+  let counter = 1;
+
   const [modal, setModal] = useState(false);
   const [message, setMessage] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -214,7 +213,7 @@ export default function ItemList(props) {
                       defaultChecked={false}
                     />
                   </td>
-                  <td>{ counter++}</td>
+                  <td>{counter++}</td>
                   <td>{category.productName}</td>
                   <td>{category.productCompleteName}</td>
                   <td>{category.productAliasName}</td>
