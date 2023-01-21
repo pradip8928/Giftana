@@ -12,59 +12,70 @@ const AddCategory = () => {
     }
   }, []);
 
-    const [message, setMessage] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
-    const [addCategory, setCategory] = useState({
-      productName: "",
-      productCompleteName: "",
-      productAliasName: "",
-      productPublished: "",
-      productOrder:"",
-      productStores:""
-    });
-// message disapper 
-    useEffect(() => {
-      if(message){
-        setTimeout(() => {
-            setMessage(null);
-        }, 3000);
-      }
-    }, [message]);
-    useEffect(() => {
-      if(error){
-        setTimeout(() => {
-          setError(null);
-        }, 3000);
-      }
-    }, [error]);
-  
-  
-      let name, value;
-    const handleInputs = (e) => {
-      name = e.target.name;
-      value = e.target.value;
-      setCategory({ ...addCategory, [name]: value });
-      console.log(
-         addCategory
-      );
-    };
-  
-  
-  
-    const postData = async (e) => {
-      console.log(addCategory);
-  
-      e.preventDefault();
-      const { productName, productCompleteName, productAliasName,productPublished,productOrder,productStores } = addCategory;
-  
-      if (!productName || !productCompleteName || !productAliasName || !productPublished || !productOrder || !productStores) {
-        setError("Please Fill the  all fields ");
-      } else {
-        setError("");
-  
-        try {
-          const res = await fetch("http://localhost:3000/catalog/catagory/createProduct", {
+  const [message, setMessage] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [addCategory, setCategory] = useState({
+    productName: "",
+    productCompleteName: "",
+    productAliasName: "",
+    productPublished: "",
+    productOrder: "",
+    productStores: "",
+  });
+  // message disapper
+  useEffect(() => {
+    if (message) {
+      setTimeout(() => {
+        setMessage(null);
+      }, 3000);
+    }
+  }, [message]);
+  useEffect(() => {
+    if (error) {
+      setTimeout(() => {
+        setError(null);
+      }, 3000);
+    }
+  }, [error]);
+
+  let name, value;
+  const handleInputs = (e) => {
+    name = e.target.name;
+    value = e.target.value;
+    setCategory({ ...addCategory, [name]: value });
+    console.log(addCategory);
+  };
+
+  const postData = async (e) => {
+    console.log(addCategory);
+
+    e.preventDefault();
+    const {
+      productName,
+      productCompleteName,
+      productAliasName,
+      productPublished,
+      productOrder,
+      productStores,
+    } = addCategory;
+
+    if (
+      !productName ||
+      !productCompleteName ||
+      !productAliasName ||
+      !productPublished ||
+      !productOrder ||
+      !productStores
+    ) {
+      setError("Please Fill the  all fields ");
+    } else {
+      setError("");
+
+      try {
+        const res = await fetch(
+          "http://localhost:3000/catalog/catagory/createProduct",
+          {
             method: "post",
             headers: {
               "Content-Type": "application/json",

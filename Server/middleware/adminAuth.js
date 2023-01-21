@@ -2,29 +2,31 @@ const catchAsyncError = require("./errorHandler/catchAsyncError");
 const admin = require("../models/authModel/adminModel");
 const jwt = require("jsonwebtoken");
 
-exports.authenticatedAdmin = catchAsyncError(async(req, res, next) => {
-    console.log("In  authenticatedAdmin ");
-    const { token } = req.cookies;
+exports.authenticatedAdmin = catchAsyncError(async (req, res, next) => {
+  console.log("In  authenticatedAdmin ");
+  const { token } = req.cookies;
 
-    if (!token) {
-        throw new Error("Please login to access this resource");
-    }
+  console.log("token verification", token);
 
-    const decodedData = jwt.verify(
-        token,
-        "JXHFKRFUYRIUFYGERUXYFGXUOYGFUOYGRFXUXOYEGGR"
-        // "Giftana"
-    );
+  if (!token) {
+    throw new Error("Please login to access this resource");
+  }
 
-    const rootUser = await admin.find({ _id: decodedData._id, token: token });
+  const decodedData = jwt.verify(
+    token,
+    "JXHFKRFUYRIUFYGERUXYFGXUOYGFUOYGRFXUXOYEGGR"
+    // "Giftana"
+  );
 
-    if (!rootUser) {
-        throw new Error("user not found");
-    }
+  const rootUser = await admin.find({ _id: decodedData._id, token: token });
 
-    req.admin = await admin.findById(decodedData.id);
+  if (!rootUser) {
+    throw new Error("user not found");
+  }
 
-    req.rootUser = rootUser;
+  req.admin = await admin.findById(decodedData.id);
 
-    next();
+  req.rootUser = rootUser;
+
+  next();
 });

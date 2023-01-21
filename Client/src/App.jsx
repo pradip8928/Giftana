@@ -25,6 +25,7 @@ import "./Components/pages/Manage_Products";
 import AddCategory from "./Components/pages/AddCategory";
 import NewCategory from "./Components/pages/AddNewCategory";
 import Edit_page from "./Components/pages/Edit_page";
+import Funnel from "./Components/forms/formComponents/Funnel";
 
 // import "./Components/css/categories.css";
 // >>>>>>> 2d473010447e3608fcc8231055eba1fa0a3da26e
@@ -200,6 +201,16 @@ function App() {
           }
         />
         <Route
+          path="/funnel"
+          exact
+          element={
+            <>
+              {/* <Navbarr /> */}
+              <funnel />
+            </>
+          }
+        />
+        <Route
           path="/addProduct"
           exact
           element={
@@ -269,6 +280,7 @@ function App() {
         />
       </Routes>
     </Router>
+
     // >>>>>>> bad1ec177aff56f6cc83dfe12044bcf551e53ac5
   );
 }

@@ -1,0 +1,45 @@
+.slidingDiv {
+  width: 350px;
+  height: auto;
+  background-color: #ffffff;
+  padding: 10px;
+  margin-top: 0px;
+  border: 1px solid black;
+  border-bottom: 5px solid #3399ff;
+  float: left;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.filterButton {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+}
+
+input[type="text"],
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.searchbox {
+  width: 350px;
+  height: 50px;
+  border-radius: 10px;
+  font-size: 14px;
+  border: 1px solid rgb(175, 159, 159);
+}
+
+.filterbtn {
+  width: 40px;
+  height: 40px;
+  margin-left: 10px;
+}
