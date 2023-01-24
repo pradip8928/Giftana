@@ -21,6 +21,23 @@ class ApiFeatures {
 
     return this;
   }
+  searchByUserName() {
+    // const keys = ["productName", "productCompleteName", "productAliasName"];
+    const userName = this.queryStr.userName
+      ? {
+          userName: {
+            $regex: this.queryStr.userName,
+            $options: "i",
+          },
+        }
+      : {};
+
+    // console.log("search by", productName);
+
+    this.query = this.query.find(userName);
+
+    return this;
+  }
 
   filterByProductPrice() {
     const queryCopy = { ...this.queryStr };

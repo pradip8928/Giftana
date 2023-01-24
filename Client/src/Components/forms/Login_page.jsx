@@ -47,6 +47,12 @@ export default function Login_page() {
     } else {
       window.alert("Login successfull");
 
+      // if (typeof data.token !== "string") {
+      //   data.token = data.token.toString();
+
+      // }
+      // Cookies.set("token", data.token);
+
       // setMessage("Login Successfull");
       localStorage.setItem("token", data.token);
       localStorage.setItem("user_role", data.admin.role);
