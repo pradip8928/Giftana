@@ -93,6 +93,11 @@ const catagorySchema = mongoose.Schema({
         enum: ["1", "2", "3", "4", "5", "6", "7", "8", "9"],
         trim: true,
     },
+    productImage: {
+        type: String,
+        required: [true, "Please Enter product Image Link"],
+        trim: true,
+    },
 
     // productAvalability: {
     //     type: String,

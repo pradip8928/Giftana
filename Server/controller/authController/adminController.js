@@ -27,7 +27,7 @@ const registerAdmin = asyncHandler(async(req, res) => {
     const token = admin.getJWTToken();
 
     if (admin) {
-        console.log("admin created");
+        console.log("admin has created successfully");
         res.status(201).json({
             id: admin._id,
             adminName: admin.adminName,
@@ -79,13 +79,40 @@ const authAdmin = asyncHandler(async(req, res) => {
     const option = {
         expires: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000),
         httpOnly: true,
+        sameSite: 'none'
     };
-
     res.cookie("token", token, option).json({
         success: true,
         admin,
         token,
     });
+
+    // res.cookie("token", token, {
+    //     httpOnly: true,
+    //     sameSite: 'none',
+    //     secure: true,
+
+    //     // path: '/',
+    //     option
+    // }).json({
+    //     success: true,
+    //     admin,
+    //     token,
+    // });
+    // res.setHeader(
+    //     'Set-Cookie', cookie.serialize('token', token, {
+    //         httpOnly: true,
+    //         sameSite: 'none',
+    //         secure: false,
+
+    //         path: '/',
+    //         option
+    //     }).json({
+    //         success: true,
+    //         admin,
+    //         token,
+    //     }),
+    // );
 });
 
 // Logout Admin
