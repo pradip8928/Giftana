@@ -15,25 +15,28 @@ exports.authenticatedAdmin = catchAsyncError(async(req, res, next) => {
     const token = cookies.token;
     // const token = req.cookies.token;
     console.log(`token is  ${token}`);
-
-    if (!token) {
-        throw new Error("Please login to access this resource");
+    if (token) {
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     }
+    // if (!token) {
+    //     throw new Error("Please login to access this resource");
+    // }
 
     const decodedData = jwt.verify(
         token,
-        "JXHFKRFUYRIUFYGERUXYFGXUOYGFUOYGRFXUXOYEGGR"
+        process.env.JWT_SECRET
         // "Giftana"
     );
 
-    const rootUser = await admin.find({ _id: decodedData._id, token: token });
+    // const rootUser = await admin.find({ _id: decodedData._id, token: token });
+    const rootUser = await admin.find({ _id: decodedData._id, "token:token": token });
 
     if (!rootUser) {
-        throw new Error("user not found");
+        throw new Error("admin not found");
     }
 
     req.admin = await admin.findById(decodedData.id);
-
+    req.token = token
     req.rootUser = rootUser;
 
     next();

@@ -33,6 +33,7 @@ const discount = require("./routes/promotionRoutes/discountRoutes")
 
 const message = require("./routes/systemRoutes/messageRoutes")
 const rules = require("./routes/systemRoutes/rulesRoutes")
+const shedules = require("./routes/systemRoutes/scheduleTaskRoutes")
 
 require("./config/database");
 app.use(cors());
@@ -85,12 +86,12 @@ app.use((req, res, next) => {
 const Port = process.env.PORT || 3000;
 app.use(express.json()); // to accept json data
 app.use(cookieParser());
-app.use("/api/user", userRoutes);
-app.use("/api/admin", adminRoutes);
 app.use("/catalog", catagory);
 app.use("/catalog", manageProducts);
 app.use("/catalog", reviewProduct);
 app.use("/catalog", manufacturer);
+app.use("/api/user", userRoutes);
+app.use("/api/admin", adminRoutes);
 
 
 // promition
@@ -101,6 +102,7 @@ app.use("/promotion", discount);
 // rules
 app.use("/system", message);
 app.use("/system", rules);
+app.use("/system", shedules);
 
 
 app.use(notFound);

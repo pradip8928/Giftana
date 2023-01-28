@@ -49,7 +49,7 @@ adminSchema.pre("save", async function(next) {
 
 adminSchema.methods.getJWTToken = function() {
     return jwt.sign({ id: this._id },
-        "JXHFKRFUYRIUFYGERUXYFGXUOYGFUOYGRFXUXOYEGGR", {
+        process.env.JWT_SECRET, {
             expiresIn: "5d",
         }
     );
