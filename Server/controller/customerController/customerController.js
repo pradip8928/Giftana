@@ -6,82 +6,76 @@ const asyncHandler = require("express-async-handler");
 const mongoose = require("mongoose");
 // CREATE PRODUCT
 
-const createProduct = catchAsyncError(async(req, res, next) => {
+const createCustomer = catchAsyncError(async(req, res, next) => {
     try {
-        console.log("from postman");
-        const product = await Customer.create(req.body);
+        const customer = await Customer.create(req.body);
 
         res.status(201).json({
             success: true,
-            product,
+            customer,
         });
     } catch (err) {
         next(err);
     }
 });
-//  GET ALL PRODUCT
+//  GET ALL Customer
 
-const getAllProduct = catchAsyncError(async(req, res, next) => {
+const getAllCustomer = catchAsyncError(async(req, res, next) => {
     try {
-        const productCount = await Customer.countDocuments();
+        const customerCount = await Customer.countDocuments();
 
-        //   const apiFeature = new ApiFeatures(Product.find(), req.query)
+        //   const apiFeature = new ApiFeatures(Customer.find(), req.query)
 
         const data = await Customer.find();
 
         // console.log("my all data is", data);
 
         const apiFeature = await new ApiFeatures(Customer.find(), req.query)
-            .searchByProductName()
-            .filterByProductPrice();
+            .searchByCustomerName()
+            .filterByCustomerPrice();
 
-        const products = await apiFeature.query;
+        const customer = await apiFeature.query;
 
         res.status(200).json({
             success: true,
-            products,
-            productCount,
+            customer,
+            customerCount,
         });
     } catch (err) {
         next(err);
     }
 });
 
-// GET DETAIL OF A PRODUCT
+// GET DETAIL OF A Customer
 
-const getProductDetail = catchAsyncError(async(req, res, next) => {
+const getCustomerDetail = catchAsyncError(async(req, res, next) => {
     try {
-        const product = await Customer.findById(req.params.id);
+        const customer = await Customer.findById(req.params.id);
 
-        if (!product) {
-            return next(new ErrorHandler("Product not found", 404));
+        if (!customer) {
+            return next(new ErrorHandler("Customer not found", 404));
         }
         res.status(200).json({
             success: true,
-            product,
+            customer,
         });
     } catch (err) {
         next(err);
     }
 });
 
-// UPDATE A PRODUCT
+// UPDATE A Customer
 
-const updateProduct = catchAsyncError(async(req, res, next) => {
-    console.log(
-        "from frontend to update my self",
-        req.body,
-        "and id is",
-        req.params.id
-    );
+const updateCustomer = catchAsyncError(async(req, res, next) => {
+
     try {
-        let product = await Customer.findById(req.params.id);
+        let customer = await Customer.findById(req.params.id);
 
-        if (!product) {
-            return next(new ErrorHandler("Product not found", 404));
+        if (!customer) {
+            return next(new ErrorHandler("Customer not found", 404));
         }
 
-        product = await Customer.findByIdAndUpdate(req.params.id, req.body, {
+        customer = await Customer.findByIdAndUpdate(req.params.id, req.body, {
             new: true,
             runValidators: true,
             useFindAndModify: false,
@@ -89,7 +83,7 @@ const updateProduct = catchAsyncError(async(req, res, next) => {
 
         res.status(200).json({
             success: true,
-            product,
+            customer,
         });
     } catch (err) {
         next(err);
@@ -97,48 +91,48 @@ const updateProduct = catchAsyncError(async(req, res, next) => {
 });
 
 // deleting the single item
-const deleteOneProduct = catchAsyncError(async(req, res, next) => {
+const deleteOneCustomer = catchAsyncError(async(req, res, next) => {
     try {
-        const product = await Customer.findById(req.params.id);
+        const customer = await Customer.findById(req.params.id);
 
-        if (!product) {
-            return next(new ErrorHandler("Product not found", 404));
+        if (!customer) {
+            return next(new ErrorHandler("Customer not found", 404));
         }
-        await product.remove();
+        await customer.remove();
         res.status(200).json({
             success: true,
-            message: "product deleted successfully",
+            message: "customer deleted successfully",
         });
     } catch (err) {
         next(err);
     }
 });
-const deleteMultipleProducts = catchAsyncError(async(req, res, next) => {
+const deleteMultipleCustomers = catchAsyncError(async(req, res, next) => {
     try {
-        const deleteProduct = await req.body;
-        if (!deleteProduct) {
-            return next(new ErrorHandler("Product not found", 404));
+        const deleteCustomer = await req.body;
+        if (!deleteCustomer) {
+            return next(new ErrorHandler("Customer not found", 404));
         }
 
-        const objectIds = deleteProduct.map((id) => mongoose.Types.ObjectId(id));
+        const objectIds = deleteCustomer.map((id) => mongoose.Types.ObjectId(id));
 
         await Customer.deleteMany({ _id: { $in: objectIds } });
 
         res.status(200).json({
             success: true,
-            message: "products deleted successfully",
+            message: "Customers deleted successfully",
         });
     } catch (err) {
-        console.log(`product is not deleted due to error: ${err.message}`);
+        console.log(`customer is not deleted due to error: ${err.message}`);
         next(err);
     }
 });
 
 module.exports = {
-    createProduct,
-    getAllProduct,
-    getProductDetail,
-    updateProduct,
-    deleteOneProduct,
-    deleteMultipleProducts,
+    createCustomer,
+    getAllCustomer,
+    getCustomerDetail,
+    updateCustomer,
+    deleteOneCustomer,
+    deleteMultipleCustomers,
 };

@@ -5,42 +5,42 @@ const GiftCard = require("../../models/saleModel/giftCardModel")
 const ApiFeatures = require("../../utils/apiFeatures");
 
 
-// creation Of Product
+// creation Of GiftCard
 
 
-const createProduct = catchAsyncError(async(req, res, next) => {
+const createGiftCard = catchAsyncError(async(req, res, next) => {
     try {
 
-        const manageProduct = await GiftCard.create(req.body);
+        const giftCard = await GiftCard.create(req.body);
 
         res.status(201).json({
             success: true,
-            manageProduct,
+            giftCard,
         });
     } catch (err) {
         next(err);
     }
 });
 
-// Ṛetriving Manage Products
+// Ṛetriving Manage GiftCards
 
 
-const getAllProduct = catchAsyncError(async(req, res, next) => {
+const getAllGiftCard = catchAsyncError(async(req, res, next) => {
     try {
-        const productCount = await GiftCard.countDocuments();
+        const giftCardCount = await GiftCard.countDocuments();
 
-        //   const apiFeature = new ApiFeatures(Product.find(), req.query)
+        //   const apiFeature = new ApiFeatures(GiftCard.find(), req.query)
 
         const apiFeature = new ApiFeatures(GiftCard.find(), req.query)
-            .searchByProductName()
-            .filterByProductPrice();
+            .searchByGiftCardName()
+            .filterByGiftCardPrice();
 
-        const products = await apiFeature.query;
+        const giftCard = await apiFeature.query;
 
         res.status(200).json({
             success: true,
-            products,
-            productCount,
+            giftCard,
+            giftCardCount,
         });
     } catch (err) {
         next(err);
@@ -49,18 +49,18 @@ const getAllProduct = catchAsyncError(async(req, res, next) => {
 
 
 
-// GET DETAIL OF A PRODUCT
+// GET DETAIL OF A GiftCard
 
-const getProductDetail = catchAsyncError(async(req, res, next) => {
+const getGiftCardDetail = catchAsyncError(async(req, res, next) => {
     try {
-        const product = await GiftCard.findById(req.params.id);
+        const giftCard = await GiftCard.findById(req.params.id);
 
-        if (!product) {
-            return next(new ErrorHandler("Product not found", 404));
+        if (!giftCard) {
+            return next(new ErrorHandler("GiftCard not found", 404));
         }
         res.status(200).json({
             success: true,
-            product,
+            giftCard,
         });
     } catch (err) {
         next(err);
@@ -69,19 +69,19 @@ const getProductDetail = catchAsyncError(async(req, res, next) => {
 
 
 
-// update Manage Products
+// update Manage GiftCards
 
 
-const updateProduct = catchAsyncError(async(req, res, next) => {
+const updateGiftCard = catchAsyncError(async(req, res, next) => {
 
     try {
-        let product = await GiftCard.findById(req.params.id);
+        let giftCard = await GiftCard.findById(req.params.id);
 
-        if (!product) {
-            return next(new ErrorHandler("Product not found", 404));
+        if (!giftCard) {
+            return next(new ErrorHandler("GiftCard not found", 404));
         }
 
-        product = await GiftCard.findByIdAndUpdate(req.params.id, req.body, {
+        giftCard = await GiftCard.findByIdAndUpdate(req.params.id, req.body, {
             new: true,
             runValidators: true,
             useFindAndModify: false,
@@ -89,7 +89,7 @@ const updateProduct = catchAsyncError(async(req, res, next) => {
 
         res.status(200).json({
             success: true,
-            product,
+            giftCard,
         });
     } catch (err) {
         next(err);
@@ -97,21 +97,21 @@ const updateProduct = catchAsyncError(async(req, res, next) => {
 });
 
 
-// Delete single products
+// Delete single GiftCards
 
 
 // deleting the single item
-const deleteOneProduct = catchAsyncError(async(req, res, next) => {
+const deleteOneGiftCard = catchAsyncError(async(req, res, next) => {
     try {
-        const product = await GiftCard.findById(req.params.id);
+        const giftCard = await GiftCard.findById(req.params.id);
 
-        if (!product) {
-            return next(new ErrorHandler("Product not found", 404));
+        if (!giftCard) {
+            return next(new ErrorHandler("GiftCard not found", 404));
         }
-        await product.remove();
+        await giftCard.remove();
         res.status(200).json({
             success: true,
-            message: "product deleted successfully",
+            message: "giftCard deleted successfully",
         });
     } catch (err) {
         next(err);
@@ -119,24 +119,24 @@ const deleteOneProduct = catchAsyncError(async(req, res, next) => {
 });
 
 
-// Deleting Multiple Products
-const deleteMultipleProducts = catchAsyncError(async(req, res, next) => {
+// Deleting Multiple GiftCards
+const deleteMultipleGiftCards = catchAsyncError(async(req, res, next) => {
     try {
-        const deleteProduct = await req.body;
-        if (!deleteProduct) {
-            return next(new ErrorHandler("Product not found", 404));
+        const deleteGiftCard = await req.body;
+        if (!deleteGiftCard) {
+            return next(new ErrorHandler("GiftCard not found", 404));
         }
 
-        const objectIds = deleteProduct.map((id) => mongoose.Types.ObjectId(id));
+        const objectIds = deleteGiftCard.map((id) => mongoose.Types.ObjectId(id));
 
         await GiftCard.deleteMany({ _id: { $in: objectIds } });
 
         res.status(200).json({
             success: true,
-            message: "products deleted successfully",
+            message: "GiftCards deleted successfully",
         });
     } catch (err) {
-        console.log(`product is not deleted due to error: ${err.message}`);
+        console.log(`giftCard is not deleted due to error: ${err.message}`);
         next(err);
     }
 });
@@ -148,10 +148,10 @@ const deleteMultipleProducts = catchAsyncError(async(req, res, next) => {
 
 
 module.exports = {
-    createProduct,
-    getAllProduct,
-    getProductDetail,
-    updateProduct,
-    deleteOneProduct,
-    deleteMultipleProducts,
+    createGiftCard,
+    getAllGiftCard,
+    getGiftCardDetail,
+    updateGiftCard,
+    deleteOneGiftCard,
+    deleteMultipleGiftCards,
 };

@@ -35,6 +35,15 @@ const message = require("./routes/systemRoutes/messageRoutes")
 const rules = require("./routes/systemRoutes/rulesRoutes")
 const shedules = require("./routes/systemRoutes/scheduleTaskRoutes")
 
+// customer
+const customer = require("./routes/customerRoutes/customerRoutes")
+    // customer role
+const customerRole = require("./routes/customerRoutes/customerRoleRoutes")
+
+// sales
+const sales = require("./routes/saleRoutes/cartRoutes")
+const order = require("./routes/saleRoutes/orderRoutes")
+
 require("./config/database");
 app.use(cors());
 // app.use(cors({
@@ -103,6 +112,13 @@ app.use("/promotion", discount);
 app.use("/system", message);
 app.use("/system", rules);
 app.use("/system", shedules);
+
+// customer
+app.use("/customer", customer);
+// customer
+app.use("/customer", customerRole);
+app.use("/sales", sales);
+app.use("/sales", order);
 
 
 app.use(notFound);

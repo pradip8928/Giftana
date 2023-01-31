@@ -1,87 +1,82 @@
-const Affliate = require("../../models/promotionModel/affiliatesModel");
+const Affiliate = require("../../models/promotionModel/affiliatesModel");
 const ApiFeatures = require("../../utils/apiFeatures");
 const catchAsyncError = require("../../middleware/errorHandler/catchAsyncError");
 const ErrorHandler = require("../../utils/errorHandler");
 const asyncHandler = require("express-async-handler");
 const mongoose = require("mongoose");
-// CREATE PRODUCT
+// CREATE Affiliate
 
-const createProduct = catchAsyncError(async(req, res, next) => {
+const createAffiliate = catchAsyncError(async(req, res, next) => {
     try {
         console.log("from postman");
-        const product = await Affliate.create(req.body);
+        const affiliates = await Affiliate.create(req.body);
 
         res.status(201).json({
             success: true,
-            product,
+            affiliates,
         });
     } catch (err) {
         next(err);
     }
 });
-//  GET ALL PRODUCT
+//  GET ALL Affiliate
 
-const getAllProduct = catchAsyncError(async(req, res, next) => {
+const getAllAffiliate = catchAsyncError(async(req, res, next) => {
     try {
-        const productCount = await Affliate.countDocuments();
+        const affiliateCount = await Affiliate.countDocuments();
 
-        //   const apiFeature = new ApiFeatures(Product.find(), req.query)
+        //   const apiFeature = new ApiFeatures(Affiliate.find(), req.query)
 
-        const data = await Affliate.find();
+        const data = await Affiliate.find();
 
         // console.log("my all data is", data);
 
-        const apiFeature = await new ApiFeatures(Affliate.find(), req.query)
-            .searchByProductName()
-            .filterByProductPrice();
+        const apiFeature = await new ApiFeatures(Affiliate.find(), req.query)
+            .searchByAffiliateName()
+            .filterByAffiliatePrice();
 
-        const products = await apiFeature.query;
+        const affiliates = await apiFeature.query;
 
         res.status(200).json({
             success: true,
-            products,
-            productCount,
+            affiliates,
+            affiliateCount,
         });
     } catch (err) {
         next(err);
     }
 });
 
-// GET DETAIL OF A PRODUCT
+// GET DETAIL OF A Affiliate
 
-const getProductDetail = catchAsyncError(async(req, res, next) => {
+const getAffiliateDetail = catchAsyncError(async(req, res, next) => {
     try {
-        const product = await Affliate.findById(req.params.id);
+        const affiliates = await Affiliate.findById(req.params.id);
 
-        if (!product) {
-            return next(new ErrorHandler("Product not found", 404));
+        if (!affiliates) {
+            return next(new ErrorHandler("Affiliate not found", 404));
         }
         res.status(200).json({
             success: true,
-            product,
+            affiliates,
         });
     } catch (err) {
         next(err);
     }
 });
 
-// UPDATE A PRODUCT
+// UPDATE A Affiliate
 
-const updateProduct = catchAsyncError(async(req, res, next) => {
-    console.log(
-        "from frontend to update my self",
-        req.body,
-        "and id is",
-        req.params.id
-    );
+const updateAffiliate = catchAsyncError(async(req, res, next) => {
+
     try {
-        let product = await Affliate.findById(req.params.id);
+        let affiliate = await Affiliate.findById(req.params.id);
 
-        if (!product) {
-            return next(new ErrorHandler("Product not found", 404));
+        if (!affiliate) {
+            return next(new ErrorHandler("Affiliate not found", 404));
         }
 
-        product = await Affliate.findByIdAndUpdate(req.params.id, req.body, {
+        affiliates = await Affiliate.findByIdAndUpdate(req.params.id, req.body, {
             new: true,
             runValidators: true,
             useFindAndModify: false,
@@ -89,7 +84,7 @@ const updateProduct = catchAsyncError(async(req, res, next) => {
 
         res.status(200).json({
             success: true,
-            product,
+            affiliates,
         });
     } catch (err) {
         next(err);
@@ -97,48 +92,48 @@ const updateProduct = catchAsyncError(async(req, res, next) => {
 });
 
 // deleting the single item
-const deleteOneProduct = catchAsyncError(async(req, res, next) => {
+const deleteOneAffiliate = catchAsyncError(async(req, res, next) => {
     try {
-        const product = await Affliate.findById(req.params.id);
+        const affiliates = await Affiliate.findById(req.params.id);
 
-        if (!product) {
-            return next(new ErrorHandler("Product not found", 404));
+        if (!affiliates) {
+            return next(new ErrorHandler("Affiliate not found", 404));
         }
-        await product.remove();
+        await affiliates.remove();
         res.status(200).json({
             success: true,
-            message: "product deleted successfully",
+            message: "affiliates deleted successfully",
         });
     } catch (err) {
         next(err);
     }
 });
-const deleteMultipleProducts = catchAsyncError(async(req, res, next) => {
+const deleteMultipleAffiliates = catchAsyncError(async(req, res, next) => {
     try {
-        const deleteProduct = await req.body;
-        if (!deleteProduct) {
-            return next(new ErrorHandler("Product not found", 404));
+        const deleteAffiliate = await req.body;
+        if (!deleteAffiliate) {
+            return next(new ErrorHandler("Affiliate not found", 404));
         }
 
-        const objectIds = deleteProduct.map((id) => mongoose.Types.ObjectId(id));
+        const objectIds = deleteAffiliate.map((id) => mongoose.Types.ObjectId(id));
 
-        await Affliate.deleteMany({ _id: { $in: objectIds } });
+        await Affiliate.deleteMany({ _id: { $in: objectIds } });
 
         res.status(200).json({
             success: true,
-            message: "products deleted successfully",
+            message: "affiliates deleted successfully",
         });
     } catch (err) {
-        console.log(`product is not deleted due to error: ${err.message}`);
+        console.log(`affiliates is not deleted due to error: ${err.message}`);
         next(err);
     }
 });
 
 module.exports = {
-    createProduct,
-    getAllProduct,
-    getProductDetail,
-    updateProduct,
-    deleteOneProduct,
-    deleteMultipleProducts,
+    createAffiliate,
+    getAllAffiliate,
+    getAffiliateDetail,
+    updateAffiliate,
+    deleteOneAffiliate,
+    deleteMultipleAffiliates,
 };

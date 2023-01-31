@@ -1,23 +1,23 @@
 const express = require("express");
 const router = express.Router();
 const {
-    createProduct,
-    getAllProduct,
-    getProductDetail,
-    updateProduct,
-    deleteOneProduct,
-    deleteMultipleProducts,
+    createGiftCard,
+    getAllGiftCard,
+    getGiftCardDetail,
+    updateGiftCard,
+    deleteOneGiftCard,
+    deleteMultipleGiftCards,
 } = require("../../controller/salesController/giftCardController");
 
 
-router.route("/giftCard/product").post(createProduct);
-router.route("/giftCard/getAllProduct").get(getAllProduct);
+router.route("/giftCard").post(createGiftCard);
+router.route("/giftCard/getAllGiftCard").get(getAllGiftCard);
 
-router.route("/giftCard/product/:id").get(getProductDetail);
-router.route("/giftCard/product/:id").put(updateProduct);
-router.route("/giftCard/product/:id").delete(deleteOneProduct);
+router.route("/giftCard/:id").get(getGiftCardDetail);
+router.route("/giftCard/:id").put(updateGiftCard);
+router.route("/giftCard/:id").delete(deleteOneGiftCard);
 router
-    .route("/giftCard/products/deleteMultipleProducts")
-    .delete(deleteMultipleProducts);
+    .route("/giftCard/deleteMultipleGiftCards")
+    .delete(deleteMultipleGiftCards);
 
 module.exports = router;

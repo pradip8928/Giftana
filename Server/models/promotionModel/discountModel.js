@@ -1,6 +1,14 @@
 /*
 
- 
+ discount
+name->String
+discountType->String enum:["Assign to order total ","Assign to products","Assigned to categories"]
+discountAmount->Number
+startDate->Date
+endDate->Date
+requiresCouponCode->Boolean
+discountLimitation->String enum:["unlimited"]
+requirements:[]
 */
 
 

@@ -1,13 +1,13 @@
 const mongoose = require("mongoose");
 const catchAsyncError = require("../../middleware/errorHandler/catchAsyncError")
 const ErrorHandler = require("../../utils/errorHandler");
-// const ManageProducts = require("../../models/catalogModel/ManageProductsModel")
+const ManageProducts = require("../../models/catalogModel/manageProductsModel")
 const ApiFeatures = require("../../utils/apiFeatures");
 const path = require('path');
-const filePath = path.join(__dirname, '..', '..', 'models', 'catalogModel', 'ManageProductsModel');
-const ManageProducts = require(filePath);
+// const filePath = path.join(__dirname, '..', '..', 'models', 'catalogModel', 'ManageProductsModel');
+// const ManageProducts = require(filePath);
 
-console.log(ManageProducts);
+// console.log(ManageProducts);
 // creation Of Product
 
 

@@ -69,4 +69,6 @@ const manageProductSchema = mongoose.Schema({
     },
 });
 
-module.exports = mongoose.model("ManageProducts", manageProductSchema);
+// module.exports = mongoose.model("ManageProducts", manageProductSchema);
+const ManageProductModel = mongoose.model('ManageProducts', manageProductSchema);
+module.exports = ManageProductModel;
