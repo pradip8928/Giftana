@@ -3,20 +3,23 @@ const router = express.Router();
 const requireLogin = require("../../middleware/requiredLogin/requireLogin");
 
 const {
-  authorizeRoles,
+    authorizeRoles,
 } = require("../../middleware/superAdminAuthenticaton/superAdminAuth");
 
 const { authenticatedAdmin } = require("../../middleware/adminAuth");
 
 const {
-  registerAdmin,
-  authAdmin,
-  logoutAdmin,
+    registerAdmin,
+    authAdmin,
+    logoutAdmin,
 } = require("../../controller/authController/adminController");
 
+// router
+//     .route("/register")
+//     .post(registerAdmin);
 router
-  .route("/register")
-  .post(authenticatedAdmin, authorizeRoles("superadmin"), registerAdmin);
+    .route("/register")
+    .post(authenticatedAdmin, authorizeRoles("superadmin"), registerAdmin);
 // router.route("/register").post(registerAdmin);
 //   .post(registerAdmin);
 // router.route("/register").post(registerAdmin);

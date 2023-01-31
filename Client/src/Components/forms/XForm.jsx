@@ -48,14 +48,12 @@ export default function XForm({ postTo }) {
     );
   };
 
-
-
   // message Disappere
   useEffect(() => {
-    if(message){
+    if (message) {
       setTimeout(() => {
-          setMessage(null);
-      }, 3000);
+        setMessage(null);
+      }, 10000);
     }
   }, [message]);
 
@@ -79,8 +77,10 @@ export default function XForm({ postTo }) {
       try {
         const res = await fetch("http://localhost:3000/api/admin/register", {
           method: "post",
+          mode: "no-cors",
           headers: {
             "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "http://localhost:3000",
           },
           body: JSON.stringify({
             adminName: adminName,
@@ -90,12 +90,12 @@ export default function XForm({ postTo }) {
         });
 
         const data = await res.json();
-        console.log("frontend data is", data);
+        // console.log("frontend data is", data);
 
         if (data.success === false) {
           setError(data.message);
         } else {
-          setMessage("Registration has done successfully");
+          setMessage("Admin  has created  successfully");
         }
       } catch (error) {
         setError(error.response.data.message);

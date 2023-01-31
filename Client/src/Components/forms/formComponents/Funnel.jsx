@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import funnelCss from "../../css/funnel.module.css";
-import $ from "jquery";
+// import $ from "jquery";
 import { BiFilterAlt } from "react-icons/bi";
 import { FcSearch } from "react-icons/fc";
 const Funnel = () => {

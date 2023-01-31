@@ -27,9 +27,8 @@ import NewCategory from "./Components/pages/AddNewCategory";
 import Edit_page from "./Components/pages/Edit_page";
 import Funnel from "./Components/forms/formComponents/Funnel";
 
-// import "./Components/css/categories.css";
-// >>>>>>> 2d473010447e3608fcc8231055eba1fa0a3da26e
-// import "./Components/css/Admin_Login_page.css";
+// manageProduct
+import AddManageProduct from "./Components/manageProduct/AddManageProduct";
 
 function App() {
   const removeAccess = () => {
@@ -260,7 +259,15 @@ function App() {
           }
         />
         <Route
-          // <<<<<<< HEAD
+          path="/addManageProducts"
+          exact
+          element={
+            <>
+              <AddManageProduct />
+            </>
+          }
+        />
+        <Route
           path="/edit_page"
           exact
           element={
