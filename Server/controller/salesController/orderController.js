@@ -9,11 +9,72 @@ const Admin = require("../../models/authModel/adminModel");
 
 // creation Of Product
 
-const placeOrder = catchAsyncError(async (req, res) => {
-  try {
-    // Find cart by user ID
-    req.user = await Admin.findById(req.body.user);
-    const cart = await Cart.findOne({ user: req.user.id });
+ 
+const placeOrder = catchAsyncError(async(req, res) => {
+    try {
+        // Find cart by user ID
+        req.user = await Admin.findById(req.body.user);
+        const cart = await Cart.findOne({ user: req.user.id });
+
+        if (!cart) {
+            return res.status(404).json({ msg: "Cart not found" });
+        }
+
+        // Calculate total amount of the order
+        let totalAmount = 0;
+        const items = [];
+        for (const item of cart.items) {
+            const product = await ManageProducts.findById(item.product);
+
+            totalAmount += product.productPrice * item.quantity;
+            items.push({
+                productId: item.product,
+                price: product.productPrice * item.quantity,
+                quantity: item.quantity
+            });
+        }
+
+        // Create a new order object
+        const order = new Order({
+            user: req.user.id,
+            totalAmount,
+            items,
+            paymentStatus: req.body.paymentStatus,
+            paymentType: req.body.paymentType,
+            orderStatus: req.body.orderStatus
+        });
+
+        // Save the order to the database
+        await order.save();
+
+        // Delete the cart after the order is placed
+        await Cart.findOneAndDelete({ user: req.user.id });
+
+        return res.json({ order });
+    } catch (err) {
+        console.error(err.message);
+        return res.status(500).send("Server Error");
+    }
+});
+
+
+
+
+
+
+const getAllOrders = catchAsyncError(async(req, res, next) => {
+    try {
+        const orderCount = await Order.countDocuments();
+
+        //   const apiFeature = new ApiFeatures(GiftCard.find(), req.query)
+
+        // const apiFeature = new ApiFeatures(GiftCard.find(), req.query)
+        //     .searchByGiftCardName()
+        //     .filterByGiftCardPrice();
+
+        // const giftCard = await apiFeature.query;
+        const order = await Order.find();
+ 
 
     if (!cart) {
       return res.status(404).json({ msg: "Cart not found" });

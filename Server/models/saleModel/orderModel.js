@@ -33,6 +33,7 @@ const orderSchema = new mongoose.Schema(
           type: Number,
           required: true,
         },
+ 
       },
     ],
     shippingInfo: {
@@ -49,6 +50,7 @@ const orderSchema = new mongoose.Schema(
         required: true,
       },
       country: {
+ 
         type: String,
         required: true,
       },
