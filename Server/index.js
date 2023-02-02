@@ -29,10 +29,20 @@ const manufacturer = require("./routes/catalog/manufacturerProductRoutes");
 const affiliates = require("./routes/promotionRoutes/affiliatesRoutes");
 const compaign = require("./routes/promotionRoutes/compaignRoutes");
 const discount = require("./routes/promotionRoutes/discountRoutes");
-const sales = require("./routes/sales/orderRoutes");
+// const sales = require("./routes/sales/orderRoutes");
 
 const message = require("./routes/systemRoutes/messageRoutes");
 const rules = require("./routes/systemRoutes/rulesRoutes");
+const shedules = require("./routes/systemRoutes/scheduleTaskRoutes");
+
+// customer
+const customer = require("./routes/customerRoutes/customerRoutes");
+// customer role
+const customerRole = require("./routes/customerRoutes/customerRoleRoutes");
+
+// sales
+const sales = require("./routes/saleRoutes/cartRoutes");
+const order = require("./routes/saleRoutes/orderRoutes");
 
 require("./config/database");
 app.use(cors());
@@ -85,14 +95,12 @@ app.use((req, res, next) => {
 const Port = process.env.PORT || 3000;
 app.use(express.json()); // to accept json data
 app.use(cookieParser());
-app.use("/api/user", userRoutes);
-app.use("/api/admin", adminRoutes);
 app.use("/catalog", catagory);
 app.use("/catalog", manageProducts);
 app.use("/catalog", reviewProduct);
 app.use("/catalog", manufacturer);
-app.use("/sales", sales);
-// app.use("/customer", customers);
+app.use("/api/user", userRoutes);
+app.use("/api/admin", adminRoutes);
 
 // promition
 app.use("/promotion", affiliates);
@@ -102,10 +110,18 @@ app.use("/promotion", discount);
 // rules
 app.use("/system", message);
 app.use("/system", rules);
+app.use("/system", shedules);
+
+// customer
+app.use("/customer", customer);
+// customer
+app.use("/customer", customerRole);
+app.use("/sales", sales);
+app.use("/sales", order);
 
 app.use(notFound);
-// app.use(errorHandler);
-app.use(errorMiddleware);
+app.use(errorHandler);
+// app.use(errorMiddleware);
 
 // localhost:3000/api/admin/register
 // localhost:3000/api/admin/register

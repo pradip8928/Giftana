@@ -1,25 +1,25 @@
 const express = require("express");
 const router = express.Router();
 const {
-    createProduct,
-    getAllProduct,
-    getProductDetail,
-    updateProduct,
-    deleteOneProduct,
-    deleteMultipleProducts,
+    createAffiliate,
+    getAllAffiliate,
+    getAffiliateDetail,
+    updateAffiliate,
+    deleteOneAffiliate,
+    deleteMultipleAffiliates,
 } = require("../../controller/promotionController/affiliatesController");
 
 const { authenticatedAdmin } = require("../../middleware/adminAuth");
 
-router.route("/affiliates/createProduct").post(authenticatedAdmin, createProduct);
-router.route("/affiliates/getAllProduct").get(getAllProduct);
-router.route("/affiliates/product/:id").get(authenticatedAdmin, getProductDetail);
-router.route("/affiliates/product/:id").put(authenticatedAdmin, updateProduct);
+router.route("/affiliates").post(authenticatedAdmin, createAffiliate);
+router.route("/affiliates/getAllAffiliate").get(getAllAffiliate);
+router.route("/affiliates/:id").get(authenticatedAdmin, getAffiliateDetail);
+router.route("/affiliates/:id").put(authenticatedAdmin, updateAffiliate);
 router
-    .route("/affiliates/product/:id")
-    .delete(authenticatedAdmin, deleteOneProduct);
+    .route("/affiliates/:id")
+    .delete(authenticatedAdmin, deleteOneAffiliate);
 router
-    .route("/affiliates/products/deleteMultipleProducts")
-    .delete(deleteMultipleProducts);
+    .route("/affiliates/deleteMultipleAffiliates")
+    .delete(deleteMultipleAffiliates);
 
 module.exports = router;

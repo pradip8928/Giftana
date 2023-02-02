@@ -1,25 +1,25 @@
 const express = require("express");
 const router = express.Router();
 const {
-    createProduct,
-    getAllProduct,
-    getProductDetail,
-    updateProduct,
-    deleteOneProduct,
-    deleteMultipleProducts,
+    createRule,
+    getAllRule,
+    getRuleDetail,
+    updateRule,
+    deleteOneRule,
+    deleteMultipleRules,
 } = require("../../controller/systemController/rulesController");
 
 const { authenticatedAdmin } = require("../../middleware/adminAuth");
 
-router.route("/rules/createProduct").post(authenticatedAdmin, createProduct);
-router.route("/rules/getAllProduct").get(getAllProduct);
-router.route("/rules/product/:id").get(authenticatedAdmin, getProductDetail);
-router.route("/rules/product/:id").put(authenticatedAdmin, updateProduct);
+router.route("/rule").post(createRule);
+router.route("/getAllRule").get(getAllRule);
+router.route("/rule/:id").get(authenticatedAdmin, getRuleDetail);
+router.route("/rule/:id").put(authenticatedAdmin, updateRule);
 router
-    .route("/rules/product/:id")
-    .delete(authenticatedAdmin, deleteOneProduct);
+    .route("/rule/:id")
+    .delete(authenticatedAdmin, deleteOneRule);
 router
-    .route("/rules/products/deleteMultipleProducts")
-    .delete(deleteMultipleProducts);
+    .route("/rule/deleteMultipleRules")
+    .delete(deleteMultipleRules);
 
 module.exports = router;

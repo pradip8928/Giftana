@@ -79,9 +79,11 @@ export default function XForm({ postTo }) {
           method: "post",
           mode: "no-cors",
           headers: {
+            Accept: "application/json",
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "http://localhost:3000",
           },
+          credentials:"include",
           body: JSON.stringify({
             adminName: adminName,
             email: adminEmail,
