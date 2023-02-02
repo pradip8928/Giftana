@@ -3,6 +3,7 @@ const router = express.Router();
 const {
     createProduct,
     getAllProduct,
+    getLowStockProducts,
     getProductDetail,
     updateProduct,
     deleteOneProduct,
@@ -12,6 +13,7 @@ const {
 
 router.route("/manageProducts/createProduct").post(createProduct);
 router.route("/manageProducts/getAllProduct").get(getAllProduct);
+router.route("/manageProducts/getLowStockProducts").get(getLowStockProducts);
 
 router.route("/manageProducts/product/:id").get(getProductDetail);
 router.route("/manageProducts/product/:id").put(updateProduct);

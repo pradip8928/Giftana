@@ -15,11 +15,7 @@ const orderSchema = new mongoose.Schema({
         ref: "Admin",
         required: true,
     },
-    // addressId: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: "UserAddress.address",
-    //     required: true,
-    // },
+
     totalAmount: {
         type: Number,
         required: true,
@@ -37,16 +33,6 @@ const orderSchema = new mongoose.Schema({
             type: Number,
             required: true,
         },
-        // payablePrice: {
-        //     type: Number,
-        //     required: true,
-        //     // default: 0,
-        // },
-        // purchasedQty: {
-        //     type: Number,
-        //     required: true,
-        //     // default: 0,
-        // },
     }, ],
     paymentStatus: {
         type: String,

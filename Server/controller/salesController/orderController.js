@@ -24,6 +24,7 @@ const placeOrder = catchAsyncError(async(req, res) => {
         const items = [];
         for (const item of cart.items) {
             const product = await ManageProducts.findById(item.product);
+
             totalAmount += product.productPrice * item.quantity;
             items.push({
                 productId: item.product,

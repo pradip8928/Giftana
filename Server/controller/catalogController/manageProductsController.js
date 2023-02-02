@@ -52,6 +52,25 @@ const getAllProduct = catchAsyncError(async(req, res, next) => {
 
 
 
+
+// get the LowStockProducts
+
+const getLowStockProducts = async(req, res) => {
+    try {
+        const lowStockProducts = await ManageProducts.find({ productStockQuantity: { $lt: 5 } });
+        const lowStockCountDocuments = await ManageProducts.find({ productStockQuantity: { $lt: 5 } }).countDocuments();
+        console.log(lowStockProducts);
+        if (!lowStockProducts) {
+            return res.status(400).json({ message: "No low stock products found" });
+        }
+        console.log(`no product found`);
+        return res.status(200).json({ success: true, lowStockProducts, lowStockCountDocuments });
+    } catch (error) {
+        return res.status(500).json({ message: "Error fetching low stock products", error });
+    }
+};
+
+
 // GET DETAIL OF A PRODUCT
 
 const getProductDetail = catchAsyncError(async(req, res, next) => {
@@ -153,6 +172,7 @@ const deleteMultipleProducts = catchAsyncError(async(req, res, next) => {
 module.exports = {
     createProduct,
     getAllProduct,
+    getLowStockProducts,
     getProductDetail,
     updateProduct,
     deleteOneProduct,
