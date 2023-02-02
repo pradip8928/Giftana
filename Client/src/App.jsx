@@ -25,10 +25,10 @@ import "./Components/pages/Manage_Products";
 import AddCategory from "./Components/pages/AddCategory";
 import NewCategory from "./Components/pages/AddNewCategory";
 import Edit_page from "./Components/pages/Edit_page";
- 
+import Funnel from "./Components/forms/formComponents/Funnel";
 
 // manageProduct
-import AddManageProduct  from "./Components/manageProduct/AddManageProduct";
+import AddManageProduct from "./Components/manageProduct/AddManageProduct";
 
 function App() {
   const removeAccess = () => {
@@ -200,6 +200,16 @@ function App() {
           }
         />
         <Route
+          path="/funnel"
+          exact
+          element={
+            <>
+              {/* <Navbarr /> */}
+              <funnel />
+            </>
+          }
+        />
+        <Route
           path="/addProduct"
           exact
           element={
@@ -258,7 +268,6 @@ function App() {
           }
         />
         <Route
-          
           path="/edit_page"
           exact
           element={
@@ -278,6 +287,7 @@ function App() {
         />
       </Routes>
     </Router>
+
     // >>>>>>> bad1ec177aff56f6cc83dfe12044bcf551e53ac5
   );
 }

@@ -21,6 +21,7 @@ import filterIcon from "/src/assets/icons/filter.svg";
 import refreshIcon from "/src/assets/icons/refresh.svg";
 import settingsIcon from "/src/assets/icons/settings.svg";
 import caret from "/src/assets/icons/caret-down.svg";
+import Funnel from "../forms/formComponents/Funnel";
 import {
   BrowserRouter as Router,
   Routes,
@@ -144,7 +145,7 @@ export default function Categories() {
       </div>
       <div className="row m-2 pt-1 pb-1 border">
         <div className="container">
-          <Button icon={filterIcon} />
+          <Funnel />
           {/* sumit */}
 
           <Link to="/addProduct">
@@ -153,12 +154,6 @@ export default function Categories() {
           <Button items={deleteAllItems} name="- Delete the item" />
         </div>
         <div className="container">
-          <InputField
-            type="search"
-            name="adminName"
-            placeholder="search by product Name"
-            data={handleInput}
-          />
           {/* <InputField
             type="text"
             name="adminName"

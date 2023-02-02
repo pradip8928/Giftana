@@ -29,11 +29,14 @@ const getAllProduct = catchAsyncError(async (req, res, next) => {
 
     const data = await Catagory.find();
 
+    const resultPerPage = 5;
+
     // console.log("my all data is", data);
 
     const apiFeature = await new ApiFeatures(Catagory.find(), req.query)
       .searchByProductName()
-      .filterByProductPrice();
+      .filterByProductPrice()
+      .pagination(resultPerPage);
 
     const products = await apiFeature.query;
 

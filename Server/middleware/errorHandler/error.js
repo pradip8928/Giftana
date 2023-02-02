@@ -9,8 +9,8 @@ module.exports = (err, req, res, next) => {
     err = new ErrorHandler(message, 400);
   }
 
-  // wrong product id error
   if (err.name === "CastError") {
+    // wrong product id error
     const message = `Resources not found Invalid : ${err.path}`;
     err = new ErrorHandler(message, 400);
   }

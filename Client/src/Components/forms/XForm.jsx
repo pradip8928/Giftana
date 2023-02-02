@@ -48,13 +48,11 @@ export default function XForm({ postTo }) {
     );
   };
 
-
-
   // message Disappere
   useEffect(() => {
-    if(message){
+    if (message) {
       setTimeout(() => {
-          setMessage(null);
+        setMessage(null);
       }, 10000);
     }
   }, [message]);
@@ -79,11 +77,11 @@ export default function XForm({ postTo }) {
       try {
         const res = await fetch("http://localhost:3000/api/admin/register", {
           method: "post",
+          mode: "no-cors",
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "http://localhost:3000",
-            "Access-Control-Allow-Credentials": "true"
           },
           credentials:"include",
           body: JSON.stringify({

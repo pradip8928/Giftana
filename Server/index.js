@@ -8,7 +8,6 @@ const path = require("path");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 
-
 dotenv.config();
 
 // const { errorHandler, notFound } = require("./middleware/errorMiddleware")
@@ -17,32 +16,33 @@ dotenv.config();
 // const catelogRoutes = require("./routes/catalogueRoutes")
 
 const {
-    errorHandler,
-    notFound,
+  errorHandler,
+  notFound,
 } = require("./middleware/errorHandler/errorMiddleware");
 const errorMiddleware = require("./middleware/errorHandler/error");
 const userRoutes = require("./routes/authRoutes/userRoutes");
 const adminRoutes = require("./routes/authRoutes/adminRoutes");
 const catagory = require("./routes/catalog/catagoryRoutes");
-const manageProducts = require("./routes/catalog/manageProductsRoutes")
-const reviewProduct = require("./routes/catalog/reviewProductRoutes")
-const manufacturer = require("./routes/catalog/manufacturerProductRoutes")
-const affiliates = require("./routes/promotionRoutes/affiliatesRoutes")
-const compaign = require("./routes/promotionRoutes/compaignRoutes")
-const discount = require("./routes/promotionRoutes/discountRoutes")
+const manageProducts = require("./routes/catalog/manageProductsRoutes");
+const reviewProduct = require("./routes/catalog/reviewProductRoutes");
+const manufacturer = require("./routes/catalog/manufacturerProductRoutes");
+const affiliates = require("./routes/promotionRoutes/affiliatesRoutes");
+const compaign = require("./routes/promotionRoutes/compaignRoutes");
+const discount = require("./routes/promotionRoutes/discountRoutes");
+// const sales = require("./routes/sales/orderRoutes");
 
-const message = require("./routes/systemRoutes/messageRoutes")
-const rules = require("./routes/systemRoutes/rulesRoutes")
-const shedules = require("./routes/systemRoutes/scheduleTaskRoutes")
+const message = require("./routes/systemRoutes/messageRoutes");
+const rules = require("./routes/systemRoutes/rulesRoutes");
+const shedules = require("./routes/systemRoutes/scheduleTaskRoutes");
 
 // customer
-const customer = require("./routes/customerRoutes/customerRoutes")
-    // customer role
-const customerRole = require("./routes/customerRoutes/customerRoleRoutes")
+const customer = require("./routes/customerRoutes/customerRoutes");
+// customer role
+const customerRole = require("./routes/customerRoutes/customerRoleRoutes");
 
 // sales
-const sales = require("./routes/saleRoutes/cartRoutes")
-const order = require("./routes/saleRoutes/orderRoutes")
+const sales = require("./routes/saleRoutes/cartRoutes");
+const order = require("./routes/saleRoutes/orderRoutes");
 
 require("./config/database");
 app.use(cors());
@@ -71,15 +71,15 @@ app.use(cors());
 //     next();
 // });
 app.use((req, res, next) => {
-    const allowedOrigins = ["http://localhost:3000", "http://localhost:5173"];
-    const origin = req.headers.origin;
-    if (allowedOrigins.indexOf(origin) > -1) {
-        res.setHeader("Access-Control-Allow-Origin", origin);
-    }
-    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-    res.header("Access-Control-Allow-Credentials", true);
-    next();
+  const allowedOrigins = ["http://localhost:3000", "http://localhost:5173"];
+  const origin = req.headers.origin;
+  if (allowedOrigins.indexOf(origin) > -1) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  }
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.header("Access-Control-Allow-Credentials", true);
+  next();
 });
 
 // app.use(function(req, res, next) {
@@ -102,7 +102,6 @@ app.use("/catalog", manufacturer);
 app.use("/api/user", userRoutes);
 app.use("/api/admin", adminRoutes);
 
-
 // promition
 app.use("/promotion", affiliates);
 app.use("/promotion", compaign);
@@ -120,14 +119,13 @@ app.use("/customer", customerRole);
 app.use("/sales", sales);
 app.use("/sales", order);
 
-
 app.use(notFound);
-// app.use(errorHandler);
-app.use(errorMiddleware);
+app.use(errorHandler);
+// app.use(errorMiddleware);
 
 // localhost:3000/api/admin/register
 // localhost:3000/api/admin/register
 
 app.listen(Port, () => {
-    console.log(`port is running on ${Port}`);
+  console.log(`port is running on ${Port}`);
 });
