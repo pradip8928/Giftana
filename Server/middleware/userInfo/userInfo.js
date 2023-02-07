@@ -14,7 +14,7 @@ const userInfo = async(req, res, next) => {
         const lastVisitedPage = originalUrl;
         const apiKey = "at_Ic6WoAvBuPz4Os0LJbwq0vxRi9Ea5";
 
-        console.log(`User IP: ${ip}`);
+        // console.log(`User IP: ${ip}`);
         console.log(`Last Visited Page: ${lastVisitedPage}`);
         const response = await axios.get(`https://ip-geolocation.whoisxmlapi.com/api/v1?apiKey=${apiKey}&ipAddress=${ip}`);
         const { location } = response.data;
@@ -34,9 +34,9 @@ const userInfo = async(req, res, next) => {
         console.log(`User IP: ${userIp}`);
         console.log(`Last Visited Page: ${lastVisitedPage}`);
         res.locals.userInfo = {
-            userIp,
+            userIp: "user IP is not found",
             userLocation: "Location not available",
-            lastVisitedPage,
+            lastVisitedPage: "last visited page is not found",
         };
 
         next();
