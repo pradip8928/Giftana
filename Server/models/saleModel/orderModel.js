@@ -7,102 +7,92 @@ const uniqueid = require("uniqueid");
 
 var first = uniqueid("prefix");
 
-const orderSchema = new mongoose.Schema(
-  {
+const orderSchema = new mongoose.Schema({
     user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Admin",
-      required: true,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Admin",
+        required: true,
     },
 
     totalAmount: {
-      type: Number,
-      required: true,
+        type: Number,
+        required: true,
+        default: 0
     },
-    items: [
-      {
+    items: [{
         productId: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "ManageProducts",
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "ManageProducts",
         },
         quantity: {
-          type: Number,
-          required: true,
+            type: Number,
+            required: true,
         },
         price: {
-          type: Number,
-          required: true,
+            type: Number,
+            required: true,
         },
- 
-      },
-    ],
+
+    }, ],
     shippingInfo: {
-      address: {
-        type: String,
-        required: true,
-      },
-      city: {
-        type: String,
-        required: true,
-      },
-      state: {
-        type: String,
-        required: true,
-      },
-      country: {
- 
-        type: String,
-        required: true,
-      },
-      pinCode: {
-        type: Number,
-        required: true,
-      },
-      phoneNo: {
-        type: Number,
-        required: true,
-      },
+        address: {
+            type: String,
+            required: true,
+        },
+        city: {
+            type: String,
+            required: true,
+        },
+        state: {
+            type: String,
+            required: true,
+        },
+        country: {
+
+            type: String,
+            required: true,
+        },
+        pinCode: {
+            type: Number,
+            required: true,
+        },
+        phoneNo: {
+            type: Number,
+            required: true,
+        },
     },
 
     paymentInfo: {
-      paymentId: {
-        type: String,
-        // required: true,
-        receipt: first(),
-
-        // default: () => uniqueId(7),
-        // index: { unique: true },
-      },
-      paymentStatus: {
-        type: String,
-        enum: ["pending", "completed", "cancelled", "refund"],
-        default: "pending",
-        required: true,
-      },
-      paymentType: {
-        type: String,
-        enum: ["cod", "card"],
-        default: "card",
-        required: true,
-      },
+        paymentId: {
+            type: String,
+            default: uniqueid(16),
+        },
+        paymentStatus: {
+            type: String,
+            enum: ["pending", "completed", "cancelled", "refund"],
+            default: "pending",
+            required: true,
+        },
+        paymentType: {
+            type: String,
+            enum: ["cod", "card"],
+            default: "card",
+            required: true,
+        },
     },
 
-    orderStatus: [
-      {
+    orderStatus: [{
         type: {
-          type: String,
-          enum: ["ordered", "packed", "shipped", "Delivered"],
-          default: "ordered",
+            type: String,
+            enum: ["ordered", "packed", "shipped", "Delivered"],
+            default: "ordered",
         },
         date: {
-          type: Date,
-          default: Date.now,
+            type: Date,
+            default: Date.now,
         },
-      },
-    ],
-  },
-  { timestamps: true }
-);
+    }, ],
+}, { timestamps: true });
 
 // module.exports = mongoose.model("Order", orderSchema);
 const OrderModel = mongoose.model("Order", orderSchema);

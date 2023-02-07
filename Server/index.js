@@ -16,15 +16,14 @@ dotenv.config();
 // const catelogRoutes = require("./routes/catalogueRoutes")
 
 const {
-  errorHandler,
-  notFound,
+    errorHandler,
+    notFound,
 } = require("./middleware/errorHandler/errorMiddleware");
 const errorMiddleware = require("./middleware/errorHandler/error");
 const userRoutes = require("./routes/authRoutes/userRoutes");
 const adminRoutes = require("./routes/authRoutes/adminRoutes");
 const catagory = require("./routes/catalog/catagoryRoutes");
 const manageProducts = require("./routes/catalog/manageProductsRoutes");
-const reviewProduct = require("./routes/catalog/reviewProductRoutes");
 const manufacturer = require("./routes/catalog/manufacturerProductRoutes");
 const affiliates = require("./routes/promotionRoutes/affiliatesRoutes");
 const compaign = require("./routes/promotionRoutes/compaignRoutes");
@@ -43,9 +42,11 @@ const customerRole = require("./routes/customerRoutes/customerRoleRoutes");
 // sales
 const sales = require("./routes/saleRoutes/cartRoutes");
 const order = require("./routes/saleRoutes/orderRoutes");
+const userInfo = require("./middleware/userInfo/userInfo")
 
 require("./config/database");
 app.use(cors());
+app.use(userInfo);
 // app.use(cors({
 //     origin: 'http://localhost:3000',
 //     credentials: true,
@@ -71,16 +72,22 @@ app.use(cors());
 //     next();
 // });
 app.use((req, res, next) => {
-  const allowedOrigins = ["http://localhost:3000", "http://localhost:5173"];
-  const origin = req.headers.origin;
-  if (allowedOrigins.indexOf(origin) > -1) {
-    res.setHeader("Access-Control-Allow-Origin", origin);
-  }
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  res.header("Access-Control-Allow-Credentials", true);
-  next();
+    const allowedOrigins = ["http://localhost:3000", "http://localhost:5173"];
+    const origin = req.headers.origin;
+    if (allowedOrigins.indexOf(origin) > -1) {
+        res.setHeader("Access-Control-Allow-Origin", origin);
+    }
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    res.header("Access-Control-Allow-Credentials", true);
+    next();
 });
+
+
+
+
+
+
 
 // app.use(function(req, res, next) {
 //     res.header("Access-Control-Allow-Origin", "http://localhost:3000");
@@ -97,7 +104,6 @@ app.use(express.json()); // to accept json data
 app.use(cookieParser());
 app.use("/catalog", catagory);
 app.use("/catalog", manageProducts);
-app.use("/catalog", reviewProduct);
 app.use("/catalog", manufacturer);
 app.use("/api/user", userRoutes);
 app.use("/api/admin", adminRoutes);
@@ -127,5 +133,5 @@ app.use(errorHandler);
 // localhost:3000/api/admin/register
 
 app.listen(Port, () => {
-  console.log(`port is running on ${Port}`);
+    console.log(`port is running on ${Port}`);
 });

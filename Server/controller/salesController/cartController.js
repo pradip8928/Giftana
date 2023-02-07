@@ -78,9 +78,40 @@ const getAllCart = catchAsyncError(async(req, res, next) => {
     }
 });
 
+const getCustomerWithCart = async(req, res, next) => {
+    Cart.find()
+        .populate('user', 'adminName email')
+        .exec((err, carts) => {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            return res.status(200).json(carts);
+        })
+}
 
+/*
+
+const getCustomerWithCart = catchAsyncError(async (req, res, next) => {
+  const  user= await Admin.findById(req.params.id)
+    .populate('cart.productId', 'name price')
+    .select('name email cart');
+
+  if (!user) {
+    return next(new AppError(404, 'No customer found with that ID'));
+  }
+
+  res.status(200).json({
+    success: true,
+    user,
+  });
+});
+
+
+
+*/
 module.exports = {
     createCart,
-    getAllCart
+    getAllCart,
+    getCustomerWithCart
 
 };
