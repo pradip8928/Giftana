@@ -40,9 +40,10 @@ const customer = require("./routes/customerRoutes/customerRoutes");
 const customerRole = require("./routes/customerRoutes/customerRoleRoutes");
 
 // sales
-const sales = require("./routes/saleRoutes/cartRoutes");
+const cart = require("./routes/saleRoutes/cartRoutes");
 const order = require("./routes/saleRoutes/orderRoutes");
 const userInfo = require("./middleware/userInfo/userInfo")
+
 
 require("./config/database");
 app.use(cors());
@@ -122,7 +123,7 @@ app.use("/system", shedules);
 app.use("/customer", customer);
 // customer
 app.use("/customer", customerRole);
-app.use("/sales", sales);
+app.use("/sales", cart);
 app.use("/sales", order);
 
 app.use(notFound);
