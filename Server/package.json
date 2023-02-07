@@ -2,8 +2,10 @@
     "name": "server",
     "version": "1.0.0",
     "description": "",
-    "proxy": "http://localhost:3000",
     "main": "index.js",
+    "engines": {
+        "node": ">=16.17.1"
+    },
     "scripts": {
         "server": "nodemon index.js"
     },
