@@ -12,12 +12,12 @@ const {
 const { authenticatedAdmin } = require("../../middleware/adminAuth");
 
 router.route("/catagory/getAllProduct").get(getAllProduct);
-router.route("/catagory/createProduct").post(authenticatedAdmin, createProduct);
-router.route("/catagory/product/:id").get(authenticatedAdmin, getProductDetail);
-router.route("/catagory/product/:id").put(authenticatedAdmin, updateProduct);
+router.route("/catagory/createProduct").post(createProduct);
+router.route("/catagory/product/:id").get(getProductDetail);
+router.route("/catagory/product/:id").put(updateProduct);
 router
     .route("/catagory/product/:id")
-    .delete(authenticatedAdmin, deleteOneProduct);
+    .delete(deleteOneProduct);
 // add
 // router.route("/catagory/product/delete").delete(deleteProduct);
 router
