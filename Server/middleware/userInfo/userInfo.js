@@ -30,9 +30,7 @@ const userInfo = async(req, res, next) => {
 
         next();
     } catch (error) {
-        console.log(`Error retrieving user location: ${error.message}`);
-        console.log(`User IP: ${userIp}`);
-        console.log(`Last Visited Page: ${lastVisitedPage}`);
+
         res.locals.userInfo = {
             userIp: "user IP is not found",
             userLocation: "Location not available",
