@@ -57,7 +57,7 @@ export default function Categories() {
     // http://localhost:3000
     axios
       .get(
-        `http://localhost:3000/catalog/catagory/getAllProduct?productName=${query}`,
+        `https://smart-store-iwn4a.ondigitalocean.app/catalog/catagory/getAllProduct?productName=${query}`,
         config
       )
       .then((result) => {

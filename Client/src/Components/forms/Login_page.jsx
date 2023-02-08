@@ -1,10 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // import Navbar from "./Navbar";
 import { Link, useNavigate } from "react-router-dom";
+import SuccessMessage from "../pages/Success";
+import Error from "../pages/Error";
 
 // import { Link, useNavigate } from "react-router-dom";
 
 export default function Login_page() {
+  const [message, setMessage] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (message) {
+      setTimeout(() => {
+        setMessage(null);
+      }, 3000);
+    }
+  }, [message]);
+  useEffect(() => {
+    if (error) {
+      setTimeout(() => {
+        setError(null);
+      }, 3000);
+    }
+  }, [error]);
+
   const navigate = useNavigate();
   const [admin, setAdmin] = useState({
     userName: "",
@@ -27,70 +48,45 @@ export default function Login_page() {
 
     const { userName, password } = admin;
 
-    const res = await fetch("http://localhost:3000/api/admin/login", {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        adminName: userName,
-        password: password,
-      }),
-    });
+    const res = await fetch(
+      "https://smart-store-iwn4a.ondigitalocean.app/api/admin/login",
+      {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          adminName: userName,
+          password: password,
+        }),
+      }
+    );
     const data = await res.json();
 
     console.log(data);
-
-    if (data.success == false) {
-      // setError(data.message);
-      window.alert(data.message);
+    if (data.success === false || !data.success) {
+      setError(data.message);
     } else {
-       
-
-
-      window.alert("Login successfull");
-      // setMessage("Login Successfull");
+    
+      setMessage("Login Successfull");
       localStorage.setItem("token", data.token);
       localStorage.setItem("user_role", data.admin.role);
-
       navigate("/categories");
     }
   };
+
   return (
     <>
-      {/* <Navbar /> */}
-      {/* <section>
-        <div className="col-1">
-          <div className="login" id="main">
-            <h1>SMARTSTORE</h1>
-            <form>
-            <div className="input-div">
-              <input
-                type="text"
-                placeholder="username"
-                name="userName"
-                value={admin.userName}
-                onChange={handleInputs}
-              />
-              <input
-                type="text"
-                placeholder="password"
-                name="password"
-                value={admin.password}
-                onChange={handleInputs}
-              />
-            </div>
-            <button className="btnn" onClick={postData}>
-              Log in
-            </button>
-            <span class="psw">
-              <a href="#">Forgot password?</a>
-            </span>
-          </form> */}
+      {error && <Error errMessage={error}> {error}</Error>}
+      {message && (
+        <SuccessMessage varient="danger" successMessage={message}>
+          {" "}
+          {message}
+        </SuccessMessage>
+      )}
       <div className="login-page-container">
         <div className="sub-container">
-          {/* <div><img src={require('')} alt="" /></div> */}
-          {/* add png "png_for_login_page.png" */}
+         
           <form>
             <div class="mb-3" id="login-page-first-sec-id">
               <label for="exampleInputEmail1" class="form-label">
@@ -138,9 +134,7 @@ export default function Login_page() {
           </form>
         </div>
       </div>
-      {/* </div>
-        </div>
-      </section> */}
+      
     </>
   );
 }
