@@ -15,7 +15,7 @@ function NewProduct(props) {
   const [message, setMessage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
+  
   useEffect(() => {
     if (message || error) {
       setTimeout(() => {
@@ -39,9 +39,15 @@ function NewProduct(props) {
     productBadgeStyle: "",
     showOnHomePage: false,
     pageSizeOptions: "",
-    productImage: "",
+    // productImage: "",
   });
-
+  
+  
+  
+  
+  
+  
+  
   let name, value;
   const handleInputs = (e) => {
     name = e.target.name;
@@ -49,11 +55,77 @@ function NewProduct(props) {
     setCategory({ ...addCategory, [name]: value });
     console.log(addCategory);
   };
-
+  
   const handleCheckbox = (e) => {
     const { name, checked } = e.target;
     setCategory({ ...addCategory, [name]: checked });
   };
+  // image conversion
+  const [productImageBase, setProductImageBase] = useState("")
+  
+  
+  const uploadImage = async (e) => {
+    console.log("files", e.target.files);
+    const file = e.target.files[0];
+  const base64 = await convertBase64(file);
+
+  // console.log(base64);
+  setProductImageBase(base64);
+  console.log("file", base64);
+};
+
+
+const convertBase64 = (file) => {
+  return new Promise((resolve, reject) => {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+
+    fileReader.onload = () => {
+      resolve(fileReader.result);
+    };
+
+    fileReader.onerror = (error) => {
+      reject(error);
+    };
+  });
+};
+
+
+// const uploadImage = async (e) => {
+//   console.log("files", e.target.files);
+//   const file = e.target.files[0];
+//   const base64 = await convertBase64(file);
+
+//   setProductImageBase(base64);
+// };
+
+
+
+// const convertBase64 = (file) => {
+//   return new Promise((resolve, reject) => {
+//     const fileReader = new FileReader();
+//     fileReader.readAsDataURL(file);
+
+//     fileReader.onload = () => {
+//       resolve(fileReader.result);
+//     };
+
+//     fileReader.onerror = (error) => {
+//       reject(error);
+//     };
+//   });
+// };
+
+
+
+
+
+
+ 
+// end images
+
+
+
 
   const postData = async (e) => {
     console.log(addCategory);
@@ -73,7 +145,7 @@ function NewProduct(props) {
       productBadgeStyle,
       showOnHomePage,
       pageSizeOptions,
-      productImage,
+      // productImage,
     } = addCategory;
 
     if (
@@ -112,7 +184,8 @@ function NewProduct(props) {
               productBadgeStyle,
               showOnHomePage,
               pageSizeOptions,
-              productImage,
+              // productImage:,
+              productImageBase
             }),
           }
         );
@@ -241,8 +314,12 @@ function NewProduct(props) {
           label="Picutre"
           type="file"
           name="productImage"
-          data={handleInputs}
-          value={addCategory.productImage}
+          // data={handleInputs}
+          data={(e) => {
+            uploadImage(e);
+          }}
+          // value={addCategory.productImage}
+          value={productImageBase}
         />
         <hr className="" />
         <Dropdown label="Default view mode" options={["Grid", "List"]} />

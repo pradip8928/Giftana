@@ -1,24 +1,8 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-    // productName;
-    // productCompleteName;
-    // productAliasName;
-    // productPublished;
-    // productOrder;
-    // productStores;
 
-// productName,productCompleteName,productAliasName,productPublished,productOrder,productStores
-// name ,cname,alias, published i.e. Boolean ,order,stores
 
-// const catagorySchema = mongoose.Schema({
-//     productParentCategory: {
-//         type: String,
-//         required: [true, "Please Enter the product parent category"],
-//         minLength: [2, "Name should have more than 2 characters"],
-//         maxLength: [30, "Name cannot exceed 30 characters"],
-//         trim: true,
-//     },
-//     productExternalLink: {
+///productExternalLink: {
 //         type: String,
 //         required: [true, "Please Enter the product Link"],
 //         minLength: [2, "Name should have more than 2 characters"],
@@ -105,16 +89,7 @@ const Schema = mongoose.Schema
 //         maxLength: [40, "stock cannot exceed 4 characters"],
 //         default: 1,
 //     },
-//     products: [{
-//         type: mongoose.Schema.Types.ObjectId,
-//         ref: "ManageProducts",
-//     }, ],
-//     createdAt: {
-//         type: Date,
-//         default: Date.now,
-//     },
-// });
-const catagorySchema = mongoose.Schema({
+const SubcategorySchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
@@ -122,23 +97,45 @@ const catagorySchema = mongoose.Schema({
     },
     desc: {
         type: String,
-        required: [true, "Please Enter the category description"],
-        minLength: [2, "category desc should have more than 2 characters"],
+        required: [true, "Please Enter the sub-category description"],
+        minLength: [2, "sub-category desc should have more than 2 characters"],
+        trim: true,
+    },
+    externalLink: {
+        type: String,
+        required: [true, "Please Enter the  Link"],
+        minLength: [2, "Link should have more than 2 characters"],
         trim: true,
     },
     image: {
         type: String,
-        required: [true, "Please select the image of the category"],
+        required: [true, "Please select product Image Link"],
         trim: true,
     },
-    subcategories: [{
-        type: Schema.Types.ObjectId,
-        ref: "Subcategory"
-    }],
-    createdAt: {
-        type: Date,
-        default: Date.now,
+    category: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Catagory"
     },
+    products: [{
+        type: Schema.Types.ObjectId,
+        ref: "ManageProducts"
+    }],
+    // badgeText: {
+    //     type: String,
+    //     required: [true, "Please Enter the product badge text"],
+    //     minLength: [2, "Product badge text should have more than 2 characters"],
+    //     trim: true,
+    // },
+    // badgeStyle: {
+    //     type: String,
+    //     required: [true, "Please Select  the  badge style"],
+    //     enum: ["secondary", "primary", "light", "dark"],
+    //     trim: true,
+    //     default: "Secondary",
+    // },
 });
 
-module.exports = mongoose.model("Catagory", catagorySchema);
+
+const Subcategory = mongoose.model("Subcategory", SubcategorySchema);
+
+module.exports = Subcategory;

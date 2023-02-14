@@ -23,6 +23,7 @@ const errorMiddleware = require("./middleware/errorHandler/error");
 const userRoutes = require("./routes/authRoutes/userRoutes");
 const adminRoutes = require("./routes/authRoutes/adminRoutes");
 const catagory = require("./routes/catalog/catagoryRoutes");
+const subCategory = require("./routes/catalog/subCategoryRoutes")
 const manageProducts = require("./routes/catalog/manageProductsRoutes");
 const manufacturer = require("./routes/catalog/manufacturerProductRoutes");
 const affiliates = require("./routes/promotionRoutes/affiliatesRoutes");
@@ -104,6 +105,7 @@ const Port = process.env.PORT || 3000;
 app.use(express.json()); // to accept json data
 app.use(cookieParser());
 app.use("/catalog", catagory);
+app.use("/catalog", subCategory);
 app.use("/catalog", manageProducts);
 app.use("/catalog", manufacturer);
 app.use("/api/user", userRoutes);

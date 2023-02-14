@@ -1,0 +1,186 @@
+import React, { useState, useEffect } from 'react';
+
+const CreateProduct = () => {
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState('');
+
+  useEffect(() => {
+    // Fetch the list of categories from the API
+    fetch('/api/categories')
+      .then(res => res.json())
+      .then(data => setCategories(data.categories));
+  }, []);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Send the POST request to create the product, including the selected category in the request body
+    const res = await fetch('/api/products', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        ...req.body,
+        category: selectedCategory
+      })
+    });
+    const data = await res.json();
+
+    // Handle the response from the API
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      {/* ...other form fields for product data... */}
+
+      <label htmlFor="category">Category:</label>
+      <select id="category" value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
+        {categories.map(category => (
+          <option key={category._id} value={category._id}>{category.name}</option>
+        ))}
+      </select>
+
+      <button type="submit">Create Product</button>
+    </form>
+  );
+};
+
+export default CreateProduct;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////
+
+import React, { useState } from "react";
+
+const CreateProduct = () => {
+  const [formData, setFormData] = useState({
+    productName: "",
+    productSKU: "",
+    productImage: "",
+    productPrice: "",
+    productStockQuantity: "",
+    productLimitationInStore: "",
+    productPublished: "",
+    category: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post("/api/products", formData);
+      console.log(res.data);
+    } catch (err) {
+      console.error(err.response.data);
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label htmlFor="productName">Product Name:</label>
+        <input
+          type="text"
+          name="productName"
+          id="productName"
+          value={formData.productName}
+          onChange={handleChange}
+        />
+      </div>
+      {/* other input fields for other product details */}
+      <div>
+        <label htmlFor="category">Category:</label>
+        <select
+          name="category"
+          id="category"
+          value={formData.category}
+          onChange={handleChange}
+        >
+          <option value="">Select a category</option>
+          <option value="category1">Category 1</option>
+          <option value="category2">Category 2</option>
+          {/* other category options */}
+        </select>
+      </div>
+      <button type="submit">Create Product</button>
+    </form>
+  );
+};
+
+export default CreateProduct;
+
+
+
+///fetches the products for a given category:
+
+
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
+const CategoryProducts = ({ categoryId }) => {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get(`/api/categories/${categoryId}/products`);
+        setProducts(response.data.products);
+      } catch (err) {
+        setError(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, [categoryId]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>An error occurred: {error.message}</div>;
+  }
+
+  return (
+    <ul>
+      {products.map(product => (
+        <li key={product._id}>{product.name}</li>
+      ))}
+    </ul>
+  );
+};
+
+export default CategoryProducts;

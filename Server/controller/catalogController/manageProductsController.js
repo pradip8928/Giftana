@@ -1,25 +1,38 @@
+/*
 const mongoose = require("mongoose");
 const catchAsyncError = require("../../middleware/errorHandler/catchAsyncError");
 const ErrorHandler = require("../../utils/errorHandler");
 const ManageProducts = require("../../models/catalogModel/manageProductsModel");
+const Category = require("../../models/catalogModel/catagoryModel")
 const ApiFeatures = require("../../utils/apiFeatures");
 const path = require("path");
-// const filePath = path.join(__dirname, '..', '..', 'models', 'catalogModel', 'ManageProductsModel');
-// const ManageProducts = require(filePath);
 
-// console.log(ManageProducts);
 // creation Of Product
 
 const createProduct = catchAsyncError(async(req, res, next) => {
     try {
-        // const manageProduct = await ManageProducts.create(req.body);
-        const manageProduct = await ManageProducts.create({
-            ...req.body,
-            category: req.body.category
-        });
+        const manageProduct = await ManageProducts.create(req.body);
+        // const manageProduct = await ManageProducts.create({
+        //     ...req.body,
+        //     category: req.body.category
+        // });
+        const categoryId = req.body.category;
+        // const updatedCategory = await Category.findByIdAndUpdate(
+        //     category, { $push: { products: manageProduct._id } }, { new: true }
+        // );
+        const updatedCategory = await Category.findByIdAndUpdate(
+            categoryId, { $push: { products: manageProduct._id } }, { new: true }
+        );
+        if (!updatedCategory) {
+            return next(new ErrorResponse(`Category not found with id of ${categoryId}`, 404));
+        }
+
+
+
         res.status(201).json({
             success: true,
             manageProduct,
+            updatedCategory
         });
     } catch (err) {
         next(err);
@@ -273,4 +286,179 @@ module.exports = {
     createProductReview,
     getProductReviews,
     deleteReviews,
+};
+
+
+*/
+
+
+
+// ///////////////////////////Tested Code///////////////////////
+
+
+
+
+const Product = require("../../models/catalogModel/manageProductsModel");
+const Subcategory = require("../../models/catalogModel/subCategoryModel");
+const Category = require("../../models/catalogModel/catagoryModel");
+
+// exports.createProduct = async(req, res) => {
+//     const { name, subcategories } = req.body;
+
+//     try {
+//         let product = await Product.findOne({ name });
+//         if (product) {
+//             return res.status(400).json({ errors: [{ msg: "Product already exists" }] });
+//         }
+
+//         product = new Product({ name });
+
+//         if (subcategories && subcategories.length > 0) {
+//             // get subcategory objects from the database
+//             const subcategoryObjects = await Subcategory.find({
+//                 _id: { $in: subcategories }
+//             });
+//             console.log(subcategoryObjects);
+
+//             // check if all subcategories exists
+//             if (subcategoryObjects.length !== subcategories.length) {
+//                 return res.status(400).json({ errors: [{ msg: "Invalid subcategory" }] });
+//             }
+
+//             // update product subcategories field with subcategory objects
+//             product.subcategories = subcategoryObjects;
+
+//             // update subcategory products field with product object
+//             subcategoryObjects.forEach(subcategory => {
+//                 subcategory.products.push(product);
+//                 subcategory.save();
+//             });
+//         }
+
+//         await product.save();
+
+//         res.json(product);
+//     } catch (err) {
+//         console.error(err.message);
+//         res.status(500).send("Server error");
+//     }
+// };
+
+exports.createProduct = async(req, res) => {
+    const { name, SKU, image, price, stockQuantity, limitationInStore, published, subcategories } = req.body;
+
+    try {
+        let product = await Product.findOne({ name });
+        if (product) {
+            return res.status(400).json({ errors: [{ msg: "Product already exists" }] });
+        }
+
+        product = new Product({ name, SKU, image, price, stockQuantity, limitationInStore, published, subcategories: subcategories });
+
+        await product.save();
+
+        if (subcategories && subcategories.length > 0) {
+            // update subcategory products field with product object
+            // await Subcategory.updateMany({ _id: { $in: subcategories } }, { $push: { productIds: product._id } });
+            await Subcategory.updateMany({ _id: { $in: subcategories } }, { $push: { productIds: { $each: [product._id] } } });
+        }
+
+        res.json({...product._doc, subcategories: subcategories });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server error");
+    }
+};
+
+exports.getProducts = async(req, res) => {
+    try {
+        // const product = await Product.find();
+        // console.log(product);
+        const products = await Product.find().populate("subcategories", ["name", "category"]);
+        // const products = await Product.find().populate("subcategories").exec();
+        // const products = await Product.find().populate("subcategories", "_id name");
+        // const products = await Product.find().populate("subcategories");
+        res.json(products);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server error");
+    }
+};
+exports.updateProduct = async(req, res) => {
+    const { name, subcategories } = req.body;
+
+    const productFields = {};
+    if (name) productFields.name = name;
+    if (subcategories && subcategories.length > 0) productFields.subcategories = subcategories;
+
+    try {
+        let product = await Product.findById(req.params.id).populate("subcategories");
+        if (!product) {
+            return res.status(404).json({ errors: [{ msg: "Product not found" }] });
+        }
+
+        if (subcategories) {
+            // get subcategory objects from the database
+            const subcategoryObjects = await Subcategory.find({
+                _id: { $in: subcategories }
+            });
+
+            // check if all subcategories exists
+            if (subcategoryObjects.length !== subcategories.length) {
+                return res.status(400).json({ errors: [{ msg: "Invalid subcategory" }] });
+            }
+
+            // remove the product from previous subcategories
+            product.subcategories.forEach(subcategory => {
+                subcategory.products = subcategory.products.filter(p => p._id.toString() !== product._id.toString());
+                subcategory.save();
+            });
+
+            // add the product to the new subcategories
+            subcategories.forEach(subcategoryId => {
+                Subcategory.findById(subcategoryId)
+                    .then(subcategory => {
+                        subcategory.products.unshift(product._id);
+                        subcategory.save();
+                    })
+                    .catch(err => console.error(err.message));
+            });
+
+            product.subcategories = subcategories;
+            await product.save();
+
+            res.json(product);
+        }
+
+
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server error");
+    }
+}
+
+
+exports.deleteProduct = async(req, res) => {
+    try {
+        let product = await Product.findById(req.params.id);
+
+        if (!product) {
+            return res.status(404).json({ msg: "Product not found" });
+        }
+
+        product.subcategories.forEach(subcategory => {
+            subcategory.products = subcategory.products.filter(
+                p => p._id.toString() !== product._id.toString()
+            );
+            subcategory.save();
+        });
+
+        await product.remove();
+
+        res.json({ msg: "Product removed" });
+
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server error");
+    }
 };

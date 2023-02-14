@@ -26,10 +26,10 @@ const placeOrder = catchAsyncError(async(req, res) => {
         const items = [];
         for (const item of cart.items) {
             const product = await ManageProducts.findById(item.product);
-            totalAmount += product.productPrice * item.quantity;
+            totalAmount += product.price * item.quantity;
             items.push({
                 productId: item.product,
-                price: product.productPrice * item.quantity,
+                price: product.price * item.quantity,
                 quantity: item.quantity
             });
         }
@@ -78,11 +78,11 @@ const createOrder = catchAsyncError(async(req, res, next) => {
         orderStatus,
         user: req.admin._id,
     });
-    items.forEach(async(item) => {
-        const product = await Product.findById(item.productId);
-        product.deliveryCount += item.quantity;
-        await product.save();
-    });
+    // items.forEach(async(item) => {
+    //     const product = await Product.findById(item.productId);
+    //     product.deliveryCount += item.quantity;
+    //     await product.save();
+    // });
 
     res.status(201).json({
         success: true,
@@ -158,7 +158,7 @@ const updateOrder = catchAsyncError(async(req, res, next) => {
 async function updateStock(id, quantity) {
     const product = await Product.findById(id);
 
-    product.productStockQuantity -= quantity;
+    product.stockQuantity -= quantity;
 
     product.save({ validateBeforeSave: false });
 }

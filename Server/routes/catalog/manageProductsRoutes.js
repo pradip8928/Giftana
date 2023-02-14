@@ -1,3 +1,4 @@
+/*
 const express = require("express");
 const router = express.Router();
 const {
@@ -35,5 +36,33 @@ router.route("/manageProducts/product/:id").delete(deleteOneProduct);
 router
     .route("/manageProducts/products/deleteMultipleProducts")
     .delete(deleteMultipleProducts);
+
+module.exports = router;
+
+
+*/
+
+
+/////////////////Products Routes///////////////////////////////
+
+
+const express = require("express");
+const router = express.Router();
+const ProductController = require("../../controller/catalogController/manageProductsController");
+
+// Create a product
+router.post("/product", ProductController.createProduct);
+
+// Get all products
+router.get("/product", ProductController.getProducts);
+
+// Get a single product by id
+// router.get("/:id", ProductController.getProduct);
+
+// Update a product
+router.put("/product/:id", ProductController.updateProduct);
+
+// Delete a product
+router.delete("/product/:id", ProductController.deleteProduct);
 
 module.exports = router;

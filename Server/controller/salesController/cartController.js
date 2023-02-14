@@ -27,7 +27,7 @@ const createCart = catchAsyncError(async(req, res) => {
                 items: [{
                     product: product._id,
                     quantity: req.body.items[0].quantity,
-                    price: req.body.items[0].quantity * product.productPrice
+                    price: req.body.items[0].quantity * product.price
                 }]
             });
             await newCart.save();
@@ -40,12 +40,12 @@ const createCart = catchAsyncError(async(req, res) => {
             cart.items.push({
                 product: product._id,
                 quantity: req.body.items[0].quantity,
-                price: req.body.items[0].quantity * product.productPrice
+                price: req.body.items[0].quantity * product.price
             });
         } else {
             cart.items[cartItemIndex].quantity += req.body.items[0].quantity;
             // cart.items[cartItemIndex].price += req.body.items[0].quantity;
-            cart.items[cartItemIndex].price += req.body.items[0].quantity * product.productPrice;
+            cart.items[cartItemIndex].price += req.body.items[0].quantity * product.price;
         }
         await cart.save();
         return res.json(cart);

@@ -21,58 +21,144 @@ productReviews
 
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+
+
+// const manageProductSchema = mongoose.Schema({
+//     productName: {
+//         type: String,
+//         required: [true, "Please Enter your name"],
+//         maxLength: [50, "Product name should not exceed 50 characters"],
+//         minLength: [2, "Product name should have more than 2 characters"],
+//         trim: true,
+//     },
+//     productSKU: {
+//         type: String,
+//         required: [true, "Please Enter product SKU value"],
+//         maxLength: [30, "Product SKU value should not exceed 30 characters"],
+//         minLength: [2, "Product SKU value  should have more than 2 characters"],
+//         trim: true,
+//     },
+//     productImage: {
+//         type: String,
+//         required: [true, "Please Enter product Image Link"],
+//         trim: true,
+//     },
+//     productPrice: {
+//         type: Number,
+//         required: [true, "Please enter the  product price"],
+//         maxLength: [15, "Product price canot exceed 15 characters"],
+//         trim: true,
+//     },
+//     productStockQuantity: {
+//         type: Number,
+//         required: [true, "Please enter product stock quantity"],
+//         maxLength: [12, "product stock quantity should not  exceed 12 characters"],
+//         trim: true,
+//     },
+//     productLimitationInStore: {
+//         type: Number,
+//         required: [true, "Please enter product limitation in the Store"],
+//         maxLength: [12, "product limitation in the  should not  exceed 12 characters"],
+//         trim: true,
+//     },
+//     productPublished: {
+//         type: Boolean,
+//         required: [true, "Please select the status of product published or not"],
+//         trim: true,
+//     },
+//     category: {
+//         type: Schema.Types.ObjectId,
+//         ref: 'Catagory',
+//         required: true,
+//     },
+//     deliveryCount: {
+//         type: Number,
+//         default: 0
+//     },
+//     ratings: {
+//         type: Number,
+//         default: 0,
+//     },
+//     numOfReviews: {
+//         type: Number,
+//         default: 0,
+//     },
+//     reviews: [{
+//         user: {
+//             type: mongoose.Schema.ObjectId,
+//             ref: "Admin",
+//             required: true,
+//         },
+//         name: {
+//             type: String,
+//         },
+//         rating: {
+//             type: Number,
+//             required: true,
+//         },
+//         comment: {
+//             type: String,
+//             required: true,
+//         },
+//     }, ],
+//     productUpdateOn: {
+//         type: Date,
+//         default: Date.now,
+//     },
+//     productCreatedAt: {
+//         type: Date,
+//         default: Date.now,
+//     },
+// });
+// [name,SKU,image,price,stockQuantity,limitationInStore,published]
 const manageProductSchema = mongoose.Schema({
-    productName: {
+    name: {
         type: String,
-        required: [true, "Please Enter your name"],
-        maxLength: [50, "Product name should not exceed 50 characters"],
-        minLength: [2, "Product name should have more than 2 characters"],
-        trim: true,
+        required: true,
+        unique: true
     },
-    productSKU: {
+    // added
+    SKU: {
         type: String,
         required: [true, "Please Enter product SKU value"],
         maxLength: [30, "Product SKU value should not exceed 30 characters"],
         minLength: [2, "Product SKU value  should have more than 2 characters"],
         trim: true,
     },
-    productImage: {
+    image: {
         type: String,
         required: [true, "Please Enter product Image Link"],
         trim: true,
     },
-    productPrice: {
+    price: {
         type: Number,
         required: [true, "Please enter the  product price"],
         maxLength: [15, "Product price canot exceed 15 characters"],
         trim: true,
     },
-    productStockQuantity: {
+    stockQuantity: {
         type: Number,
         required: [true, "Please enter product stock quantity"],
         maxLength: [12, "product stock quantity should not  exceed 12 characters"],
         trim: true,
     },
-    productLimitationInStore: {
+    limitationInStore: {
         type: Number,
         required: [true, "Please enter product limitation in the Store"],
         maxLength: [12, "product limitation in the  should not  exceed 12 characters"],
         trim: true,
     },
-    productPublished: {
+    published: {
         type: Boolean,
         required: [true, "Please select the status of product published or not"],
         trim: true,
     },
-    category: {
-        type: Schema.Types.ObjectId,
-        ref: 'Catagory',
-        required: true,
-    },
-    deliveryCount: {
-        type: Number,
-        default: 0
-    },
+
+    subcategories: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Subcategory"
+    }],
+    // added
     ratings: {
         type: Number,
         default: 0,
@@ -84,11 +170,8 @@ const manageProductSchema = mongoose.Schema({
     reviews: [{
         user: {
             type: mongoose.Schema.ObjectId,
-            ref: "Admin",
+            ref: "Admin", //should be user
             required: true,
-        },
-        name: {
-            type: String,
         },
         rating: {
             type: Number,
